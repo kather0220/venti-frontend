@@ -1,4 +1,3 @@
-
 /*
 body {
   margin: 0;
@@ -37,6 +36,23 @@ body {
   src: url('./fonts/montserrat-v15-latin-regular.woff') format('woff'),
     url('./fonts/montserrat-v15-latin-regular.woff2') format('woff2'),
     url('./fonts/montserrat-v15-latin-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('./fonts/noto-sans-kr-v13-latin-500.woff') format('woff'),
+    url('./fonts/noto-sans-kr-v13-latin-500.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/roboto-v27-latin-regular.woff') format('woff'),
+    url('./fonts/roboto-v27-latin-regular.woff2') format('woff2'),
+    url('./fonts/roboto-v27-latin-regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
