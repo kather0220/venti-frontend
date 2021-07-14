@@ -6,14 +6,33 @@ export const StyledHeader = styled.div`
   width: 100vw;
   height: 6.733rem;
   background-color: white;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FirstRow = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+  height: 62px;
+  position: relative;
+`;
+
+export const SecondRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  padding-top: 0px;
+  height: 62px;
 `;
 
 export const StyledLogo = styled.div`
-  position: absolute;
   width: 4.6rem;
   height: 2.133rem;
-  left: 40.27%;
-  top: 1rem;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -26,33 +45,25 @@ export const HamburgerButton = styled.img`
   position: absolute;
   width: 1.6rem;
   height: 1.6rem;
-  left: 4.267%;
-  top: 1.333rem;
+  left: 16px;
 `;
 
 export const AlarmButton = styled.img`
   position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
-  left: 89.6%;
-  top: 1.267rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  right: 16px;
 `;
 
 export const SearchInputBox = styled.input`
-  position: absolute;
-  width: 84%;
-  height: 2.333rem;
-  left: 4.267%;
-  top: 3.533rem;
+  flex-grow: 1;
   background: #f0f0f0;
   border: 1px solid #dddddd;
-  box-sizing: border-box;
+  margin-right: 8px;
+  height: 100%;
 `;
 
 export const SearchButton = styled.img`
-  position: absolute;
   width: 1.5rem;
   height: 1.5rem;
-  left: 90.4%;
-  top: 4.035rem;
 `;

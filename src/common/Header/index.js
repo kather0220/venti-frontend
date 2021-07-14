@@ -1,9 +1,11 @@
 import * as S from './styles';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 function Header() {
   const [searchInput, setSearchInput] = useState('');
+  const history = useHistory();
   const onChange = (e) => {
     setSearchInput(e.target.value);
     console.log(searchInput);
@@ -17,21 +19,34 @@ function Header() {
   };
   return (
     <S.StyledHeader>
-      <Link to={'/'}>
-        <S.StyledLogo>Venti</S.StyledLogo>
-      </Link>
-      <S.HamburgerButton src={'/img/hamburger-button.png'}></S.HamburgerButton>
-      <Link to={'/notice'}>
-        <S.AlarmButton src={'img/alarm-icon.png'}></S.AlarmButton>
-      </Link>
-      <S.SearchInputBox
-        onChange={onChange}
-        onKeyPress={(e) => (e.key === 'Enter' ? handleKeyPress() : <></>)}
-      ></S.SearchInputBox>
-      <S.SearchButton
-        src={'/img/search-icon.png'}
-        onClick={handleKeyPress}
-      ></S.SearchButton>
+      <S.FirstRow>
+        <S.StyledLogo
+          onClick={() => {
+            history.push('/');
+          }}
+        >
+          Venti
+        </S.StyledLogo>
+        <S.HamburgerButton
+          src={'/img/hamburger-button.png'}
+        ></S.HamburgerButton>
+        <S.AlarmButton
+          src={'img/alarm-icon.png'}
+          onClick={() => {
+            history.push('/notice');
+          }}
+        ></S.AlarmButton>
+      </S.FirstRow>
+      <S.SecondRow>
+        <S.SearchInputBox
+          onChange={onChange}
+          onKeyPress={(e) => (e.key === 'Enter' ? handleKeyPress() : <></>)}
+        ></S.SearchInputBox>
+        <S.SearchButton
+          src={'/img/search-icon.png'}
+          onClick={handleKeyPress}
+        ></S.SearchButton>
+      </S.SecondRow>
     </S.StyledHeader>
   );
 }

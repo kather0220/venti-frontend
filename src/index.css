@@ -21,16 +21,18 @@ code {
 }
 
 @media screen and (min-width: 768px) {
-  /*
   html {
     font-size: 18px;
   }
-  */
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -57,4 +59,10 @@ body {
     url('./fonts/roboto-v27-latin-regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
 }

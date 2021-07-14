@@ -5,12 +5,31 @@ import * as S from './styles';
 
 function MainPage() {
   return (
-    //<Container>
-    <div>
+    <>
       <Header></Header>
       <S.Banner src={'/img/green-banner.png'}></S.Banner>
-    </div>
-    //</Container>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+      <S.Banner src={'/img/green-banner.png'}></S.Banner>
+    </>
   );
 }
 
