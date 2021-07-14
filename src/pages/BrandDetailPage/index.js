@@ -1,8 +1,8 @@
 import React from 'react';
-import Container from '../../common/Container';
+import Header from '../../common/Header/index';
 
 function BrandDetailPage() {
-  return <Container></Container>;
+  return <Header></Header>;
 }
 
 export default BrandDetailPage;

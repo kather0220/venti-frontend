@@ -1,8 +1,8 @@
 import React from 'react';
-import Container from '../../common/Container';
+import Header from '../../common/Header/index';
 
 function EventDetailPage() {
-  return <Container></Container>;
+  return <Header></Header>;
 }
 
 export default EventDetailPage;
