@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import Container from '../../common/Container/index';
 import Header from '../../common/Header/index';
 import GridWrapper from '../../common/GridWrapper/index';
-import GridItem from '../../common/GridItem/index';
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
 
@@ -13,22 +11,21 @@ function MainPage() {
     const {
       target: { id },
     } = event;
+    console.log(id);
     switch (id) {
       case 'food':
         setCategory('food');
-        //console.log(category);
         break;
       case 'cafe':
         setCategory('cafe');
-        //console.log(category);
         break;
       case 'fashion':
         setCategory('fashion');
-        //console.log(category);
         break;
       default:
         break;
     }
+    console.log(category);
   };
   return (
     <>
@@ -60,9 +57,9 @@ function MainPage() {
           </S.CategoryTab>
         </S.CategoryWrapper>
         <S.CategoryUnderLine></S.CategoryUnderLine>
-        <GridWrapper />
-        <GridWrapper />
-        <GridWrapper />
+        <GridWrapper visible={category === 'food'} />
+        <GridWrapper visible={category === 'cafe'} />
+        <GridWrapper visible={category === 'fashion'} />
         <Footer></Footer>
       </S.MainContainer>
     </>

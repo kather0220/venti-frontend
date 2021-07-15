@@ -21,8 +21,6 @@ export const Exp = styled.div`
 `;
 
 export const LinkInfoWrapper = styled.div`
-  //flex-direction: row;
-  //display: inline-block;
   padding-bottom: 2.067rem;
 `;
 

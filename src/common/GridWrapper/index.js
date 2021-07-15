@@ -2,9 +2,9 @@ import * as S from './styles';
 import React from 'react';
 import GridItem from '../GridItem/index';
 
-function GridWrapper() {
+function GridWrapper(props) {
   return (
-    <S.StyledGridWrapper>
+    <S.StyledGridWrapper visible={props.visible}>
       <GridItem />
       <GridItem />
 
