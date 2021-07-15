@@ -1,7 +1,6 @@
 import * as S from './styles';
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 function Header() {
   const [searchInput, setSearchInput] = useState('');
@@ -21,12 +20,11 @@ function Header() {
     <S.StyledHeader>
       <S.FirstRow>
         <S.StyledLogo
+          src={'/img/Venti.png'}
           onClick={() => {
             history.push('/');
           }}
-        >
-          Venti
-        </S.StyledLogo>
+        ></S.StyledLogo>
         <S.HamburgerButton
           src={'/img/hamburger-button.png'}
         ></S.HamburgerButton>
