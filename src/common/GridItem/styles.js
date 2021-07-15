@@ -57,4 +57,5 @@ export const GridItemContainer = styled.div`
   width: 100%;
   height: 18.511rem;
   padding: 1.067rem 0.5rem;
+  margin-bottom: 2.242rem;
 `;
