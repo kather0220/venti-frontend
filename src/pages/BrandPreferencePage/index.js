@@ -5,7 +5,7 @@ function BrandPreferencePage() {
   return (
     <S.MainContainer>
       <S.Exp>
-        이벤티님이<br></br>선호하시는 브랜드를 알려주세요
+        <name>이벤티</name>님이<br></br>선호하시는 브랜드를 알려주세요
       </S.Exp>
       <S.GridWrapper>
         <S.BrandContainer>
@@ -56,7 +56,57 @@ function BrandPreferencePage() {
           ></S.BrandImage>
           <S.BrandName>VIPS</S.BrandName>
         </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
+        <S.BrandContainer>
+          <S.BrandImage
+            src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          ></S.BrandImage>
+          <S.BrandName>VIPS</S.BrandName>
+        </S.BrandContainer>
       </S.GridWrapper>
+      <S.OpacityBox />
+      <S.SelectButton>선택완료</S.SelectButton>
     </S.MainContainer>
   );
 }

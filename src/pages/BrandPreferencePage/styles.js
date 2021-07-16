@@ -3,15 +3,20 @@ import styled from 'styled-components';
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Exp = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 1.067rem;
   text-align: center;
   padding: 2.133rem;
+
+  & name {
+    font-weight: bold;
+  }
 `;
 
 export const GridWrapper = styled.div`
@@ -43,4 +48,33 @@ export const BrandName = styled.div`
   font-size: 1rem;
   margin-top: 1.037rem;
   text-align: center;
+`;
+
+export const OpacityBox = styled.div`
+  position: sticky;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 9.333rem;
+  z-index: 1;
+  background: white;
+  opacity: 0.85;
+`;
+
+export const SelectButton = styled.button`
+  position: sticky;
+  bottom: 4.533rem;
+  width: 9.067rem;
+  height: 2.333rem;
+  background: #b3b3b3;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  opacity: 1;
+  font-family: Noto Sans KR;
+  font-size: 0.933rem;
+  font-weight: 700;
+  z-index: 2;
 `;
