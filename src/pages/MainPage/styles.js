@@ -16,9 +16,8 @@ export const EventsForYou = styled.div`
   padding: 1.667rem 1.067rem;
   font-family: Roboto;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 1.2rem;
-  //line-height: 21px;
 `;
 
 export const CategoryWrapper = styled.div`
@@ -52,6 +51,5 @@ export const GridItem = styled.div`
   width: 100%;
   height: 13.453rem;
   padding: 1.067rem 0.5rem;
-
   border-radius: 5px;
 `;

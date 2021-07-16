@@ -6,12 +6,10 @@ import * as S from './styles';
 
 function MainPage() {
   const [category, setCategory] = useState('food');
-  // 전부 다 false 로 만드는 함수 만들기!
   const handleClick = (event) => {
     const {
       target: { id },
     } = event;
-    console.log(id);
     switch (id) {
       case 'food':
         setCategory('food');
@@ -25,7 +23,6 @@ function MainPage() {
       default:
         break;
     }
-    console.log(category);
   };
   return (
     <>

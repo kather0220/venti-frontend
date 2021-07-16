@@ -15,8 +15,8 @@ export const FirstRow = styled.div`
 export const EventName = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: 600;
-  font-size: 0.783rem;
+  font-weight: 500;
+  font-size: 0.983rem;
   flex-grow: 1;
 `;
 export const SecondRow = styled.div`
@@ -25,7 +25,7 @@ export const SecondRow = styled.div`
   align-items: center;
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.667rem;
   padding-top: 0.867rem;
 `;

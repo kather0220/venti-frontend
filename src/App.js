@@ -6,6 +6,7 @@ import BrandPage from './pages/BrandPage/index';
 import BrandDetailPage from './pages/BrandDetailPage/index';
 import MyVentiPage from './pages/MyVentiPage/index';
 import SignUpPage from './pages/SignUpPage/index';
+import BrandPreferencePage from './pages/BrandPreferencePage/index';
 import LogInPage from './pages/LogInPage/index';
 import MyPage from './pages/MyPage/index';
 import NoticePage from './pages/NoticePage/index';
@@ -35,6 +36,7 @@ function App() {
         />
         <Route exact path="/my-venti" component={MyVentiPage} />
         <Route exact path="/sign-up" component={SignUpPage} />
+        <Route exact path="/brand-preference" component={BrandPreferencePage} />
         <Route exact path="/log-in" component={LogInPage} />
         <Route exact path="/my" component={MyPage} />
         <Route exact path="/notice" component={NoticePage} />

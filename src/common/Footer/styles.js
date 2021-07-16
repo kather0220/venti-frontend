@@ -13,7 +13,7 @@ export const StyledContainer = styled.div`
 export const Exp = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 0.867rem;
   color: #9a9a9a;
   text-align: center;
