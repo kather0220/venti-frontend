@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -36,7 +37,6 @@ export const ContainerText = styled.div`
   color: #919191;
 `;
 export const IdPwInput = styled.input`
-  //margin-left: 4.533rem;
   border: 1px solid #f1f1f1;
   color: black;
   font-family: Roboto;
@@ -48,4 +48,27 @@ export const IdPwInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+export const LogInButton = styled.button`
+  width: 9.067rem;
+  height: 2.333rem;
+  margin-top: 9.133rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.933rem;
+  color: white;
+  background: #f40552;
+  border-radius: 10px;
+  border: none;
+`;
+
+export const SignUpLink = styled(Link)`
+  margin-top: 1.267rem;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.933rem;
+  color: #aaaaaa;
 `;
