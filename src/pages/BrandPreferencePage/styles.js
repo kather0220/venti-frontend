@@ -41,6 +41,14 @@ export const BrandImage = styled.img`
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.07);
 `;
 
+export const BrandImageOverlay = styled.div`
+  width: 5.667rem;
+  height: 5.667rem;
+  border-radius: 50%;
+  z-index: 10;
+  background: rgba(40, 40, 40, 0.42);
+`;
+
 export const BrandName = styled.div`
   font-family: Roboto;
   font-style: normal;
@@ -58,23 +66,22 @@ export const OpacityBox = styled.div`
   display: flex;
   width: 100%;
   height: 9.333rem;
-  z-index: 1;
+  z-index: 100;
   background: white;
   opacity: 0.85;
 `;
 
 export const SelectButton = styled.button`
-  position: sticky;
+  position: fixed;
   bottom: 4.533rem;
   width: 9.067rem;
   height: 2.333rem;
-  background: #b3b3b3;
+  background: ${(props) => (props.disabled ? '#b3b3b3' : '#F40552')};
   color: white;
   border-radius: 10px;
   border: none;
-  opacity: 1;
   font-family: Noto Sans KR;
   font-size: 0.933rem;
   font-weight: 700;
-  z-index: 2;
+  z-index: 200;
 `;
