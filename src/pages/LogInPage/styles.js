@@ -9,8 +9,8 @@ export const MainContainer = styled.div`
 
 export const Logo = styled.img`
   margin-top: 3.8rem;
-  width: 6.2rem;
-  height: 2.867rem;
+  width: 6.7rem;
+  height: 2.033rem;
 `;
 
 export const IdPwContainer = styled.div`
@@ -36,7 +36,7 @@ export const ContainerText = styled.div`
   font-size: 1.067rem;
   color: #919191;
 `;
-export const IdPwInput = styled.input`
+export const IdInput = styled.input`
   border: 1px solid #f1f1f1;
   color: black;
   font-family: Roboto;
@@ -44,6 +44,21 @@ export const IdPwInput = styled.input`
   font-weight: normal;
   font-size: 1.067rem;
   line-height: 1.267rem;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const PwInput = styled.input`
+  border: 1px solid #f1f1f1;
+  color: #ababab;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.067rem;
+  line-height: 1.267rem;
+  letter-spacing: 0.4rem;
   border: none;
   &:focus {
     outline: none;
@@ -66,6 +81,7 @@ export const LogInButton = styled.button`
 
 export const SignUpLink = styled(Link)`
   margin-top: 1.267rem;
+  margin-bottom: 15.867rem;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
