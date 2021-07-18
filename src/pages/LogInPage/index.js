@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../../common/Button/index';
 import * as S from './styles';
 
 function LogInPage() {
@@ -41,7 +42,7 @@ function LogInPage() {
           ></S.PwInput>
         </S.InputContainer>
       </S.IdPwContainer>
-      <S.LogInButton onClick={handleClick}>로그인</S.LogInButton>
+      <Button onClick={handleClick} text="로그인"></Button>
       <S.SignUpLink to="/sign-up">Venti 회원가입</S.SignUpLink>
     </S.MainContainer>
   );

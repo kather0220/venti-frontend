@@ -17,6 +17,7 @@ export const IdPwContainer = styled.div`
   margin-top: 8.8rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 9.133rem;
 `;
 
 export const InputContainer = styled.div`
@@ -63,20 +64,6 @@ export const PwInput = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-export const LogInButton = styled.button`
-  width: 9.067rem;
-  height: 2.333rem;
-  margin-top: 9.133rem;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 0.933rem;
-  color: white;
-  background: #f40552;
-  border-radius: 10px;
-  border: none;
 `;
 
 export const SignUpLink = styled(Link)`
