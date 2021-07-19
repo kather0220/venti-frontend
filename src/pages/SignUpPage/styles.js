@@ -41,6 +41,11 @@ export const InputExp = styled.div`
   font-weight: normal;
   font-size: 1.067rem;
   align-items: center;
+  & pwExp {
+    font-weight: normal;
+    font-size: 0.733rem;
+    padding-left: 0.333rem;
+  }
 `;
 
 export const InputBox = styled.input`
