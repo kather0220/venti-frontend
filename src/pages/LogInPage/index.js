@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button/index';
 import * as S from './styles';
 
 function LogInPage() {
   const [userId, setUserId] = useState(null);
   const [userPassword, setUserPassword] = useState(null);
+  const history = useHistory();
   const onChange = (event) => {
     const {
       target: { id, value },
@@ -23,7 +25,11 @@ function LogInPage() {
   const handleClick = (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
-    // post 추가 예정
+    else {
+      // post 추가 예정
+      alert('이벤티님 반갑습니다!');
+      history.push('/');
+    }
   };
   return (
     <S.MainContainer>
