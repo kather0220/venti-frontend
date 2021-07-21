@@ -8,6 +8,7 @@ export const StyledHeader = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 `;
 
 export const FirstRow = styled.div`
@@ -73,4 +74,9 @@ export const SearchInputBox = styled.input`
 export const SearchButton = styled.img`
   width: 1.5rem;
   height: 1.5rem;
+`;
+
+export const SearchResultContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;

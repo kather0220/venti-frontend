@@ -1,0 +1,65 @@
+import styled from 'styled-components';
+
+export const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const EvenInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  margin-top: 1rem;
+`;
+
+export const BrandNameAndDate = styled.div`
+  position: absolute;
+  top: 0.4rem;
+  left: 1.067rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.733rem;
+  color: #919191;
+  & brand {
+    color: black;
+    font-size: 0.667rem;
+  }
+`;
+
+export const EventName = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.067rem;
+`;
+
+export const HeartIcon = styled.img`
+  position: absolute;
+  right: 1rem;
+  width: 1.267rem;
+  height: 1.267rem;
+`;
+
+export const EventImage = styled.img`
+  //margin: 2.6rem 1rem 1.8rem;
+  margin: 2.6rem 0 1.8rem;
+  width: 22.867rem;
+  height: 25.267rem;
+`;
+
+export const EventText = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.8rem;
+  line-height: 2.733rem;
+  color: black;
+  width: 22.867rem;
+  margin-bottom: 4.2rem;
+  & notice {
+    color: #919191;
+  }
+`;
