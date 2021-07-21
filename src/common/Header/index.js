@@ -39,6 +39,7 @@ function Header() {
         <S.SearchInputBox
           onChange={onChange}
           onKeyPress={(e) => (e.key === 'Enter' ? handleKeyPress() : <></>)}
+          placeholder="이벤트 또는 브랜드를 검색해보세요"
         ></S.SearchInputBox>
         <S.SearchButton
           src={'/img/search-icon.png'}

@@ -53,3 +53,11 @@ export const GridItem = styled.div`
   padding: 1.067rem 0.5rem;
   border-radius: 5px;
 `;
+
+export const BlackOverlay = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(64, 64, 64, 0.49);
+  z-index: 100;
+`;

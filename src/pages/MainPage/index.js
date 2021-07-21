@@ -6,6 +6,7 @@ import * as S from './styles';
 
 function MainPage() {
   const [category, setCategory] = useState('food');
+
   const handleClick = (event) => {
     const {
       target: { id },

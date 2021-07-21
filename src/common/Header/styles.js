@@ -59,6 +59,15 @@ export const SearchInputBox = styled.input`
   border: 1px solid #dddddd;
   margin-right: 0.533rem;
   height: 100%;
+  color: black;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.867rem;
+  padding-left: 1.6rem;
+  &::placeholder {
+    color: #959595;
+  }
 `;
 
 export const SearchButton = styled.img`
