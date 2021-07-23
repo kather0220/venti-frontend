@@ -34,7 +34,7 @@ function Header() {
             src={'/img/hamburger-button.png'}
           ></S.HamburgerButton>
           <S.AlarmButton
-            src={'img/alarm-icon.png'}
+            src={'/img/alarm-icon.png'}
             onClick={() => {
               history.push('/notice');
             }}

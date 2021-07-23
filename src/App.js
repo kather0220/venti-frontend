@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/event" component={EventPage} />
         <Route
           exact
-          path="/event-detail:event_id"
+          path="/event-detail/:event_id"
           component={EventDetailPage}
         />
         <Route exact path="/brand" component={BrandPage} />

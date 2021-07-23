@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../common/Header/index';
 import GridWrapper from '../../common/GridWrapper/index';
+import GridItem from '../../common/GridItem/index';
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
 
@@ -55,7 +56,7 @@ function MainPage() {
           </S.CategoryTab>
         </S.CategoryWrapper>
         <S.CategoryUnderLine></S.CategoryUnderLine>
-        <GridWrapper visible={category === 'food'} />
+        <GridWrapper visible={category === 'food'}></GridWrapper>
         <GridWrapper visible={category === 'cafe'} />
         <GridWrapper visible={category === 'fashion'} />
         <Footer></Footer>

@@ -1,10 +1,17 @@
 import * as S from './styles';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function GridItem() {
+  const history = useHistory();
+  const event_id = 'whopper-event'; // 임시값. 서버에서 넘겨 받을 예정
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.push(`/event-detail/${event_id}`);
+  };
   return (
     <>
-      <S.GridItemContainer>
+      <S.GridItemContainer onClick={handleClick}>
         <S.GridImage src={'/img/whopper-event.png'} />
         <S.FirstRow>
           <S.EventName>6월 와퍼 할인 이벤트</S.EventName>
