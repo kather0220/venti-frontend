@@ -1,4 +1,5 @@
 import * as S from './styles';
+import SearchInput from '../SearchInput/index';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 

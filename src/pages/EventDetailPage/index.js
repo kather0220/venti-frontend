@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../common/Header/index';
-import Button from '../../common/Button/index';
+//import Button from '../../common/Button/index';
 import * as S from './styles';
 
 function EventDetailPage() {
@@ -26,7 +26,7 @@ function EventDetailPage() {
             *유의사항과 제외매장은 이벤트 바로가기를 통해 확인하세요
           </notice>
         </S.EventText>
-        <Button>이벤트 바로가기</Button>
+        <S.Button>이벤트 바로가기</S.Button>
       </S.MainContainer>
     </>
   );

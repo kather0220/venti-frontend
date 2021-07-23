@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  //align-items: center;
+  //text-align: flex-start;
 `;
 
 export const EvenInfoWrapper = styled.div`
@@ -44,8 +45,8 @@ export const HeartIcon = styled.img`
 `;
 
 export const EventImage = styled.img`
-  //margin: 2.6rem 1rem 1.8rem;
-  margin: 2.6rem 0 1.8rem;
+  margin: 2.6rem 1rem 1.8rem;
+  //margin: 2.6rem 0 1.8rem;
   width: 22.867rem;
   height: 25.267rem;
 `;
@@ -58,8 +59,22 @@ export const EventText = styled.div`
   line-height: 2.733rem;
   color: black;
   width: 22.867rem;
-  margin-bottom: 4.2rem;
+  margin: 0 1rem 0;
   & notice {
     color: #919191;
   }
+`;
+
+export const Button = styled.button`
+  width: 9.067rem;
+  height: 2.333rem;
+  margin: 4.2rem 8rem 3.4rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.933rem;
+  color: white;
+  background: #f40552;
+  border-radius: 10px;
+  border: none;
 `;
