@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 function Header() {
   const [searchInput, setSearchInput] = useState('');
   const history = useHistory();
+  let id;
   const onChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -13,6 +14,10 @@ function Header() {
     if (searchInput === '') {
       alert('검색어를 입력해주세요.');
       return;
+    } else {
+      id = searchInput;
+      console.log(id);
+      history.push(`/search-result/${id}`);
     }
   };
   return (
@@ -47,7 +52,6 @@ function Header() {
           ></S.SearchButton>
         </S.SecondRow>
       </S.StyledHeader>
-      {searchInput ? <S.SearchResultContainer /> : <></>}
     </>
   );
 }
