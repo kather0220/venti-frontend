@@ -11,8 +11,8 @@ function GridItem() {
   };
   return (
     <>
-      <S.GridItemContainer onClick={handleClick}>
-        <S.GridImage src={'/img/whopper-event.png'} />
+      <S.GridItemContainer>
+        <S.GridImage src={'/img/whopper-event.png'} onClick={handleClick} />
         <S.FirstRow>
           <S.EventName>6월 와퍼 할인 이벤트</S.EventName>
           <S.HeartIcon src={'/img/heart.png'} />
