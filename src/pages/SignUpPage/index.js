@@ -19,6 +19,11 @@ function SignUpPage() {
     else if (!isMale && isFemale) return '여';
     else return null;
   };
+  const checkEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email.toLowerCase());
+  };
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '남':
@@ -45,21 +50,13 @@ function SignUpPage() {
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
-    console.log(
-      nicknameInput,
-      idInput,
-      pwInput,
-      pwCheckInput,
-      emailInput,
-      birthdayInput,
-      gender(),
-      birthdayInput
-    );
+    // 닉네임이나 id 중복체크 들어가야 된다. http 상태코드 409인 경우
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
-    }
-    if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
+    } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
+    else if (!checkEmail(emailInput))
+      alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
       alert('회원가입이 완료되었습니다!');
       history.push('/log-in');
