@@ -7,7 +7,6 @@ import * as S from './styles';
 
 function MainPage() {
   const [category, setCategory] = useState('food');
-
   const handleClick = (event) => {
     const {
       target: { id },
@@ -28,8 +27,9 @@ function MainPage() {
   };
   return (
     <>
-      <Header></Header>
       <S.MainContainer>
+        <Header></Header>
+
         <S.Banner src={'/img/green-banner.png'}></S.Banner>
         <S.EventsForYou>EVENTS FOR YOU</S.EventsForYou>
         <S.CategoryWrapper>

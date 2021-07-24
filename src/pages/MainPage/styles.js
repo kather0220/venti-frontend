@@ -55,8 +55,9 @@ export const GridItem = styled.div`
 `;
 
 export const BlackOverlay = styled.div`
+  display: ${(props) => (props.clicked ? '' : 'none')};
   position: fixed;
-  width: 100%;
+  width: 25rem;
   height: 100%;
   background: rgba(64, 64, 64, 0.49);
   z-index: 100;

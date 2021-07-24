@@ -112,11 +112,7 @@ function SignUpPage() {
       </S.ButtonContainer>
       <S.InputExp>생년월일(선택)</S.InputExp>
 
-      <S.InputBox
-        type="date"
-        defaultValue="2000-01-01"
-        ref={birthday}
-      ></S.InputBox>
+      <S.InputBox type="date" ref={birthday}></S.InputBox>
       <S.StyledButton onClick={handleClick}>회원가입</S.StyledButton>
     </S.MainContainer>
   );

@@ -2,9 +2,11 @@ import * as S from './styles';
 import SearchInput from '../SearchInput/index';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import MenuBar from '../MenuBar/index';
 
 function Header() {
   const [searchInput, setSearchInput] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
   const history = useHistory();
   let id;
   const onChange = (e) => {
@@ -22,6 +24,11 @@ function Header() {
   };
   return (
     <>
+      <S.BlackOverlay
+        visible={isVisible}
+        onClick={() => setIsVisible(false)}
+      ></S.BlackOverlay>
+      <MenuBar visible={isVisible}></MenuBar>
       <S.StyledHeader>
         <S.FirstRow>
           <S.StyledLogo
@@ -32,6 +39,7 @@ function Header() {
           ></S.StyledLogo>
           <S.HamburgerButton
             src={'/img/hamburger-button.png'}
+            onClick={() => setIsVisible(true)}
           ></S.HamburgerButton>
           <S.AlarmButton
             src={'/img/alarm-icon.png'}

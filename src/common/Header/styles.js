@@ -76,7 +76,11 @@ export const SearchButton = styled.img`
   height: 1.5rem;
 `;
 
-export const SearchResultContainer = styled.div`
-  width: 100%;
+export const BlackOverlay = styled.div`
+  display: ${(props) => (props.visible ? '' : 'none')};
+  position: fixed;
+  width: 25rem;
   height: 100%;
+  background: rgba(64, 64, 64, 0.49);
+  z-index: 100;
 `;
