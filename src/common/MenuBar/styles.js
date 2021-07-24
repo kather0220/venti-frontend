@@ -41,6 +41,7 @@ export const MenuName = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 1.267rem;
+  width: 6rem;
   color: black;
   margin: 1.067rem 1.667rem;
 `;
