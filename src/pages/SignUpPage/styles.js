@@ -76,13 +76,14 @@ export const ButtonContainer = styled.div`
 export const RadioButton = styled.input`
   width: 1rem;
   height: 1rem;
-  color: black;
-  background: black;
-  // 라디오 버튼 customizing 예정
+  margin-right: 0.333rem;
+  &:checked {
+    color: black;
+  }
 `;
 
-export const ButtonText = styled.div`
-  padding-left: 0.333rem;
+export const ButtonLabel = styled.label`
+  //padding-left: 0.333rem;
   width: 4.333rem;
   font-family: Noto Sans KR;
   font-style: normal;
