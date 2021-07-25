@@ -5,10 +5,13 @@ import { PageTitle } from '../../common/PageTitle/styles';
 import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
+import GridWrapper from '../../common/GridWrapper/index';
 import BrandListItem from '../../common/BrandListItem/index';
+import BrandFilter from '../../common/BrandFilter/index';
 
 function EventPage() {
   const [category, setCategory] = useState('food');
+  const [isVisible, setIsVisible] = useState(false);
   const handleClick = (event) => {
     const {
       target: { id },
@@ -29,9 +32,20 @@ function EventPage() {
   };
   return (
     <>
-      <Header></Header>
+      <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
+      <S.FilterContainer visible={isVisible}>
+        <S.TextAndButton>
+          <S.TopText>브랜드 필터</S.TopText>
+          <S.CloseButton
+            src={'/img/close-button.png'}
+            onClick={() => setIsVisible(false)}
+          ></S.CloseButton>
+        </S.TextAndButton>
+      </S.FilterContainer>
       <S.MainContainer>
-        <PageTitle>BRAND</PageTitle>
+        <Header></Header>
+
+        <PageTitle>EVENT</PageTitle>
         <CategoryWrapper>
           <CategoryTab
             id="food"
@@ -54,16 +68,15 @@ function EventPage() {
           >
             FASHION
           </CategoryTab>
+          <S.FilterButton
+            src={'/img/filter-button-edit.png'}
+            onClick={() => setIsVisible(true)}
+          ></S.FilterButton>
         </CategoryWrapper>
-        <CategoryUnderLine></CategoryUnderLine>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
+        <S.CategoryUnderLine></S.CategoryUnderLine>
+        <GridWrapper visible={category === 'food'} />
+        <GridWrapper visible={category === 'cafe'} />
+        <GridWrapper visible={category === 'fashion'} />
       </S.MainContainer>
     </>
   );

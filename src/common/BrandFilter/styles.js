@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const FilterButton = styled.img`
   position: absolute;
   right: 1.067rem;
@@ -13,23 +8,7 @@ export const FilterButton = styled.img`
   height: 1.233rem;
 `;
 
-export const CategoryUnderLine = styled.div`
-  width: 100%;
-  height: 0;
-  margin-top: 0.533rem;
-  border: 0.067rem solid #f0f0f0;
-`;
-
-export const BlackOverlay = styled.div`
-  display: ${(props) => (props.visible ? '' : 'none')};
-  position: fixed;
-  width: 25rem;
-  height: 100%;
-  background: rgba(64, 64, 64, 0.49);
-  z-index: 100;
-`;
-
-export const FilterContainer = styled.div`
+export const MainContainer = styled.div`
   position: fixed;
   background: white;
   bottom: 0;
@@ -39,6 +18,15 @@ export const FilterContainer = styled.div`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
   z-index: 200;
+`;
+
+export const BlackOverlay = styled.div`
+  display: ${(props) => (props.visible ? '' : 'none')};
+  position: absolute;
+  width: 25rem;
+  height: 100%;
+  background: rgba(64, 64, 64, 0.49);
+  z-index: 100;
 `;
 
 export const TextAndButton = styled.div`
