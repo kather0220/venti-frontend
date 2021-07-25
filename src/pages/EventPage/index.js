@@ -41,6 +41,23 @@ function EventPage() {
             onClick={() => setIsVisible(false)}
           ></S.CloseButton>
         </S.TextAndButton>
+        <S.TopGreyLine></S.TopGreyLine>
+        <S.FilterItemContainer>
+          <S.FilterItem>VIPS</S.FilterItem>
+          <S.FilterItem>BUTTERFLY</S.FilterItem>
+          <S.FilterItem>DONE</S.FilterItem>
+          <S.FilterItem>APPLE</S.FilterItem>
+          <S.FilterItem>NOTHING</S.FilterItem>
+          <S.FilterItem>TIRED</S.FilterItem>
+          <S.FilterItem>BANANA</S.FilterItem>
+          <S.FilterItem>KATHER</S.FilterItem>
+          <S.FilterItem>VIPS</S.FilterItem>
+          <S.FilterItem>VIPS</S.FilterItem>
+          <S.FilterItem>VIPS</S.FilterItem>
+          <S.FilterItem>COOKIE</S.FilterItem>
+          <S.FilterItem>VIPS</S.FilterItem>
+          <S.FilterItem>VIPS</S.FilterItem>
+        </S.FilterItemContainer>
       </S.FilterContainer>
       <S.MainContainer>
         <Header></Header>

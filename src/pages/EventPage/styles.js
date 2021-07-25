@@ -64,3 +64,35 @@ export const CloseButton = styled.img`
   width: 1.6rem;
   height: 1.6rem;
 `;
+
+export const TopGreyLine = styled.div`
+  width: 25rem;
+  height: 0;
+  margin-top: 1.267rem;
+  border: 0.05px solid #d3d3d3;
+`;
+export const FilterItemContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 1.133rem;
+  padding-right: 0.633rem;
+  padding-left: 0.633rem;
+  padding-bottom: 5.4rem;
+  //overflow-wrap: break-word;
+  //white-space: break-spaces;
+  //word-break: break-word;
+  //overflow-wrap: anywhere;
+  //word-break: break-all;
+  flex-flow: wrap;
+`;
+export const FilterItem = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.067rem;
+  padding: 0.867rem 1.7rem;
+  background: #eeeeee;
+  border-radius: 3.333rem;
+  margin: 0.467rem 0.433rem;
+`;
