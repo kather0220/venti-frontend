@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MenuBar from '../MenuBar/index';
 
-function Header() {
+function Header(props) {
   const [searchInput, setSearchInput] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const history = useHistory();
@@ -53,6 +53,7 @@ function Header() {
             onChange={onChange}
             onKeyPress={(e) => (e.key === 'Enter' ? handleKeyPress() : <></>)}
             placeholder="이벤트 또는 브랜드를 검색해보세요"
+            defaultValue={props.searchInput || ''}
           ></S.SearchInputBox>
           <S.SearchButton
             src={'/img/search-icon.png'}

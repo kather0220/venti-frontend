@@ -33,27 +33,20 @@ function EventPage() {
         break;
     }
   };
-  var brandList = [];
+  const [brandList, setBrandList] = useState([]);
   const clicked = false;
   //var textColor = "white";
   //var backgroundColor = "pink";
   const handleFilterItemClick = (e) => {
     if (brandList.includes(e.target.id)) {
       console.log('중복');
-      brandList = brandList.filter((element) => element !== e.target.id);
+      setBrandList(brandList.filter((element) => element !== e.target.id));
       console.log(brandList.length);
     } else {
-      brandList.push(e.target.id);
+      setBrandList([...brandList, e.target.id]);
     }
-    // e.target.isClicked = e.target.isClicked === true ? false : true;
-    //e.target.color = e.target.isClicked == true ? 'white' : 'black';
-    //e.target.backgroundColor = e.target.isClicked == true ? 'pink' : 'grey';
     console.log(brandList);
-    console.log(e.target.isClicked);
-    //console.log(e.target.background);
-    //console.log(e.target.color);
-    //return clicked;
-    //return true;
+    //console.log(e.target.isClicked);
   };
   return (
     <>
@@ -74,10 +67,8 @@ function EventPage() {
                 id={brand.name}
                 name={brand.name}
                 brandList={brandList}
-                onClick={() => {
-                  return handleFilterItemClick;
-                }}
-                isClicked={clicked}
+                onClick={handleFilterItemClick}
+                //isClied={clicked}
               ></FilterItem>
             );
             //<S.FilterItem

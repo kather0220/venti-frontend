@@ -7,7 +7,7 @@ function SearchResult() {
   const { id } = useParams();
   return (
     <>
-      <Header></Header>
+      <Header searchInput={id}></Header>
       <S.MainContainer>
         <S.ResultMessage>
           <keyword>{id}</keyword>에 대한 검색 결과입니다
