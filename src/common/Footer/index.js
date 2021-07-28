@@ -14,7 +14,7 @@ function Footer() {
         <S.LinkInfo
           to={{
             pathname:
-              'https://www.instagram.com/ventii_ii/?utm_medium=copy_link',
+              'https://www.instagram.com/event_is_venti/?utm_medium=copy_link',
           }}
           target="_blank"
         >
