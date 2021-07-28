@@ -5,15 +5,17 @@ function FilterItem(props) {
   const [color, setColors] = useState('#000000');
   const [background, setBackground] = useState('#EEEEEE');
   const [clicked, setClicked] = useState(false);
-  const handleClickButton = () => {
-    setClicked(!clicked);
-    if (clicked === true) {
+  const handleClickButton = (e) => {
+    e.preventDefault();
+
+    if (clicked === false) {
       setBackground('#F40552');
       setColors('#FFFFFF');
     } else {
       setBackground('#EEEEEE');
       setColors('#000000');
     }
+    setClicked(!clicked);
     return true;
   };
 
@@ -23,7 +25,7 @@ function FilterItem(props) {
       color={color}
       background={background}
       onClick={(e) => {
-        handleClickButton();
+        handleClickButton(e);
         props.onClick(e);
       }}
     >

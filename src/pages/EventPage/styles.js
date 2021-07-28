@@ -41,13 +41,15 @@ export const FilterContainer = styled.div`
   //height: 70.2133vw;
   border-radius: 1rem 1rem 0 0;
   display: ${(props) => (props.visible ? 'flex' : 'none')};
+  //-ms-overflow-style: none;
   flex-direction: column;
   z-index: 200;
   overflow-y: scroll;
   //-ms-overflow-style: none;
-  //-webkit-scrollbar {
-  // display: none;
-  //}
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TextAndButton = styled.div`
@@ -121,14 +123,13 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
-  height: 5.333rem;
-  align-items: center;
+  //align-items: center;
 `;
 
 export const Button = styled.button`
   position: absolute;
   width: 9.067rem;
-  // height: 2.333rem;
+  height: 2.8rem;
   padding: 0.933rem 3.533rem;
   font-family: Noto Sans KR;
   font-style: normal;
@@ -138,7 +139,7 @@ export const Button = styled.button`
   background: #f40552;
   border-radius: 0.667rem;
   border: none;
-  //top: 1.2rem;
-  //bottom: 1.2rem;
+  margin-top: 1.333rem;
+  margin-bottom: 1.333rem;
   right: 1.067rem;
 `;

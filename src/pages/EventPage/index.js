@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import Header from '../../common/Header/index';
 import { PageTitle } from '../../common/PageTitle/styles';
@@ -34,10 +34,10 @@ function EventPage() {
     }
   };
   const [brandList, setBrandList] = useState([]);
-  const clicked = false;
-  //var textColor = "white";
-  //var backgroundColor = "pink";
+
   const handleFilterItemClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
     if (brandList.includes(e.target.id)) {
       console.log('중복');
       setBrandList(brandList.filter((element) => element !== e.target.id));
@@ -45,9 +45,11 @@ function EventPage() {
     } else {
       setBrandList([...brandList, e.target.id]);
     }
-    console.log(brandList);
-    //console.log(e.target.isClicked);
   };
+  useEffect(() => {
+    console.log(brandList);
+  }, [brandList]);
+
   return (
     <>
       <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
@@ -66,7 +68,7 @@ function EventPage() {
               <FilterItem
                 id={brand.name}
                 name={brand.name}
-                brandList={brandList}
+                //brandList={brandList}
                 onClick={handleFilterItemClick}
                 //isClied={clicked}
               ></FilterItem>
