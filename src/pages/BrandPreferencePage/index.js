@@ -12,7 +12,7 @@ function BrandPreferencePage() {
     } else {
       brandList.push(e.target.id);
     }
-    e.target.isClicked = e.target.isClicked == true ? false : true;
+    e.target.isClicked = e.target.isClicked === true ? false : true;
     console.log(brandList);
     console.log(e.target.isClicked);
   };

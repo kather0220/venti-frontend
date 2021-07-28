@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import * as S from './styles';
 import Header from '../../common/Header/index';
 import { PageTitle } from '../../common/PageTitle/styles';
@@ -6,12 +6,15 @@ import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
 import GridWrapper from '../../common/GridWrapper/index';
-import BrandListItem from '../../common/BrandListItem/index';
-import BrandFilter from '../../common/BrandFilter/index';
+import FoodBrandList from '../../data/FoodBrandList';
+import FilterItem from '../../components/FilterItem/index';
 
 function EventPage() {
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
+  const [textColor, setTextColor] = useState('black');
+  const [backgroudColor, setBackgroundColor] = useState('grey');
+
   const handleClick = (event) => {
     const {
       target: { id },
@@ -30,6 +33,28 @@ function EventPage() {
         break;
     }
   };
+  var brandList = [];
+  const clicked = false;
+  //var textColor = "white";
+  //var backgroundColor = "pink";
+  const handleFilterItemClick = (e) => {
+    if (brandList.includes(e.target.id)) {
+      console.log('중복');
+      brandList = brandList.filter((element) => element !== e.target.id);
+      console.log(brandList.length);
+    } else {
+      brandList.push(e.target.id);
+    }
+    // e.target.isClicked = e.target.isClicked === true ? false : true;
+    //e.target.color = e.target.isClicked == true ? 'white' : 'black';
+    //e.target.backgroundColor = e.target.isClicked == true ? 'pink' : 'grey';
+    console.log(brandList);
+    console.log(e.target.isClicked);
+    //console.log(e.target.background);
+    //console.log(e.target.color);
+    //return clicked;
+    //return true;
+  };
   return (
     <>
       <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
@@ -43,21 +68,31 @@ function EventPage() {
         </S.TextAndButton>
         <S.TopGreyLine></S.TopGreyLine>
         <S.FilterItemContainer>
-          <S.FilterItem>VIPS</S.FilterItem>
-          <S.FilterItem>BUTTERFLY</S.FilterItem>
-          <S.FilterItem>DONE</S.FilterItem>
-          <S.FilterItem>APPLE</S.FilterItem>
-          <S.FilterItem>NOTHING</S.FilterItem>
-          <S.FilterItem>TIRED</S.FilterItem>
-          <S.FilterItem>BANANA</S.FilterItem>
-          <S.FilterItem>KATHER</S.FilterItem>
-          <S.FilterItem>VIPS</S.FilterItem>
-          <S.FilterItem>VIPS</S.FilterItem>
-          <S.FilterItem>VIPS</S.FilterItem>
-          <S.FilterItem>COOKIE</S.FilterItem>
-          <S.FilterItem>VIPS</S.FilterItem>
-          <S.FilterItem>VIPS</S.FilterItem>
+          {FoodBrandList.map((brand) => {
+            return (
+              <FilterItem
+                id={brand.name}
+                name={brand.name}
+                brandList={brandList}
+                onClick={() => {
+                  return handleFilterItemClick;
+                }}
+                isClicked={clicked}
+              ></FilterItem>
+            );
+            //<S.FilterItem
+            //  id={brand.name}
+            // isClicked={clicked}
+            // onClick={handleFilterItemClick}
+            // >
+            //{brand.name}
+            //   </S.FilterItem>
+          })}
         </S.FilterItemContainer>
+        <S.BottomGreyLine></S.BottomGreyLine>
+        <S.ButtonContainer>
+          <S.Button>적용</S.Button>
+        </S.ButtonContainer>
       </S.FilterContainer>
       <S.MainContainer>
         <Header></Header>

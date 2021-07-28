@@ -32,20 +32,32 @@ export const BlackOverlay = styled.div`
 export const FilterContainer = styled.div`
   position: fixed;
   background: white;
+  //top: 13.733rem;
   bottom: 0;
   width: 25rem;
   height: 74.87%;
+  //height: 40.533rem;
+  //height: 100%;
+  //height: 70.2133vw;
   border-radius: 1rem 1rem 0 0;
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
   z-index: 200;
+  overflow-y: scroll;
+  //-ms-overflow-style: none;
+  //-webkit-scrollbar {
+  // display: none;
+  //}
 `;
 
 export const TextAndButton = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
-  margin: 1.733rem 1.067rem 1.267rem;
+  margin-top: 1.733rem;
+  margin-right: 1.067rem;
+  margin-left: 1.067rem;
+  margin-bottom: 1.267rem;
 `;
 
 export const TopText = styled.div`
@@ -55,6 +67,7 @@ export const TopText = styled.div`
   font-style: normal;
   font-weight: bold;
   font-size: 1.4rem;
+  margin-bottom: 1.267rem;
   color: black;
 `;
 
@@ -68,7 +81,13 @@ export const CloseButton = styled.img`
 export const TopGreyLine = styled.div`
   width: 25rem;
   height: 0;
+  border: 0.05px solid #d3d3d3;
   margin-top: 1.267rem;
+  margin-bottom: 1.1rem;
+`;
+export const BottomGreyLine = styled.div`
+  width: 25rem;
+  height: 0;
   border: 0.05px solid #d3d3d3;
 `;
 export const FilterItemContainer = styled.div`
@@ -78,21 +97,48 @@ export const FilterItemContainer = styled.div`
   padding-top: 1.133rem;
   padding-right: 0.633rem;
   padding-left: 0.633rem;
-  padding-bottom: 5.4rem;
-  //overflow-wrap: break-word;
-  //white-space: break-spaces;
-  //word-break: break-word;
-  //overflow-wrap: anywhere;
-  //word-break: break-all;
+  padding-bottom: 5rem;
   flex-flow: wrap;
 `;
 export const FilterItem = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.067rem;
-  padding: 0.867rem 1.7rem;
-  background: #eeeeee;
+  font-size: 0.9667rem;
+  padding: 0.867rem 1.5rem;
+  //background: #eeeeee;
   border-radius: 3.333rem;
   margin: 0.467rem 0.433rem;
+  /*${(props) =>
+    props.isClicked
+      ? 'background: pink; color: white;'
+      : 'background: #eeeeee; color: black;'}
+    */
+  background: ${(props) => (props.isClicked ? 'pink' : 'grey')};
+  color: ${(props) => (props.isClicked ? 'white' : 'black')};
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 5.333rem;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  position: absolute;
+  width: 9.067rem;
+  // height: 2.333rem;
+  padding: 0.933rem 3.533rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.933rem;
+  color: white;
+  background: #f40552;
+  border-radius: 0.667rem;
+  border: none;
+  //top: 1.2rem;
+  //bottom: 1.2rem;
+  right: 1.067rem;
 `;
