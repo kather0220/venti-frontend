@@ -84,7 +84,7 @@ function EventPage() {
         </S.FilterItemContainer>
         <S.BottomGreyLine></S.BottomGreyLine>
         <S.ButtonContainer>
-          <S.Button>적용</S.Button>
+          <S.Button disabled={brandList.length === 0}>적용</S.Button>
         </S.ButtonContainer>
       </S.FilterContainer>
       <S.MainContainer>

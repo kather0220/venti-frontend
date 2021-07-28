@@ -136,7 +136,7 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: 0.933rem;
   color: white;
-  background: #f40552;
+  background: ${(props) => (props.disabled ? 'grey' : '#f40552')};
   border-radius: 0.667rem;
   border: none;
   margin-top: 1.333rem;
