@@ -22,6 +22,7 @@ export const Exp = styled.div`
 export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
+  width: 100%;
   padding: 0 1.545rem;
 `;
 

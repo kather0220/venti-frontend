@@ -1,5 +1,7 @@
 import React from 'react';
 import * as S from './styles';
+import PreferenceItem from '../../components/PreferenceItem/index';
+import FoodBrandList from '../../data/FoodBrandList';
 
 function BrandPreferencePage() {
   var brandList = [];
@@ -23,112 +25,11 @@ function BrandPreferencePage() {
         <name>이벤티</name>님이<br></br>선호하시는 브랜드를 알려주세요
       </S.Exp>
       <S.GridWrapper>
-        <S.BrandContainer>
-          <S.BrandImageOverlay />
-          <S.BrandImage
-            isClicked={clicked}
-            onClick={handleBrandImageClick}
-            id="VIPS"
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            isClicked={clicked}
-            onClick={handleBrandImageClick}
-            id="아웃백"
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            isClicked={clicked}
-            onClick={handleBrandImageClick}
-            id="애슐리"
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
-        <S.BrandContainer>
-          <S.BrandImage
-            src={'/img/brand-preference-page-img/vips-circle-img.png'}
-          ></S.BrandImage>
-          <S.BrandName>VIPS</S.BrandName>
-        </S.BrandContainer>
+        {FoodBrandList.map((brand) => {
+          return (
+            <PreferenceItem id={brand.name} name={brand.name}></PreferenceItem>
+          );
+        })}
       </S.GridWrapper>
       <S.OpacityBox />
       <S.SelectButton disabled={!brandList.length}>선택완료</S.SelectButton>
