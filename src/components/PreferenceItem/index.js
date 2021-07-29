@@ -20,9 +20,11 @@ function PreferenceItem(props) {
     <S.Container>
       <S.BrandContainer>
         <S.BrandImageOverlay
+          id={props.id}
           isVisible={visible}
           onClick={(e) => {
             handleClick(e);
+            props.onClick(e);
           }}
         />
       </S.BrandContainer>
@@ -31,6 +33,7 @@ function PreferenceItem(props) {
           //isClicked={clicked}
           onClick={(e) => {
             handleClick(e);
+            props.onClick(e);
           }}
           id={props.id}
           src={'/img/brand-preference-page-img/vips-circle-img.png'}

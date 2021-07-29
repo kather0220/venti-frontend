@@ -27,12 +27,11 @@ function BrandPreferencePage() {
       <S.GridWrapper>
         {FoodBrandList.map((brand) => {
           return (
-            <PreferenceItem id={brand.name} name={brand.name}></PreferenceItem>
-          );
-        })}
-        {FoodBrandList.map((brand) => {
-          return (
-            <PreferenceItem id={brand.name} name={brand.name}></PreferenceItem>
+            <PreferenceItem
+              id={brand.name}
+              name={brand.name}
+              onClick={handleBrandImageClick}
+            ></PreferenceItem>
           );
         })}
       </S.GridWrapper>
