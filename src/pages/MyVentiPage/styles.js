@@ -11,5 +11,6 @@ export const Exp = styled.div`
   font-weight: normal;
   font-size: 0.8rem;
   margin-left: 1.067rem;
+  margin-bottom: 0.87rem;
   color: #919191;
 `;

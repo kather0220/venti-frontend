@@ -5,6 +5,10 @@ import { PageTitle } from '../../common/PageTitle/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import CategoryUnderLine from '../../common/CategoryUnderLine/index';
+import { GridWrapper } from '../../common/GridWrapper/styles';
+import GridItem from '../../common/GridItem/index';
+import { BrandListContainer } from '../../common/BrandListContainer/styles';
+import BrandListItem from '../../common/BrandListItem/index';
 
 function MyVentiPage() {
   const [category, setCategory] = useState('event');
@@ -54,6 +58,24 @@ function MyVentiPage() {
           </CategoryTab>
         </CategoryWrapper>
         <CategoryUnderLine margin={margin} width={width}></CategoryUnderLine>
+        <GridWrapper visible={category === 'event'}>
+          <GridItem></GridItem>
+
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+        </GridWrapper>
+        <BrandListContainer visible={category === 'brand'}>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+          <BrandListItem></BrandListItem>
+        </BrandListContainer>
       </S.MainContainer>
     </>
   );

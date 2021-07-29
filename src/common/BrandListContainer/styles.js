@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const BrandListContainer = styled.div`
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
-  align-items: center;
-  margin: 1.2rem 0;
+  margin-top: 1.2rem;
+  margin-bottom: 3.533rem;
 `;

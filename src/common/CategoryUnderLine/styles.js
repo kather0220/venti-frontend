@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const UnderlineContainer = styled.div`
   width: 100%;
   height: 0;
-  margin: 0.533rem 0 1.267rem;
+  margin: 0.533rem 0;
   border: 0.027rem solid #f0f0f0;
   background: #f0f0f0;
 `;
