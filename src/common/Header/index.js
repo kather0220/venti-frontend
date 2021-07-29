@@ -7,6 +7,7 @@ import MenuBar from '../MenuBar/index';
 function Header(props) {
   const [searchInput, setSearchInput] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [alarmNumber, setAlarmNumber] = useState(2);
   const history = useHistory();
   let id;
   const onChange = (e) => {
@@ -47,6 +48,9 @@ function Header(props) {
               history.push('/notice');
             }}
           ></S.AlarmButton>
+          <S.AlarmNumber visible={alarmNumber !== 0}>
+            {alarmNumber}
+          </S.AlarmNumber>
         </S.FirstRow>
         <S.SecondRow>
           <S.SearchInputBox

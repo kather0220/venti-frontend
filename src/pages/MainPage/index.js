@@ -11,7 +11,7 @@ import * as S from './styles';
 function MainPage() {
   const [category, setCategory] = useState('food');
   const [margin, setMargin] = useState('1.067');
-  const [width, setWidth] = useState('2.467');
+  const [width, setWidth] = useState('2.457');
   const handleClick = (event) => {
     const {
       target: { id },

@@ -54,6 +54,25 @@ export const AlarmButton = styled.img`
   right: 1.067rem;
 `;
 
+export const AlarmNumber = styled.div`
+  position: absolute;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  right: 0.8rem;
+  top: 0.667rem;
+  background: #ff0000;
+  color: white;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.633rem;
+`;
+
 export const SearchInputBox = styled.input`
   flex-grow: 1;
   background: #f0f0f0;

@@ -14,7 +14,7 @@ function MyVentiPage() {
   const [category, setCategory] = useState('event');
   const [isVisible, setIsVisible] = useState(false);
   const [margin, setMargin] = useState('1.067');
-  const [width, setWidth] = useState('2.933');
+  const [width, setWidth] = useState('2.783');
   const handleClick = (event) => {
     const {
       target: { id },
@@ -23,12 +23,12 @@ function MyVentiPage() {
       case 'event':
         setCategory('event');
         setMargin('1.067');
-        setWidth('2.933');
+        setWidth('2.783');
         break;
       case 'brand':
         setCategory('brand');
-        setMargin('6.733');
-        setWidth('3.133');
+        setMargin('6.833');
+        setWidth('2.983');
         break;
 
       default:
