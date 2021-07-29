@@ -27,9 +27,9 @@ export const BrandImage = styled.img`
 `;
 
 export const BrandImageOverlay = styled.div`
+  display: ${(props) => (props.isVisible ? 'static' : 'none')};
   top: 0;
   left: 0;
-
   width: 5.667rem;
   height: 5.667rem;
   border-radius: 50%;
@@ -38,10 +38,10 @@ export const BrandImageOverlay = styled.div`
 `;
 
 export const BrandName = styled.div`
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.933rem;
   margin-top: 1.037rem;
   text-align: center;
 `;

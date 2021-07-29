@@ -30,6 +30,11 @@ function BrandPreferencePage() {
             <PreferenceItem id={brand.name} name={brand.name}></PreferenceItem>
           );
         })}
+        {FoodBrandList.map((brand) => {
+          return (
+            <PreferenceItem id={brand.name} name={brand.name}></PreferenceItem>
+          );
+        })}
       </S.GridWrapper>
       <S.OpacityBox />
       <S.SelectButton disabled={!brandList.length}>선택완료</S.SelectButton>
