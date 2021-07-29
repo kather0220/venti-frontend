@@ -1,9 +1,30 @@
 import styled from 'styled-components';
 
+export const GridInnerContainer = styled.div`
+  position: absolute;
+  top: 1.267rem;
+  bottom: 0.933rem;
+  left: 0;
+  width: 91%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  //align-items: center;
+`;
 export const GridImage = styled.img`
   height: 13.453rem;
   width: 100%;
   border-radius: 5px;
+`;
+export const GridOverlay = styled.div`
+  display: ${(props) => (props.visible ? '' : 'none')};
+  height: 13.453rem;
+  width: 100%;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
 `;
 export const FirstRow = styled.div`
   display: flex;
@@ -52,6 +73,7 @@ export const HeartIcon = styled.img`
 `;
 
 export const GridItemContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;

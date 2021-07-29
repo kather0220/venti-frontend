@@ -58,9 +58,7 @@ function MyPage() {
     else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
-      alert(
-        '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
-      );
+      alert('수정이 완료되었습니다!');
       history.push('/');
     }
   };

@@ -17,6 +17,11 @@ export const Exp = styled.div`
   & name {
     font-weight: bold;
   }
+
+  & text {
+    font-size: 0.8rem;
+    color: #858585;
+  }
 `;
 
 export const GridWrapper = styled.div`

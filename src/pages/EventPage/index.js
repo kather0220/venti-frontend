@@ -12,8 +12,7 @@ import FilterItem from '../../components/FilterItem/index';
 function EventPage() {
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
-  const [textColor, setTextColor] = useState('black');
-  const [backgroudColor, setBackgroundColor] = useState('grey');
+  const [brandList, setBrandList] = useState([]);
 
   const handleClick = (event) => {
     const {
@@ -33,7 +32,6 @@ function EventPage() {
         break;
     }
   };
-  const [brandList, setBrandList] = useState([]);
 
   const handleFilterItemClick = (e) => {
     e.preventDefault();

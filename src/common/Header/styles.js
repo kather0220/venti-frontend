@@ -8,7 +8,7 @@ export const StyledHeader = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 10;
 `;
 
 export const FirstRow = styled.div`

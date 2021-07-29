@@ -33,7 +33,7 @@ export const BrandImageOverlay = styled.div`
   width: 5.667rem;
   height: 5.667rem;
   border-radius: 50%;
-  z-index: 10;
+  z-index: 5;
   background: rgba(40, 40, 40, 0.42);
 `;
 

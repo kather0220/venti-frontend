@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../../common/Header/index';
-import GridWrapper from '../../common/GridWrapper/index';
+import { GridWrapper } from '../../common/GridWrapper/styles';
+import GridItem from '../../common/GridItem/index';
+
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
 
@@ -24,12 +26,23 @@ function BrandDetailPage() {
           진행중인 이벤트<br></br>
           <text>내일은 없을지도 몰라요</text>
         </S.EventExp>
-        <GridWrapper visible={true}></GridWrapper>
+        <GridWrapper visible={true}>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+          <GridItem></GridItem>
+        </GridWrapper>
         <S.EventExp>
           지난 이벤트<br></br>
           <text>아쉽지만 다음에 만나요..</text>
         </S.EventExp>
-        <GridWrapper visible={true}></GridWrapper>
+        <GridWrapper visible={true}>
+          <GridItem isEnd={true}></GridItem>
+          <GridItem isEnd={true}></GridItem>
+        </GridWrapper>
         <Footer></Footer>
       </S.MainContainer>
     </>
