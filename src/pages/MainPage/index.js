@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../../common/Header/index';
+import Carousel from '../../components/Carousel/index';
 import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import CategoryUnderLine from '../../common/CategoryUnderLine/index';
@@ -41,8 +42,8 @@ function MainPage() {
     <>
       <S.MainContainer>
         <Header></Header>
+        <Carousel></Carousel>
 
-        <S.Banner src={'/img/green-banner.png'}></S.Banner>
         <S.Exp>나를 위한 새로운 이벤트</S.Exp>
         <CategoryWrapper>
           <CategoryTab
