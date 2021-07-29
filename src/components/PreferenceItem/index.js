@@ -4,6 +4,10 @@ import * as S from './styles';
 function PreferenceItem(props) {
   const [clicked, setClicked] = useState(false);
   const [visible, setVisible] = useState(false);
+  const isEnglish = (name) => {
+    const english = /^[A-Za-z0-9]*$/;
+    return english.test(name);
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,7 +42,9 @@ function PreferenceItem(props) {
           id={props.id}
           src={'/img/brand-preference-page-img/vips-circle-img.png'}
         ></S.BrandImage>
-        <S.BrandName>{props.name}</S.BrandName>
+        <S.BrandName font={isEnglish(props.name) ? 'Roboto' : 'Noto Sans KR'}>
+          {props.name}
+        </S.BrandName>
       </S.BrandContainer>
     </S.Container>
   );

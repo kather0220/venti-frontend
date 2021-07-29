@@ -38,10 +38,10 @@ export const BrandImageOverlay = styled.div`
 `;
 
 export const BrandName = styled.div`
-  font-family: Noto Sans KR;
+  font-family: ${(props) => props.font};
   font-style: normal;
   font-weight: 500;
-  font-size: 0.933rem;
+  font-size: 0.9rem;
   margin-top: 1.037rem;
   text-align: center;
 `;
