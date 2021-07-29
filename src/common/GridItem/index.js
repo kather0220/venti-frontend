@@ -1,5 +1,5 @@
 import * as S from './styles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function GridItem(props) {
@@ -15,9 +15,19 @@ function GridItem(props) {
     //setClicked(!clicked);
 
     setClicked(!clicked);
-    if (!clicked)
-      alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+    if (!clicked) {
+      setTimeout(function () {
+        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+      }, 100);
+    }
+    //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
   };
+  /*
+  useEffect(() => {
+    if (clicked)
+      alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+  }, [clicked]);
+  */
   return (
     <>
       <S.GridItemContainer>
@@ -29,8 +39,8 @@ function GridItem(props) {
           <S.FirstRow>
             <S.EventName>6월 와퍼 할인 이벤트</S.EventName>
             <S.HeartIcon
-              onClick={handleHeartClick}
               src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
+              onClick={handleHeartClick}
             />
           </S.FirstRow>
           <S.SecondRow>버거킹</S.SecondRow>
