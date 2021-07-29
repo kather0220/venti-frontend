@@ -10,13 +10,13 @@ export const MainContainer = styled.div`
   flex-direction: column;
 `;
 
-export const EventsForYou = styled.div`
+export const Exp = styled.div`
   justify-content: start;
   align-items: center;
-  padding: 1.667rem 1.067rem;
+  padding: 1.667rem 1.067rem 0.2rem;
   font-family: Roboto;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.2rem;
 `;
 
