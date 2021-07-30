@@ -31,7 +31,14 @@ export const BrandName = styled.div`
   font-size: 1.133rem;
   color: black;
 `;
+export const NameAndImage = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
+  width: 18.333rem;
+  height: 5.2rem;
+`;
 export const Star = styled.img`
   position: absolute;
   width: 1.333rem;

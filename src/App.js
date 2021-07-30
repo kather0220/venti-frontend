@@ -33,7 +33,7 @@ function App() {
         <Route exact path="/brand" component={BrandPage} />
         <Route
           exact
-          path="/brand-detail:brand_id"
+          path="/brand-detail/:brand_id"
           component={BrandDetailPage}
         />
         <Route exact path="/my-venti" component={MyVentiPage} />
