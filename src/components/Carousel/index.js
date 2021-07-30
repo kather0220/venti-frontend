@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as S from './styles';
 import Slider from 'react-slick';
+import './styles.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -13,6 +14,7 @@ export default class Carousel extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+
     return (
       <S.CarouselContainer>
         <Slider {...settings}>

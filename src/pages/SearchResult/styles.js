@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const ResultMessage = styled.div`
@@ -13,6 +12,7 @@ export const ResultMessage = styled.div`
   font-size: 1rem;
   margin: 1.667rem 0;
   color: black;
+  text-align: center;
   & keyword {
     color: #f40552;
   }

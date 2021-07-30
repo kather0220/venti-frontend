@@ -43,7 +43,6 @@ function MainPage() {
       <S.MainContainer>
         <Header></Header>
         <Carousel></Carousel>
-
         <S.Exp>나를 위한 새로운 이벤트</S.Exp>
         <CategoryWrapper>
           <CategoryTab
