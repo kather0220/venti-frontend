@@ -83,14 +83,16 @@ export const CloseButton = styled.img`
 export const TopGreyLine = styled.div`
   width: 25rem;
   height: 0;
-  border: 0.05px solid #d3d3d3;
+  background: #d3d3d3;
+  border: 0.01px solid #d3d3d3;
   margin-top: 1.267rem;
   margin-bottom: 1.1rem;
 `;
 export const BottomGreyLine = styled.div`
   width: 25rem;
   height: 0;
-  border: 0.05px solid #d3d3d3;
+  background: #d3d3d3;
+  border: 0.01px solid #d3d3d3;
 `;
 export const FilterItemContainer = styled.div`
   display: flex;
@@ -111,35 +113,27 @@ export const FilterItem = styled.div`
   //background: #eeeeee;
   border-radius: 3.333rem;
   margin: 0.467rem 0.433rem;
-  /*${(props) =>
-    props.isClicked
-      ? 'background: pink; color: white;'
-      : 'background: #eeeeee; color: black;'}
-    */
-  background: ${(props) => (props.isClicked ? 'pink' : 'grey')};
-  color: ${(props) => (props.isClicked ? 'white' : 'black')};
 `;
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
   //align-items: center;
+  //align-items: flex-end;
 `;
 
 export const Button = styled.button`
-  position: absolute;
   width: 9.067rem;
   height: 2.8rem;
-  padding: 0.933rem 3.533rem;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 0.933rem;
   color: white;
-  background: ${(props) => (props.disabled ? 'grey' : '#f40552')};
+  background: ${(props) => (props.disabled ? '#b3b3b3' : '#f40552')};
   border-radius: 0.667rem;
   border: none;
   margin-top: 1.333rem;
   margin-bottom: 1.333rem;
-  right: 1.067rem;
+  margin-left: 15rem;
 `;
