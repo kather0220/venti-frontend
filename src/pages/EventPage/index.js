@@ -48,6 +48,10 @@ function EventPage() {
     console.log(brandList);
   }, [brandList]);
 
+  const handleFilterApply = () => {
+    alert('필터링 적용이 완료되었습니다.');
+    setIsVisible(false);
+  };
   return (
     <>
       <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
@@ -82,7 +86,12 @@ function EventPage() {
         </S.FilterItemContainer>
         <S.BottomGreyLine></S.BottomGreyLine>
         <S.ButtonContainer>
-          <S.Button disabled={brandList.length === 0}>적용</S.Button>
+          <S.Button
+            onClick={handleFilterApply}
+            disabled={brandList.length === 0}
+          >
+            적용
+          </S.Button>
         </S.ButtonContainer>
       </S.FilterContainer>
       <S.MainContainer>
