@@ -49,8 +49,9 @@ function LogInPage() {
         const res = await axios.post(url, info);
         setLoading(true);
         // setWithExpiry('currentUser', res.data, 10000);
+
+        localStorage.setItem(userId, res.data);
         console.log(res.data);
-        localStorage.setItem('currentUser', res.data);
         alert(`${userId}님 반갑습니다!`);
         history.push('/');
       } catch (e) {

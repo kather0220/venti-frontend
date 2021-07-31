@@ -34,19 +34,22 @@ function SignUpPage() {
         if (isFemale) {
           setIsFemale(false);
         }
-        setGenderInput('man');
+        //setGenderInput('man');
         break;
       case '여':
         setIsFemale(!isFemale);
         if (isMale) {
           setIsMale(false);
         }
-        setGenderInput('woman');
+        // setGenderInput('woman');
         break;
       default:
-        setGenderInput(null);
+        // setGenderInput(null);
         break;
     }
+    if (isMale) setGenderInput('man');
+    else if (isFemale) setGenderInput('woman');
+    else setGenderInput(null);
   };
   const handleClick = async (e) => {
     e.preventDefault();
@@ -55,7 +58,9 @@ function SignUpPage() {
     const pwInput = pw.current.value;
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
-    const birthdayInput = birthday.current.value;
+    const birthdayInput =
+      birthday.current.value !== '' ? birthday.current.value : null;
+    //if (birthdayInput === '') birthdayInput = null;
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;

@@ -13,7 +13,9 @@ function EventPage() {
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
   const [brandList, setBrandList] = useState([]);
-
+  const foodBrandList;
+  const cafeBrandList;
+  const fashionBrandList;
   const handleClick = (event) => {
     const {
       target: { id },
@@ -44,6 +46,19 @@ function EventPage() {
       setBrandList([...brandList, e.target.id]);
     }
   };
+  switch(category){
+    case 'food':
+      foodBrandList=brandList;
+      break;
+    case 'cafe':
+      cafeBrandList = brandList;
+      break;
+    case 'fashion':
+      fashionBrandList=brandList;
+      break;
+    default:
+      break;
+  }
   useEffect(() => {
     console.log(brandList);
   }, [brandList]);
@@ -64,7 +79,7 @@ function EventPage() {
           ></S.CloseButton>
         </S.TextAndButton>
         <S.TopGreyLine></S.TopGreyLine>
-        <S.FilterItemContainer>
+        <S.FilterItemContainer visible={category === 'food'}>
           {FoodBrandList.map((brand) => {
             return (
               <FilterItem

@@ -95,7 +95,7 @@ export const BottomGreyLine = styled.div`
   border: 0.01px solid #d3d3d3;
 `;
 export const FilterItemContainer = styled.div`
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: row;
   width: 100%;
   padding-top: 1.133rem;
