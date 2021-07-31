@@ -70,8 +70,6 @@ function MainPage() {
         <CategoryUnderLine margin={margin} width={width}></CategoryUnderLine>
         <GridWrapper visible={category === 'food'}>
           <GridItem></GridItem>
-
-          <GridItem></GridItem>
           <GridItem></GridItem>
           <GridItem></GridItem>
         </GridWrapper>

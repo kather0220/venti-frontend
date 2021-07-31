@@ -35,7 +35,7 @@ function GridItem(props) {
           <S.GridOverlay visible={props.isEnd}></S.GridOverlay>
         </S.GridInnerContainer>
         <S.GridInnerContainer>
-          <S.GridImage src={'/img/whopper-event.png'} onClick={handleClick} />
+          <S.GridImage src={props.img} onClick={handleClick} />
           <S.FirstRow>
             <S.EventName>6월 와퍼 할인 이벤트</S.EventName>
             <S.HeartIcon
