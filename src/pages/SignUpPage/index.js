@@ -1,13 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../common/Button/index';
 import * as S from './styles';
 
 function SignUpPage() {
   const history = useHistory();
-
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
+  const [genderInput, setGenderInput] = useState(null);
   const nickname = useRef();
   const id = useRef();
   const pw = useRef();
@@ -31,18 +34,21 @@ function SignUpPage() {
         if (isFemale) {
           setIsFemale(false);
         }
+        setGenderInput('man');
         break;
       case '여':
         setIsFemale(!isFemale);
         if (isMale) {
           setIsMale(false);
         }
+        setGenderInput('woman');
         break;
       default:
+        setGenderInput(null);
         break;
     }
   };
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     const nicknameInput = nickname.current.value;
     const idInput = id.current.value;
@@ -50,7 +56,6 @@ function SignUpPage() {
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
-    // 닉네임이나 id 중복체크 들어가야 된다. http 상태코드 409인 경우
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
@@ -58,12 +63,43 @@ function SignUpPage() {
     else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
-      alert(
-        '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
-      );
-      history.push('/brand-preference');
+      try {
+        const url = 'http://3.36.127.126:8000/accounts/create/';
+        const info = {
+          username: idInput,
+          password1: pwInput, //비밀번호
+          password2: pwCheckInput, //확인용 다시치는 비밀번호
+          nickname: nicknameInput,
+          email: emailInput,
+          gender: genderInput,
+          birth: birthdayInput,
+        };
+        console.log(info);
+        setError(null);
+        await axios.post(url, info);
+        setLoading(true);
+        alert(
+          '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
+        );
+        history.push('/brand-preference');
+      } catch (e) {
+        console.log(e);
+        const statusCode = parseInt(e.message.split(' ').pop());
+        switch (statusCode) {
+          case 400:
+            alert('회원가입 실패했습니다.');
+            break;
+          default:
+            setError(e);
+            break;
+        }
+      }
+
+      setLoading(false);
     }
   };
+  if (loading) return <div>회원가입 처리중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
 
   return (
     <S.MainContainer>
