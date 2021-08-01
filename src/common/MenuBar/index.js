@@ -3,16 +3,30 @@ import * as S from './styles';
 
 function MenuBar(props) {
   //const name = localStorage.getItem();
+  function getJSON(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+  const user_id = getJSON('currentUser') ? getJSON('currentUser')[0] : null;
   return (
     <>
       <S.MainContainer visible={props.visible}>
-        <S.TopBar>
-          <S.TopBarText>님 반갑습니다!</S.TopBarText>
-          <S.Arrow
-            src={'/img/white-arrow.png'}
-            onClick={() => (window.location = '/my')}
-          ></S.Arrow>
-        </S.TopBar>
+        {user_id ? (
+          <S.TopBar>
+            <S.TopBarText>{user_id}님 반갑습니다!</S.TopBarText>
+            <S.Arrow
+              src={'/img/white-arrow.png'}
+              onClick={() => (window.location = '/my')}
+            ></S.Arrow>
+          </S.TopBar>
+        ) : (
+          <S.TopBar>
+            <S.TopBarText>로그인이 필요합니다.</S.TopBarText>
+            <S.Arrow
+              src={'/img/white-arrow.png'}
+              onClick={() => (window.location = '/log-in')}
+            ></S.Arrow>
+          </S.TopBar>
+        )}
         <S.MenuName onClick={() => (window.location = '/event')}>
           EVENT
         </S.MenuName>

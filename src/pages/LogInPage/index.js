@@ -33,7 +33,9 @@ function LogInPage() {
     };
     localStorage.setItem(key, JSON.stringify(item));
   };
-
+  function setJSON(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
   const handleClick = async (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
@@ -49,8 +51,8 @@ function LogInPage() {
         const res = await axios.post(url, info);
         setLoading(true);
         // setWithExpiry('currentUser', res.data, 10000);
-
-        localStorage.setItem(userId, res.data);
+        const data_arr = [userId, res.data];
+        setJSON('currentUser', data_arr);
         console.log(res.data);
         alert(`${userId}님 반갑습니다!`);
         history.push('/');
