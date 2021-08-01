@@ -18,7 +18,14 @@ function Footer() {
         >
           문의하기
         </S.LinkInfo>
-        <S.LinkInfo>자주 묻는 질문</S.LinkInfo>
+        <S.LinkInfo
+          onClick={(e) => {
+            window.location = '/faq';
+            e.preventDefault();
+          }}
+        >
+          자주 묻는 질문
+        </S.LinkInfo>
         <S.LinkInfo
           to={{
             pathname:

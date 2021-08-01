@@ -11,6 +11,7 @@ import LogInPage from './pages/LogInPage/index';
 import MyPage from './pages/MyPage/index';
 import NoticePage from './pages/NoticePage/index';
 import SearchResult from './pages/SearchResult/index';
+import FAQPage from './pages/FAQPage/index';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/my" component={MyPage} />
         <Route exact path="/notice" component={NoticePage} />
         <Route exact path="/search-result/:id" component={SearchResult} />
+        <Route exact path="/faq" component={FAQPage} />
       </Switch>
     </Wrapper>
   );
