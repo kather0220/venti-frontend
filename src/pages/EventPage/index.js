@@ -7,6 +7,8 @@ import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
 import GridWrapper from '../../common/GridWrapper/index';
 import FoodBrandList from '../../data/FoodBrandList';
+import CafeBrandList from '../../data/CafeBrandList';
+import FashionBrandList from '../../data/FashionBrandList';
 import FilterItem from '../../components/FilterItem/index';
 
 function EventPage() {
@@ -92,13 +94,32 @@ function EventPage() {
                 //isClied={clicked}
               ></FilterItem>
             );
-            //<S.FilterItem
-            //  id={brand.name}
-            // isClicked={clicked}
-            // onClick={handleFilterItemClick}
-            // >
-            //{brand.name}
-            //   </S.FilterItem>
+          })}
+        </S.FilterItemContainer>
+        <S.FilterItemContainer visible={category === 'cafe'}>
+          {CafeBrandList.map((brand) => {
+            return (
+              <FilterItem
+                id={brand.name}
+                name={brand.name}
+                //brandList={brandList}
+                onClick={handleFilterItemClick}
+                //isClied={clicked}
+              ></FilterItem>
+            );
+          })}
+        </S.FilterItemContainer>
+        <S.FilterItemContainer visible={category === 'fashion'}>
+          {FashionBrandList.map((brand) => {
+            return (
+              <FilterItem
+                id={brand.name}
+                name={brand.name}
+                //brandList={brandList}
+                onClick={handleFilterItemClick}
+                //isClied={clicked}
+              ></FilterItem>
+            );
           })}
         </S.FilterItemContainer>
         <S.BottomGreyLine></S.BottomGreyLine>
