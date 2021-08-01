@@ -34,6 +34,7 @@ export const FirstRow = styled.div`
 `;
 
 export const EventName = styled.div`
+  color: ${(props) => (props.end ? '#909090' : 'black')};
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
@@ -41,6 +42,8 @@ export const EventName = styled.div`
   flex-grow: 1;
 `;
 export const SecondRow = styled.div`
+  color: ${(props) => (props.end ? '#909090' : 'black')};
+  font-family: Noto Sans KR;
   display: flex;
   flex-direction: row;
   align-items: center;

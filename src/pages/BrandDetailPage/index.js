@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../common/Header/index';
 import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
@@ -7,6 +7,19 @@ import Footer from '../../common/Footer/index';
 import * as S from './styles';
 
 function BrandDetailPage() {
+  const [clicked, setClicked] = useState(false);
+  const handleStarClick = (e) => {
+    e.preventDefault();
+    //setClicked(!clicked);
+
+    setClicked(!clicked);
+    if (!clicked) {
+      setTimeout(function () {
+        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+      }, 100);
+    }
+    //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+  };
   return (
     <>
       <Header></Header>
@@ -17,7 +30,14 @@ function BrandDetailPage() {
           ></S.BrandImage>
           <S.BrandNameAndText>
             <span>VIPS</span>
-            <img src="/img/filled-star-edit.png"></img>
+            <img
+              onClick={handleStarClick}
+              src={
+                clicked
+                  ? '/img/filled-star-edit.png'
+                  : '/img/empty-star-edit.png'
+              }
+            ></img>
             <br></br>
             <text>My No.1 Steakhouse Vips Steak & Sallad Bar.</text>
           </S.BrandNameAndText>
