@@ -35,7 +35,14 @@ function Footer() {
         >
           인스타그램
         </S.LinkInfo>
-        <S.LinkInfo>탈퇴하기</S.LinkInfo>
+        <S.LinkInfo
+          onClick={(e) => {
+            window.location = '/withdrawal';
+            e.preventDefault();
+          }}
+        >
+          탈퇴하기
+        </S.LinkInfo>
       </S.LinkInfoWrapper>
     </S.StyledContainer>
   );
