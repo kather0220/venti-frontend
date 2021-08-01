@@ -9,7 +9,15 @@ function Footer() {
         Design Your Own Venti!
       </S.Exp>
       <S.LinkInfoWrapper>
-        <S.LinkInfo>문의하기</S.LinkInfo>
+        <S.LinkInfo
+          to="#"
+          onClick={(e) => {
+            window.location = 'mailto:eventventi@gmail.com';
+            e.preventDefault();
+          }}
+        >
+          문의하기
+        </S.LinkInfo>
         <S.LinkInfo>자주 묻는 질문</S.LinkInfo>
         <S.LinkInfo
           to={{
