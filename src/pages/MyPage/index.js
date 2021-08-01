@@ -1,11 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../common/Button/index';
 import * as S from './styles';
 
 function MyPage() {
   const history = useHistory();
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
   const nickname = useRef();
@@ -62,6 +64,41 @@ function MyPage() {
       history.push('/');
     }
   };
+  function getJSON(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+  const token = getJSON('currentUser')[1].token;
+  const userId = getJSON('currentUser')[0];
+  console.log(token);
+  console.log(userId);
+  //http://3.36.127.126:8000/api/users/{id}/
+  const getInformation = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://3.36.127.126:8000/api/users/${userId}/`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      //const res = await axios.get(`http://3.36.127.126:8000/api/users/{id}/`);
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getInformation();
+  }, []);
+
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
 
   return (
     <S.MainContainer>
