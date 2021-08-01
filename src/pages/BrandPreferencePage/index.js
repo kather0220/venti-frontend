@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import * as S from './styles';
 import PreferenceItem from '../../components/PreferenceItem/index';
 import FoodBrandList from '../../data/FoodBrandList';
@@ -9,6 +10,8 @@ function BrandPreferencePage() {
   //const clicked = false;
   const [brandList, setBrandList] = useState([]);
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const handleBrandImageClick = (e) => {
     if (brandList.includes(e.target.id)) {
       console.log('중복');
@@ -26,6 +29,24 @@ function BrandPreferencePage() {
     alert('선호 브랜드 등록이 완료되었습니다!');
     history.push('/log-in');
   };
+  //http://3.36.127.126:8000/api/brands/
+  const getBrands = async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      const res = await axios.get('http://3.36.127.126:8000/api/brands');
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    getBrands();
+  }, []);
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.MainContainer>
       <S.Exp>

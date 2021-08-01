@@ -13,9 +13,9 @@ function EventPage() {
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
   const [brandList, setBrandList] = useState([]);
-  const foodBrandList;
-  const cafeBrandList;
-  const fashionBrandList;
+  //const foodBrandList;
+  //const cafeBrandList;
+  //const fashionBrandList;
   const handleClick = (event) => {
     const {
       target: { id },
@@ -46,6 +46,7 @@ function EventPage() {
       setBrandList([...brandList, e.target.id]);
     }
   };
+  /*
   switch(category){
     case 'food':
       foodBrandList=brandList;
@@ -59,6 +60,7 @@ function EventPage() {
     default:
       break;
   }
+  */
   useEffect(() => {
     console.log(brandList);
   }, [brandList]);
