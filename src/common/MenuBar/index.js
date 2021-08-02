@@ -1,12 +1,16 @@
 import React from 'react';
 import * as S from './styles';
+import { ACCESS_TOKEN } from '../../constants';
+import getUserId from '../../functions/getUserId';
 
 function MenuBar(props) {
   //const name = localStorage.getItem();
   function getJSON(key) {
     return JSON.parse(localStorage.getItem(key));
   }
-  const user_id = getJSON('currentUser') ? getJSON('currentUser')[0] : null;
+  const user_id = localStorage.getItem(ACCESS_TOKEN)
+    ? getUserId(ACCESS_TOKEN)
+    : null;
   return (
     <>
       <S.MainContainer visible={props.visible}>

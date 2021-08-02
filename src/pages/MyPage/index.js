@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../common/Button/index';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import * as S from './styles';
 
 function MyPage() {
@@ -10,6 +12,7 @@ function MyPage() {
   const [error, setError] = useState(null);
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
+  const [genderInput, setGenderInput] = useState(null);
   const nickname = useRef();
   const id = useRef();
   const pw = useRef();
@@ -33,18 +36,24 @@ function MyPage() {
         if (isFemale) {
           setIsFemale(false);
         }
+        //setGenderInput('man');
         break;
       case '여':
         setIsFemale(!isFemale);
         if (isMale) {
           setIsMale(false);
         }
+        // setGenderInput('woman');
         break;
       default:
+        // setGenderInput(null);
         break;
     }
+    if (isMale) setGenderInput('man');
+    else if (isFemale) setGenderInput('woman');
+    else setGenderInput(null);
   };
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     const nicknameInput = nickname.current.value;
     const idInput = id.current.value;
@@ -60,42 +69,53 @@ function MyPage() {
     else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
-      alert('수정이 완료되었습니다!');
-      history.push('/');
-    }
-  };
-  function getJSON(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-  const token = getJSON('currentUser')[1].token;
-  const userId = getJSON('currentUser')[0];
-  console.log(token);
-  console.log(userId);
-  //http://3.36.127.126:8000/api/users/{id}/
-  const getInformation = async () => {
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `http://3.36.127.126:8000/api/users/${userId}/`,
-        {
+      try {
+        const url = 'http://3.36.127.126:8000/accounts/update/';
+        const info = {
+          username: idInput,
+          password1: pwInput, //비밀번호
+          password2: pwCheckInput, //확인용 다시치는 비밀번호
+          nickname: nicknameInput,
+          email: emailInput,
+          gender: genderInput,
+          birth: birthdayInput,
+        };
+        let form = new FormData();
+        form.append('username', idInput);
+        form.append('password1', pwInput);
+        form.append('password2', pwCheckInput);
+        form.append('nickname', nicknameInput);
+        form.append('email', emailInput);
+        form.append('gender', genderInput);
+        form.append('birth', birthdayInput);
+        console.log(info);
+        setError(null);
+        console.log(getToken(ACCESS_TOKEN));
+        const res = await axios.post(url, form, {
           headers: {
-            Authorization: token,
+            Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
           },
+        });
+        console.log(res);
+        setLoading(true);
+        alert('수정이 완료되었습니다!');
+        history.push('/');
+      } catch (e) {
+        console.log(e);
+        const statusCode = parseInt(e.message.split(' ').pop());
+        switch (statusCode) {
+          case 400:
+            alert('수정 실패했습니다.');
+            break;
+          default:
+            setError(e);
+            break;
         }
-      );
-      //const res = await axios.get(`http://3.36.127.126:8000/api/users/{id}/`);
-      console.log(res.data);
-    } catch (e) {
-      console.log(e);
-      setError(e);
-    }
-    setLoading(false);
-  };
+      }
 
-  useEffect(() => {
-    getInformation();
-  }, []);
+      setLoading(false);
+    }
+  };
 
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
@@ -112,13 +132,13 @@ function MyPage() {
       <S.InputExp>닉네임</S.InputExp>
       <S.InputBox
         placeholder="닉네임을 입력하세요"
-        defaultValue="이벤티"
+        defaultValue="테스트1"
         ref={nickname}
       ></S.InputBox>
       <S.InputExp>아이디</S.InputExp>
       <S.InputBox
         placeholder="아이디를 입력하세요"
-        defaultValue="i_love_venti"
+        defaultValue="test1"
         ref={id}
       ></S.InputBox>
 

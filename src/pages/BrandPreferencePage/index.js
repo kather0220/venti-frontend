@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as S from './styles';
 import PreferenceItem from '../../components/PreferenceItem/index';
 import FoodBrandList from '../../data/FoodBrandList';
+import { API_BASE_URL } from '../../constants';
 
 function BrandPreferencePage() {
   //var brandList = [];
@@ -24,23 +25,44 @@ function BrandPreferencePage() {
     console.log(brandList);
     console.log(e.target.isClicked);
   };
+  const getJWT = (key) => {
+    const itemStr = localStorage.getItem(key);
+
+    if (!itemStr) {
+      return null;
+    }
+    const item = JSON.parse(itemStr);
+    //const now = new Date();
+
+    //if (now.getTime() > item.expiry) {
+    // localStorage.removeItem(key);
+    // return null;
+    //}
+    return item.value;
+  };
   const handleClickButton = () => {
     // post 추가 예정
     alert('선호 브랜드 등록이 완료되었습니다!');
     history.push('/log-in');
   };
   //http://3.36.127.126:8000/api/brands/
+  //const headers = new Headers();
+  //console.log(getToken('currentUser').token);
   const getBrands = async () => {
     try {
       setError(null);
       setLoading(true);
-      const res = await axios.get('http://3.36.127.126:8000/api/brands');
+      //console.log(headers);
+      const res = await axios.get(API_BASE_URL + '/api/guest/brand_list/');
+
       console.log(res.data);
     } catch (e) {
       console.log(e);
       setError(e);
     }
     setLoading(false);
+
+    // if (res) return res.data;
   };
   useEffect(() => {
     getBrands();

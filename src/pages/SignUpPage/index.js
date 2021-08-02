@@ -51,6 +51,7 @@ function SignUpPage() {
     else if (isFemale) setGenderInput('woman');
     else setGenderInput(null);
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
     const nicknameInput = nickname.current.value;
@@ -60,6 +61,16 @@ function SignUpPage() {
     const emailInput = email.current.value;
     const birthdayInput =
       birthday.current.value !== '' ? birthday.current.value : null;
+    let form = new FormData();
+    form.append('username', idInput);
+    form.append('password1', pwInput);
+    form.append('password2', pwCheckInput);
+    form.append('nickname', nicknameInput);
+    form.append('email', emailInput);
+    form.append('gender', genderInput);
+    form.append('birth', birthdayInput);
+    //form.append('password2', pwCheckInput);
+
     //if (birthdayInput === '') birthdayInput = null;
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
@@ -79,9 +90,10 @@ function SignUpPage() {
           gender: genderInput,
           birth: birthdayInput,
         };
-        console.log(info);
+        // console.log(info);
         setError(null);
-        await axios.post(url, info);
+        await axios.post(url, form);
+        console.log(form);
         setLoading(true);
         alert(
           '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../common/Button/index';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import setToken from '../../functions/setToken';
 import * as S from './styles';
 
 function LogInPage() {
@@ -25,17 +27,18 @@ function LogInPage() {
         break;
     }
   };
-  const setWithExpiry = (key, value, ttl) => {
-    const now = new Date();
+  const setWithId = (key, value, id) => {
+    //const now = new Date();
     const item = {
       value: value,
-      expiry: now.getTime() + ttl,
+      userId: id,
     };
     localStorage.setItem(key, JSON.stringify(item));
   };
   function setJSON(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
@@ -50,9 +53,11 @@ function LogInPage() {
         setError();
         const res = await axios.post(url, info);
         setLoading(true);
-        // setWithExpiry('currentUser', res.data, 10000);
-        const data_arr = [userId, res.data];
-        setJSON('currentUser', data_arr);
+        //setWithId('currentUser', res.data, userId);
+        setToken(ACCESS_TOKEN, res.data, userId);
+        //const data_arr = [userId, res.data];
+        //window.localStorage.setItem('jwt', res.data);
+        //window.localStorage.setItem('currentUser', userId);
         console.log(res.data);
         alert(`${userId}님 반갑습니다!`);
         history.push('/');
