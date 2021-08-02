@@ -13,6 +13,8 @@ function BrandPreferencePage() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  //const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState([]);
   const handleBrandImageClick = (e) => {
     if (brandList.includes(e.target.id)) {
       console.log('중복');
@@ -45,9 +47,6 @@ function BrandPreferencePage() {
     alert('선호 브랜드 등록이 완료되었습니다!');
     history.push('/log-in');
   };
-  //http://3.36.127.126:8000/api/brands/
-  //const headers = new Headers();
-  //console.log(getToken('currentUser').token);
   const getBrands = async () => {
     try {
       setError(null);
@@ -56,19 +55,19 @@ function BrandPreferencePage() {
       const res = await axios.get(API_BASE_URL + '/api/guest/brand_list/');
 
       console.log(res.data);
+      setResponse(res.data.brand);
     } catch (e) {
       console.log(e);
       setError(e);
     }
     setLoading(false);
-
-    // if (res) return res.data;
   };
   useEffect(() => {
     getBrands();
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
+  console.log(response);
   return (
     <S.MainContainer>
       <S.Exp>
@@ -77,11 +76,12 @@ function BrandPreferencePage() {
         <text>선택한 브랜드의 이벤트를 알림으로 받을 수 있어요</text>
       </S.Exp>
       <S.GridWrapper>
-        {FoodBrandList.map((brand) => {
+        {response.map((brand) => {
           return (
             <PreferenceItem
               id={brand.name}
               name={brand.name}
+              img={'http://3.36.127.126:8000/' + brand.image}
               onClick={handleBrandImageClick}
             ></PreferenceItem>
           );

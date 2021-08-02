@@ -40,7 +40,7 @@ function PreferenceItem(props) {
             props.onClick(e);
           }}
           id={props.id}
-          src={'/img/brand-preference-page-img/vips-circle-img.png'}
+          src={props.img}
         ></S.BrandImage>
         <S.BrandName font={isEnglish(props.name) ? 'Roboto' : 'Noto Sans KR'}>
           {props.name}
