@@ -114,6 +114,7 @@ function BrandPage() {
           {foodBrandList.map((brand) => {
             return (
               <BrandListItem
+                id={brand.id}
                 name={brand.name}
                 image={brand.image}
               ></BrandListItem>
@@ -124,6 +125,7 @@ function BrandPage() {
           {cafeBrandList.map((brand) => {
             return (
               <BrandListItem
+                id={brand.id}
                 name={brand.name}
                 image={brand.image}
               ></BrandListItem>
@@ -134,6 +136,7 @@ function BrandPage() {
           {fashionBrandList.map((brand) => {
             return (
               <BrandListItem
+                id={brand.id}
                 name={brand.name}
                 image={brand.image}
               ></BrandListItem>

@@ -4,7 +4,8 @@ import * as S from './styles';
 
 function BrandListItem(props) {
   const history = useHistory();
-  const brand_id = 'vips'; // 임시값
+  const brand_id = props.id; // 임시값
+  console.log(brand_id);
   const [clicked, setClicked] = useState(false);
   const handleClick = (e) => {
     e.preventDefault();
