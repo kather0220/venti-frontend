@@ -37,7 +37,7 @@ function GridItem(props) {
         <S.GridInnerContainer>
           <S.GridImage src={props.img} onClick={handleClick} />
           <S.FirstRow>
-            <S.EventName end={props.isEnd}>6월 와퍼 할인 이벤트</S.EventName>
+            <S.EventName end={props.isEnd}>{props.eventName}</S.EventName>
             {props.isEnd ? (
               <S.HeartIcon src={'/img/disabled-heart.png'} />
             ) : (
@@ -47,8 +47,10 @@ function GridItem(props) {
               />
             )}
           </S.FirstRow>
-          <S.SecondRow end={props.isEnd}>버거킹</S.SecondRow>
-          <S.ThirdRow>D-5{'     '}조회 130회</S.ThirdRow>
+          <S.SecondRow end={props.isEnd}>{props.brandName}</S.SecondRow>
+          <S.ThirdRow>
+            D-5{'     '}조회 {props.view}회
+          </S.ThirdRow>
         </S.GridInnerContainer>
       </S.GridItemContainer>
     </>
