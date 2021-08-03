@@ -20,7 +20,7 @@ function Header(props) {
     } else {
       id = searchInput;
       console.log(id);
-      history.push(`/search-result/${id}`);
+      window.location = `/search-result/${id}`;
     }
   };
   return (

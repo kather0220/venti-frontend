@@ -17,3 +17,12 @@ export const ResultMessage = styled.div`
     color: #f40552;
   }
 `;
+
+export const ResultTitle = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1.667rem;
+  margin-left: 1.133rem;
+`;
