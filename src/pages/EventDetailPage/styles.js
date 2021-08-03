@@ -51,12 +51,12 @@ export const EventImage = styled.img`
   height: 25.267rem;
 `;
 
-export const EventText = styled.div`
+export const EventText = styled.pre`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
   font-size: 0.8rem;
-  line-height: 2.733rem;
+  //line-height: 2.733rem;
   color: black;
   width: 22.867rem;
   margin: 0 1rem 0;

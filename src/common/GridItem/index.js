@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function GridItem(props) {
   const history = useHistory();
   const [clicked, setClicked] = useState(false);
-  const event_id = 'whopper-event'; // 임시값. 서버에서 넘겨 받을 예정
+  const event_id = props.id; // 임시값. 서버에서 넘겨 받을 예정
   const handleClick = (e) => {
     e.preventDefault();
     history.push(`/event-detail/${event_id}`);

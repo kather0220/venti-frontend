@@ -44,7 +44,7 @@ function LogInPage() {
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
     else {
       try {
-        const url = 'http://3.36.127.126:8000/accounts/login/';
+        const url = API_BASE_URL + '/accounts/login/';
         const info = {
           username: userId, // id
           password: userPassword, // pwd
@@ -76,34 +76,6 @@ function LogInPage() {
       setLoading(false);
     }
   };
-  /*
-  const postSignIn = async () => {
-    try {
-      const url =
-        'http://ec2-13-209-5-166.ap-northeast-2.compute.amazonaws.com:8000/api/signin';
-      const info = { email: userEmail, password: userPassword };
-
-      setError();
-      const res = await axios.post(url, info);
-      setLoading(true);
-      setWithExpiry('currentUser', res.data, 10000);
-    } catch (e) {
-      const statusCode = parseInt(e.message.split(' ').pop());
-      switch (statusCode) {
-        case 400:
-          alert('사용자 정보를 모두 입력해주세요.');
-          break;
-        case 404:
-          alert('사용자 정보가 존재하지 않습니다.');
-          break;
-        default:
-          setError(e);
-          break;
-      }
-    }
-    setLoading(false);
-  };
-  */
   if (loading) return <div>로그인 처리중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (

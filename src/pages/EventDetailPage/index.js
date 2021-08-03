@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Header from '../../common/Header/index';
-//import Button from '../../common/Button/index';
+import { API_BASE_URL } from '../../constants';
 import * as S from './styles';
+import axios from 'axios';
 
 function EventDetailPage() {
   const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [eventInfo, setEventInfo] = useState('');
+  const { event_id } = useParams();
   const handleHeartClick = (e) => {
     e.preventDefault();
-    //setClicked(!clicked);
 
     setClicked(!clicked);
     if (!clicked) {
@@ -15,34 +20,58 @@ function EventDetailPage() {
         alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
       }, 100);
     }
-    //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
   };
+  const getEventDetail = async (id) => {
+    try {
+      setError(null);
+      setLoading(true);
+      const params = {
+        event_id: id,
+      };
+      const res = await axios.post(
+        API_BASE_URL + '/api/guest/event_detail/',
+        params
+      );
+
+      console.log(res.data);
+      setEventInfo(res.data.event[0]);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    getEventDetail(event_id);
+  }, []);
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>
       <Header></Header>
       <S.MainContainer>
         <S.EvenInfoWrapper>
           <S.BrandNameAndDate>
-            <brand>버거킹</brand>
-            <br></br>2020.09.09
+            <brand>{eventInfo.brand_id}</brand>
+            <br></br>
+            {eventInfo.created_date}
           </S.BrandNameAndDate>
-          <S.EventName>6월 와퍼 할인 이벤트</S.EventName>
+          <S.EventName>{eventInfo.name}</S.EventName>
           <S.HeartIcon
             onClick={handleHeartClick}
             src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
           ></S.HeartIcon>
         </S.EvenInfoWrapper>
-        <S.EventImage src={'/img/event-detail-example.png'}></S.EventImage>
-        <S.EventText>
-          1. 행사명 : 와퍼 3500원 <br></br>2. 제품 : 와퍼(3500원), 치즈와퍼
-          (4100원) <br></br>3. 행사 기간 : 21년 6월 12일(월) ~ 6월 18일(일),
-          7일간 <br></br>4. 행사 시간 : 매장 운영시간에 따라 상이 합니다.{' '}
-          <br></br>
-          <notice>
-            *유의사항과 제외매장은 이벤트 바로가기를 통해 확인하세요
-          </notice>
-        </S.EventText>
-        <S.Button>이벤트 바로가기</S.Button>
+        <S.EventImage src={eventInfo.image}></S.EventImage>
+        <S.EventText>{eventInfo.text}</S.EventText>
+        <Link
+          to={{
+            pathname: eventInfo.url,
+          }}
+          target="_blank"
+        >
+          <S.Button>이벤트 바로가기</S.Button>
+        </Link>
       </S.MainContainer>
     </>
   );
