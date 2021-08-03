@@ -5,7 +5,8 @@ import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import axios from 'axios';
 
 function BrandDetailPage() {
@@ -35,13 +36,20 @@ function BrandDetailPage() {
       const params = {
         brand_id: id,
       };
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/brand_detail/',
-        params
-      );
+
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/brands/details/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/brand_detail/', params);
 
       console.log(res.data);
       setBrandInfo(res.data.brand[0]);
+      if (res.data.subscribe) {
+        res.data.subscribe[0] === 'No' ? setClicked(false) : setClicked(true);
+      }
     } catch (e) {
       console.log(e);
       setError(e);
@@ -55,10 +63,14 @@ function BrandDetailPage() {
       const params = {
         brand_id: id,
       };
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/event_deadline/',
-        params
-      );
+      ///api/events/deadline/
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/events/deadline/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/event_deadline/', params);
 
       console.log(res.data);
       setOnEvent(res.data.on_event);

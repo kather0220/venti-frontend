@@ -6,7 +6,8 @@ import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
 import BrandListItem from '../../common/BrandListItem/index';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import Footer from '../../common/Footer';
 import axios from 'axios';
 
@@ -45,10 +46,19 @@ function BrandPage() {
       const params = {
         category_id: category,
       };
+      /*
       const res = await axios.post(
         API_BASE_URL + '/api/guest/brand_main/',
         params
       );
+      */
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/brands/main/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/brand_main/', params);
 
       console.log(res.data);
       //setResponse(res.data.event);
