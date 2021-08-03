@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './styles';
 
-function BrandListItem() {
+function BrandListItem(props) {
   const history = useHistory();
   const brand_id = 'vips'; // 임시값
   const [clicked, setClicked] = useState(false);
@@ -25,10 +25,8 @@ function BrandListItem() {
   return (
     <S.ListItemBox>
       <S.NameAndImage onClick={handleClick}>
-        <S.BrandImage
-          src={'/img/brand-preference-page-img/vips-circle-img.png'}
-        ></S.BrandImage>
-        <S.BrandName>VIPS</S.BrandName>
+        <S.BrandImage src={props.image}></S.BrandImage>
+        <S.BrandName>{props.name}</S.BrandName>
       </S.NameAndImage>
       <S.Star
         onClick={handleStarClick}

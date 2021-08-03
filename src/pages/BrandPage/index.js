@@ -7,13 +7,14 @@ import { CategoryTab } from '../../common/CategoryTab/styles';
 import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
 import BrandListItem from '../../common/BrandListItem/index';
 import { API_BASE_URL } from '../../constants';
+import Footer from '../../common/Footer';
 import axios from 'axios';
 
 function BrandPage() {
   const [category, setCategory] = useState('food');
   const [foodBrandList, setFoodBrandList] = useState([]);
   const [cafeBrandList, setCafeBrandList] = useState([]);
-  const [fashioBrandList, setFashionBrandList] = useState([]);
+  const [fashionBrandList, setFashionBrandList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const handleClick = (event) => {
@@ -109,15 +110,38 @@ function BrandPage() {
           </CategoryTab>
         </CategoryWrapper>
         <CategoryUnderLine></CategoryUnderLine>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
-        <BrandListItem></BrandListItem>
+        <S.BrandConatiner visible={category === 'food'}>
+          {foodBrandList.map((brand) => {
+            return (
+              <BrandListItem
+                name={brand.name}
+                image={brand.image}
+              ></BrandListItem>
+            );
+          })}
+        </S.BrandConatiner>
+        <S.BrandConatiner visible={category === 'cafe'}>
+          {cafeBrandList.map((brand) => {
+            return (
+              <BrandListItem
+                name={brand.name}
+                image={brand.image}
+              ></BrandListItem>
+            );
+          })}
+        </S.BrandConatiner>
+        <S.BrandConatiner visible={category === 'fashion'}>
+          {fashionBrandList.map((brand) => {
+            return (
+              <BrandListItem
+                name={brand.name}
+                image={brand.image}
+              ></BrandListItem>
+            );
+          })}
+        </S.BrandConatiner>
       </S.MainContainer>
+      <Footer></Footer>
     </>
   );
 }
