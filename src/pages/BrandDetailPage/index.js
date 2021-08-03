@@ -16,6 +16,8 @@ function BrandDetailPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [brandInfo, setBrandInfo] = useState('');
+  const [onEvent, setOnEvent] = useState([]);
+  const [offEvent, setOffEvent] = useState([]);
 
   const handleStarClick = (e) => {
     e.preventDefault();
@@ -54,11 +56,38 @@ function BrandDetailPage() {
     }
     setLoading(false);
   };
+  const getBrandEventList = async (id) => {
+    //console.log(brand_id);
+    try {
+      setError(null);
+      setLoading(true);
+      //console.log(headers);
+      //const date = new Date();
+      //console.log(date);
+      const params = {
+        brand_id: id,
+      };
+      const res = await axios.post(
+        API_BASE_URL + '/api/guest/event_deadline/',
+        params
+      );
 
+      console.log(res.data);
+      //setBrandInfo(res.data.brand[0]);
+      //setResponse(res.data.event);
+      setOnEvent(res.data.on_event);
+      setOffEvent(res.data.off_event);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
   ///api/brands/{id}/
 
   useEffect(() => {
     getBrandDetail(brand_id);
+    getBrandEventList(brand_id);
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
@@ -88,21 +117,38 @@ function BrandDetailPage() {
           <text>내일은 없을지도 몰라요</text>
         </S.EventExp>
         <GridWrapper visible={true}>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
+          {onEvent.map((event) => {
+            return (
+              <GridItem
+                id={event.id}
+                eventName={event.name}
+                brandName={event.brand_id}
+                img={event.image}
+                // onClick={handleBrandImageClick}
+                view={event.view}
+                due={event.due}
+              ></GridItem>
+            );
+          })}
         </GridWrapper>
         <S.EventExp>
           지난 이벤트<br></br>
           <text>아쉽지만 다음에 만나요..</text>
         </S.EventExp>
         <GridWrapper visible={true}>
-          <GridItem isEnd={true}></GridItem>
-          <GridItem isEnd={true}></GridItem>
+          {offEvent.map((event) => {
+            return (
+              <GridItem
+                id={event.id}
+                eventName={event.name}
+                brandName={event.brand_id}
+                img={event.image}
+                // onClick={handleBrandImageClick}
+                view={event.view}
+                due={event.due}
+              ></GridItem>
+            );
+          })}
         </GridWrapper>
         <Footer></Footer>
       </S.MainContainer>
