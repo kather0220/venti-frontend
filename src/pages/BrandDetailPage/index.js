@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import Header from '../../common/Header/index';
 import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
-
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
 import { API_BASE_URL } from '../../constants';
@@ -21,7 +20,6 @@ function BrandDetailPage() {
 
   const handleStarClick = (e) => {
     e.preventDefault();
-    //setClicked(!clicked);
 
     setClicked(!clicked);
     if (!clicked) {
@@ -29,16 +27,11 @@ function BrandDetailPage() {
         alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
       }, 100);
     }
-    //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
   };
   const getBrandDetail = async (id) => {
-    //console.log(brand_id);
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
-      //const date = new Date();
-      //console.log(date);
       const params = {
         brand_id: id,
       };
@@ -49,7 +42,6 @@ function BrandDetailPage() {
 
       console.log(res.data);
       setBrandInfo(res.data.brand[0]);
-      //setResponse(res.data.event);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -57,13 +49,9 @@ function BrandDetailPage() {
     setLoading(false);
   };
   const getBrandEventList = async (id) => {
-    //console.log(brand_id);
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
-      //const date = new Date();
-      //console.log(date);
       const params = {
         brand_id: id,
       };
@@ -73,8 +61,6 @@ function BrandDetailPage() {
       );
 
       console.log(res.data);
-      //setBrandInfo(res.data.brand[0]);
-      //setResponse(res.data.event);
       setOnEvent(res.data.on_event);
       setOffEvent(res.data.off_event);
     } catch (e) {
@@ -83,7 +69,6 @@ function BrandDetailPage() {
     }
     setLoading(false);
   };
-  ///api/brands/{id}/
 
   useEffect(() => {
     getBrandDetail(brand_id);
@@ -124,7 +109,6 @@ function BrandDetailPage() {
                 eventName={event.name}
                 brandName={event.brand_id}
                 img={event.image}
-                // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
               ></GridItem>
@@ -143,7 +127,6 @@ function BrandDetailPage() {
                 eventName={event.name}
                 brandName={event.brand_id}
                 img={event.image}
-                // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
               ></GridItem>

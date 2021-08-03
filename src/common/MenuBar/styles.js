@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MainContainer = styled.div`
   position: fixed;
@@ -44,4 +45,24 @@ export const MenuName = styled.div`
   width: 6rem;
   color: black;
   margin: 1.067rem 1.667rem;
+`;
+
+export const Line = styled.hr`
+  width: 100%;
+  height: 0;
+  left: 0px;
+  margin-top: 3.867rem;
+  border: 0.05rem solid #dddddd;
+  background: #dddddd;
+  transform: rotate(-0.17deg);
+`;
+
+export const TransferLink = styled(Link)`
+  margin-top: 1.4rem;
+  margin-left: 1.533rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #aaaaaa;
 `;

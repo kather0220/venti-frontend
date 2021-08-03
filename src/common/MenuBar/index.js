@@ -2,15 +2,17 @@ import React from 'react';
 import * as S from './styles';
 import { ACCESS_TOKEN } from '../../constants';
 import getUserId from '../../functions/getUserId';
+import getToken from '../../functions/getToken';
 
 function MenuBar(props) {
-  //const name = localStorage.getItem();
-  function getJSON(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
   const user_id = localStorage.getItem(ACCESS_TOKEN)
     ? getUserId(ACCESS_TOKEN)
     : null;
+  const handleLogOut = () => {
+    localStorage.removeItem(ACCESS_TOKEN);
+    alert('로그아웃 되었습니다.');
+    window.location = '/';
+  };
   return (
     <>
       <S.MainContainer visible={props.visible}>
@@ -40,6 +42,12 @@ function MenuBar(props) {
         <S.MenuName onClick={() => (window.location = '/my-venti')}>
           MY VENTI
         </S.MenuName>
+        <S.Line></S.Line>
+        {getToken(ACCESS_TOKEN) ? (
+          <S.TransferLink onClick={handleLogOut}>로그아웃</S.TransferLink>
+        ) : (
+          <S.TransferLink to="/sign-up">회원가입</S.TransferLink>
+        )}
       </S.MainContainer>
     </>
   );
