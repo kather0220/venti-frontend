@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../../common/Header/index';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import * as S from './styles';
 import axios from 'axios';
 
@@ -28,13 +29,18 @@ function EventDetailPage() {
       const params = {
         event_id: id,
       };
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/event_detail/',
-        params
-      );
-
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/events/details/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/event_detail/', params);
       console.log(res.data);
       setEventInfo(res.data.event[0]);
+      if (res.data.subscribe) {
+        res.data.subscribe[0] === 'No' ? setClicked(false) : setClicked(true);
+      }
     } catch (e) {
       console.log(e);
       setError(e);
@@ -46,6 +52,7 @@ function EventDetailPage() {
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
+
   return (
     <>
       <Header></Header>

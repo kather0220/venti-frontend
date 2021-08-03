@@ -7,13 +7,10 @@ import FoodBrandList from '../../data/FoodBrandList';
 import { API_BASE_URL } from '../../constants';
 
 function BrandPreferencePage() {
-  //var brandList = [];
-  //const clicked = false;
   const [brandList, setBrandList] = useState([]);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  //const [response, setResponse] = useState([]);
   const [response, setResponse] = useState([]);
   const handleBrandImageClick = (e) => {
     if (brandList.includes(e.target.id)) {
@@ -23,7 +20,6 @@ function BrandPreferencePage() {
     } else {
       setBrandList([...brandList, e.target.id]);
     }
-    //e.target.isClicked = e.target.isClicked === true ? false : true;
     console.log(brandList);
     console.log(e.target.isClicked);
   };
@@ -34,12 +30,6 @@ function BrandPreferencePage() {
       return null;
     }
     const item = JSON.parse(itemStr);
-    //const now = new Date();
-
-    //if (now.getTime() > item.expiry) {
-    // localStorage.removeItem(key);
-    // return null;
-    //}
     return item.value;
   };
   const handleClickButton = () => {
