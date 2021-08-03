@@ -59,6 +59,9 @@ export const EventText = styled.pre`
   //line-height: 2.733rem;
   color: black;
   width: 22.867rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
   margin: 0 1rem 0;
   & notice {
     color: #919191;
