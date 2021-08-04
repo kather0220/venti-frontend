@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './styles';
 import PreferenceItem from '../../components/PreferenceItem/index';
-import FoodBrandList from '../../data/FoodBrandList';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 
 function BrandPreferencePage() {
   const [brandList, setBrandList] = useState([]);
@@ -21,27 +21,41 @@ function BrandPreferencePage() {
       setBrandList([...brandList, e.target.id]);
     }
     console.log(brandList);
-    console.log(e.target.isClicked);
   };
-  const getJWT = (key) => {
-    const itemStr = localStorage.getItem(key);
+  const subscribeBrands = async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      const params = {
+        brand_id: brandList,
+      };
+      const res = await axios.post(
+        API_BASE_URL + '/api/guest/mybrands/',
+        params,
+        {
+          headers: {
+            Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+          },
+        }
+      );
 
-    if (!itemStr) {
-      return null;
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+      setError(e);
     }
-    const item = JSON.parse(itemStr);
-    return item.value;
+    setLoading(false);
   };
   const handleClickButton = () => {
-    // post 추가 예정
+    subscribeBrands();
     alert('선호 브랜드 등록이 완료되었습니다!');
+    localStorage.removeItem(ACCESS_TOKEN);
     history.push('/log-in');
   };
   const getBrands = async () => {
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
       const res = await axios.get(API_BASE_URL + '/api/guest/brand_list/');
 
       console.log(res.data);
@@ -52,6 +66,7 @@ function BrandPreferencePage() {
     }
     setLoading(false);
   };
+
   useEffect(() => {
     getBrands();
   }, []);
@@ -69,7 +84,7 @@ function BrandPreferencePage() {
         {response.map((brand) => {
           return (
             <PreferenceItem
-              id={brand.name}
+              id={brand.id}
               name={brand.name}
               img={'http://3.36.127.126:8000/' + brand.image}
               onClick={handleBrandImageClick}
