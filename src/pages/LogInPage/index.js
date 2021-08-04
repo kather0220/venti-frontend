@@ -27,18 +27,6 @@ function LogInPage() {
         break;
     }
   };
-  const setWithId = (key, value, id) => {
-    //const now = new Date();
-    const item = {
-      value: value,
-      userId: id,
-    };
-    localStorage.setItem(key, JSON.stringify(item));
-  };
-  function setJSON(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
   const handleClick = async (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
@@ -53,11 +41,7 @@ function LogInPage() {
         setError();
         const res = await axios.post(url, info);
         setLoading(true);
-        //setWithId('currentUser', res.data, userId);
         setToken(ACCESS_TOKEN, res.data, userId);
-        //const data_arr = [userId, res.data];
-        //window.localStorage.setItem('jwt', res.data);
-        //window.localStorage.setItem('currentUser', userId);
         console.log(res.data);
         alert(`${userId}님 반갑습니다!`);
         history.push('/');
@@ -66,7 +50,7 @@ function LogInPage() {
         const statusCode = parseInt(e.message.split(' ').pop());
         switch (statusCode) {
           case 401:
-            alert('로그인 실패');
+            alert('아이디 또는 비밀번호를 다시 한번 확인해주세요!');
             break;
           default:
             setError(e);
