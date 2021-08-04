@@ -67,6 +67,42 @@ export const InputBox = styled.input`
   }
 `;
 
+export const InputBoxWithText = styled.input`
+  width: 100%;
+  margin: 0 1rem;
+  height: 3.333rem;
+  background: white;
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+  border: none;
+  padding-left: 0.6rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.933rem;
+  &::placeholder {
+    color: #919191;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const InputContainer = styled.div`
+  position: relative;
+  display: inline-flex;
+`;
+
+export const DuplicationCheck = styled.span`
+  position: absolute;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.733rem;
+  right: 1.867rem;
+  top: 1.133rem;
+  color: #f40552;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;

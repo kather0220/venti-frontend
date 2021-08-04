@@ -54,22 +54,16 @@ function SignUpPage() {
         if (isFemale) {
           setIsFemale(false);
         }
-        //setGenderInput('man');
         break;
       case '여':
         setIsFemale(!isFemale);
         if (isMale) {
           setIsMale(false);
         }
-        // setGenderInput('woman');
         break;
       default:
-        // setGenderInput(null);
         break;
     }
-    //if (isMale) setGenderInput('man');
-    //else if (isFemale) setGenderInput('woman');
-    //else setGenderInput(null);
   };
 
   const handleClick = async (e) => {
@@ -90,16 +84,12 @@ function SignUpPage() {
     form.append('email', emailInput);
     form.append('gender', genderInput);
     form.append('birth', birthdayInput);
-    //form.append('password2', pwCheckInput);
-
-    //if (birthdayInput === '') birthdayInput = null;
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
     } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
     else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
-    ///api/guest/mybrands/
     else {
       try {
         const url = 'http://3.36.127.126:8000/accounts/create/';
@@ -178,15 +168,24 @@ function SignUpPage() {
         ></S.CloseButton>
       </S.TopBar>
       <S.InputExp>닉네임</S.InputExp>
-      <S.InputBox placeholder="닉네임을 입력하세요" ref={nickname}></S.InputBox>
-      <S.InputExp>아이디</S.InputExp>
-      <S.InputBox
-        placeholder="아이디를 입력하세요"
-        name="id"
-        ref={id}
-        onChange={onChange}
-      ></S.InputBox>
 
+      <S.InputContainer>
+        <S.InputBoxWithText
+          placeholder="닉네임을 입력하세요"
+          ref={nickname}
+        ></S.InputBoxWithText>
+        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+      </S.InputContainer>
+      <S.InputExp>아이디</S.InputExp>
+      <S.InputContainer>
+        <S.InputBoxWithText
+          placeholder="아이디를 입력하세요"
+          name="id"
+          ref={id}
+          onChange={onChange}
+        ></S.InputBoxWithText>
+        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+      </S.InputContainer>
       <S.InputExp>
         비밀번호 <pwExp>(최소 8자 이상)</pwExp>
       </S.InputExp>
@@ -204,7 +203,13 @@ function SignUpPage() {
         ref={pwCheck}
       ></S.InputBox>
       <S.InputExp>이메일</S.InputExp>
-      <S.InputBox placeholder="이메일 주소" ref={email}></S.InputBox>
+      <S.InputContainer>
+        <S.InputBoxWithText
+          placeholder="이메일 주소"
+          ref={email}
+        ></S.InputBoxWithText>
+        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+      </S.InputContainer>
       <S.InputExp>성별(선택)</S.InputExp>
       <S.ButtonContainer>
         <S.ButtonLabel>
