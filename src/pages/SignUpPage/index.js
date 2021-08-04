@@ -15,7 +15,6 @@ function SignUpPage() {
   const [userPassword, setUserPassword] = useState('');
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
-  //const [genderCheck, setGenderCheck] = useState(null);
   const nickname = useRef();
   const id = useRef();
   const pw = useRef();
@@ -102,7 +101,6 @@ function SignUpPage() {
           gender: genderInput,
           birth: birthdayInput,
         };
-        // console.log(info);
         setError(null);
         await axios.post(url, form);
         console.log(form);
@@ -128,6 +126,31 @@ function SignUpPage() {
       setLoading(false);
     }
   };
+  const nicknameDuplicationCheck = async () => {
+    const nicknameInput = nickname.current.value;
+    try {
+      const url =
+        API_BASE_URL + `/accounts/checknickname/?nickname=${nicknameInput}`;
+      setError();
+      const res = await axios.get(url);
+      setLoading(true);
+      console.log(res.data);
+      switch (res.data.data) {
+        case 'exist':
+          alert('존재하는 Nickname 입니다.');
+          break;
+        case 'not exist':
+          alert('사용가능한 Nickname 입니다.');
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
 
   const emailDupliacationCheck = async () => {
     const emailInput = email.current.value;
@@ -140,14 +163,13 @@ function SignUpPage() {
       setError();
       const res = await axios.get(url);
       setLoading(true);
-      //setToken(ACCESS_TOKEN, res.data, userId);
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
-          alert('이미 존재하는 이메일입니다. 다시 입력해주세요.');
+          alert('존재하는 email 입니다.');
           break;
         case 'not exist':
-          alert('사용 가능한 이메일입니다.');
+          alert('사용가능한 email 입니다.');
           break;
         default:
           break;
@@ -204,7 +226,9 @@ function SignUpPage() {
           placeholder="닉네임을 입력하세요"
           ref={nickname}
         ></S.InputBoxWithText>
-        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+        <S.DuplicationCheck onClick={nicknameDuplicationCheck}>
+          중복확인
+        </S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>아이디</S.InputExp>
       <S.InputContainer>
@@ -217,7 +241,7 @@ function SignUpPage() {
         <S.DuplicationCheck>중복확인</S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>
-        비밀번호 <pwExp>(최소 8자 이상)</pwExp>
+        비밀번호 <pwExp>(8자리 이상, 영문/숫자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox
