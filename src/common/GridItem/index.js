@@ -42,7 +42,11 @@ function GridItem(props) {
               <S.HeartIcon src={'/img/disabled-heart.png'} />
             ) : (
               <S.HeartIcon
-                src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
+                src={
+                  clicked || props.clicked
+                    ? '/img/clicked-heart.png'
+                    : '/img/heart.png'
+                }
                 onClick={handleHeartClick}
               />
             )}

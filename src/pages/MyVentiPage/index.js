@@ -72,10 +72,38 @@ function MyVentiPage() {
     }
     setLoading(false);
   };
+
+  const getMyBrands = async () => {
+    const shiftToLogIn = () => {
+      alert('로그인이 필요한 서비스입니다.');
+      history.push('/log-in');
+    };
+    try {
+      setError(null);
+      setLoading(true);
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.get(API_BASE_URL + '/api/mybrands/users/', {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : shiftToLogIn();
+
+      console.log(res.data);
+      setMyBrands(res.data.mybrand);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     getMyEvents();
-    // getMyBrands();
+    getMyBrands();
   }, []);
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>
       <Header></Header>
@@ -111,6 +139,7 @@ function MyVentiPage() {
                   img={event.image}
                   view={event.view}
                   due={event.due}
+                  //clicked={true}
                 ></GridItem>
               );
             })}
@@ -130,22 +159,30 @@ function MyVentiPage() {
             })}
           </GridWrapper>
         ) : (
-          <S.NoEventMessage visible={category === 'event'}>
+          <S.NoResultMessage visible={category === 'event'}>
             선택된 이벤트가 없어요.<br></br> EVENT 탭에서 좋아하는 이벤트를
             선택해주세요!
-          </S.NoEventMessage>
+          </S.NoResultMessage>
         )}
-        <BrandListContainer visible={category === 'brand'}>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-          <BrandListItem></BrandListItem>
-        </BrandListContainer>
+        {mybrands.length !== 0 ? (
+          <BrandListContainer visible={category === 'brand'}>
+            {mybrands.map((brand) => {
+              return (
+                <BrandListItem
+                  id={brand.id}
+                  name={brand.name}
+                  image={brand.image}
+                  //clicked={true}
+                ></BrandListItem>
+              );
+            })}
+          </BrandListContainer>
+        ) : (
+          <S.NoResultMessage visible={category === 'brand'}>
+            선택된 브랜드가 없어요.<br></br> BRAND 탭에서 좋아하는 브랜드를
+            선택해주세요!
+          </S.NoResultMessage>
+        )}
       </S.MainContainer>
     </>
   );

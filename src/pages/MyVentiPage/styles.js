@@ -15,7 +15,7 @@ export const Exp = styled.div`
   color: #919191;
 `;
 
-export const NoEventMessage = styled.div`
+export const NoResultMessage = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;

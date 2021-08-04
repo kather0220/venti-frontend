@@ -31,7 +31,11 @@ function BrandListItem(props) {
       </S.NameAndImage>
       <S.Star
         onClick={handleStarClick}
-        src={clicked ? 'img/filled-star.png' : 'img/empty-star.png'}
+        src={
+          clicked || props.clicked
+            ? 'img/filled-star.png'
+            : 'img/empty-star.png'
+        }
       ></S.Star>
     </S.ListItemBox>
   );
