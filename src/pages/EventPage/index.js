@@ -99,16 +99,14 @@ function EventPage() {
       setFashionBrandList([...fashionBrandList, e.target.id]);
     }
   };
-  const getEventList = async (category) => {
+  const getEventList = async (category, brandList) => {
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
-      const date = new Date();
-      console.log(date);
+      console.log(brandList);
       const params = {
         category_id: category,
-        brand_id: [],
+        brand_id: brandList,
       };
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
@@ -143,9 +141,9 @@ function EventPage() {
   ///api/brands/{id}/
 
   useEffect(() => {
-    getEventList(1);
-    getEventList(2);
-    getEventList(3);
+    getEventList(1, []);
+    getEventList(2, []);
+    getEventList(3, []);
   }, []);
   useEffect(() => {
     console.log(foodBrandList);
@@ -161,6 +159,22 @@ function EventPage() {
   if (error) return <div>에러가 발생했습니다.</div>;
 
   const handleFilterApply = () => {
+    switch (category) {
+      case 'food':
+        getEventList(1, foodBrandList);
+        setFoodBrandList([]);
+        break;
+      case 'cafe':
+        getEventList(2, cafeBrandList);
+        setCafeBrandList([]);
+        break;
+      case 'fashion':
+        getEventList(3, fashionBrandList);
+        setFashionBrandList([]);
+        break;
+      default:
+        break;
+    }
     alert('필터링 적용이 완료되었습니다.');
     setIsVisible(false);
   };
@@ -180,7 +194,7 @@ function EventPage() {
           {FoodBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.name}
+                id={brand.id}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
@@ -193,7 +207,7 @@ function EventPage() {
           {CafeBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.name}
+                id={brand.id}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
@@ -206,7 +220,7 @@ function EventPage() {
           {FashionBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.name}
+                id={brand.id}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
