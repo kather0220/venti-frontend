@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import setToken from '../../functions/setToken';
+import getToken from '../../functions/getToken';
 import axios from 'axios';
 import Button from '../../common/Button/index';
 import * as S from './styles';
@@ -8,18 +11,35 @@ function SignUpPage() {
   const history = useHistory();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [userPassword, setUserPassword] = useState('');
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
-  const [genderInput, setGenderInput] = useState(null);
+  //const [genderCheck, setGenderCheck] = useState(null);
   const nickname = useRef();
   const id = useRef();
   const pw = useRef();
   const pwCheck = useRef();
   const email = useRef();
   const birthday = useRef();
+  const onChange = (event) => {
+    const {
+      target: { name, value },
+    } = event;
+    switch (name) {
+      case 'id':
+        setUserId(value);
+        break;
+      case 'password':
+        setUserPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
   const gender = () => {
-    if (isMale && !isFemale) return '남';
-    else if (!isMale && isFemale) return '여';
+    if (isMale && !isFemale) return 'man';
+    else if (!isMale && isFemale) return 'woman';
     else return null;
   };
   const checkEmail = (email) => {
@@ -47,20 +67,21 @@ function SignUpPage() {
         // setGenderInput(null);
         break;
     }
-    if (isMale) setGenderInput('man');
-    else if (isFemale) setGenderInput('woman');
-    else setGenderInput(null);
+    //if (isMale) setGenderInput('man');
+    //else if (isFemale) setGenderInput('woman');
+    //else setGenderInput(null);
   };
 
   const handleClick = async (e) => {
-    e.preventDefault();
     const nicknameInput = nickname.current.value;
-    const idInput = id.current.value;
-    const pwInput = pw.current.value;
+    const idInput = userId;
+    const pwInput = userPassword;
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
     const birthdayInput =
       birthday.current.value !== '' ? birthday.current.value : null;
+    const genderInput = gender();
+    e.preventDefault();
     let form = new FormData();
     form.append('username', idInput);
     form.append('password1', pwInput);
@@ -78,6 +99,7 @@ function SignUpPage() {
     } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
     else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
+    ///api/guest/mybrands/
     else {
       try {
         const url = 'http://3.36.127.126:8000/accounts/create/';
@@ -98,6 +120,7 @@ function SignUpPage() {
         alert(
           '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
         );
+        LogIn();
         history.push('/brand-preference');
       } catch (e) {
         console.log(e);
@@ -115,9 +138,36 @@ function SignUpPage() {
       setLoading(false);
     }
   };
-  if (loading) return <div>회원가입 처리중..</div>;
-  if (error) return <div>에러가 발생했습니다.</div>;
 
+  const LogIn = async () => {
+    try {
+      const url = API_BASE_URL + '/accounts/login/';
+      const info = {
+        username: userId, // id
+        password: userPassword, // pwd
+      };
+      console.log(info);
+      setError();
+      const res = await axios.post(url, info);
+      setLoading(true);
+      setToken(ACCESS_TOKEN, res.data, userId);
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+      const statusCode = parseInt(e.message.split(' ').pop());
+      switch (statusCode) {
+        case 401:
+          alert('사용자 정보를 가져오는데 실패했습니다');
+          break;
+        default:
+          setError(e);
+          break;
+      }
+    }
+    setLoading(false);
+  };
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.MainContainer>
       <S.TopBar>
@@ -130,13 +180,24 @@ function SignUpPage() {
       <S.InputExp>닉네임</S.InputExp>
       <S.InputBox placeholder="닉네임을 입력하세요" ref={nickname}></S.InputBox>
       <S.InputExp>아이디</S.InputExp>
-      <S.InputBox placeholder="아이디를 입력하세요" ref={id}></S.InputBox>
+      <S.InputBox
+        placeholder="아이디를 입력하세요"
+        name="id"
+        ref={id}
+        onChange={onChange}
+      ></S.InputBox>
 
       <S.InputExp>
         비밀번호 <pwExp>(최소 8자 이상)</pwExp>
       </S.InputExp>
 
-      <S.InputBox placeholder="비밀번호" type="password" ref={pw}></S.InputBox>
+      <S.InputBox
+        placeholder="비밀번호"
+        type="password"
+        ref={pw}
+        name="password"
+        onChange={onChange}
+      ></S.InputBox>
       <S.InputBox
         placeholder="비밀번호 확인"
         type="password"

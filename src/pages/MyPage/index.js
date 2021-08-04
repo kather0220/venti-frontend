@@ -20,8 +20,8 @@ function MyPage() {
   const email = useRef();
   const birthday = useRef();
   const gender = () => {
-    if (isMale && !isFemale) return '남';
-    else if (!isMale && isFemale) return '여';
+    if (isMale && !isFemale) return 'man';
+    else if (!isMale && isFemale) return 'woman';
     else return null;
   };
   const checkEmail = (email) => {
@@ -49,9 +49,9 @@ function MyPage() {
         // setGenderInput(null);
         break;
     }
-    if (isMale) setGenderInput('man');
-    else if (isFemale) setGenderInput('woman');
-    else setGenderInput(null);
+    //if (isMale) setGenderInput('man');
+    //else if (isFemale) setGenderInput('woman');
+    //else setGenderInput(null);
   };
   const handleClick = async (e) => {
     e.preventDefault();
@@ -61,6 +61,7 @@ function MyPage() {
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
+    const genderInput = gender();
     // 닉네임이나 id 중복체크 들어가야 된다. http 상태코드 409인 경우
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
