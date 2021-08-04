@@ -130,6 +130,7 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: 0.933rem;
   color: white;
+  display: ${(props) => (props.visible ? '' : 'none')};
   background: ${(props) => (props.disabled ? '#b3b3b3' : '#f40552')};
   border-radius: 0.667rem;
   border: none;

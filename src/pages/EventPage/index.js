@@ -12,7 +12,8 @@ import CafeBrandList from '../../data/CafeBrandList';
 import FashionBrandList from '../../data/FashionBrandList';
 import FilterItem from '../../components/FilterItem/index';
 import Footer from '../../common/Footer';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import axios from 'axios';
 
 function EventPage() {
@@ -24,6 +25,9 @@ function EventPage() {
   const [foodEventList, setFoodEventList] = useState([]);
   const [cafeEventList, setCafeEventList] = useState([]);
   const [fashionEventList, setFashionEventList] = useState([]);
+  const [foodBrandList, setFoodBrandList] = useState([]);
+  const [cafeBrandList, setCafeBrandList] = useState([]);
+  const [fashionBrandList, setFashionBrandList] = useState([]);
   const handleClick = (event) => {
     const {
       target: { id },
@@ -45,13 +49,54 @@ function EventPage() {
 
   const handleFilterItemClick = (e) => {
     e.preventDefault();
+    switch (category) {
+      case 'food':
+        handleFoodBrandList(e);
+        break;
+      case 'cafe':
+        handleCafeBrandList(e);
+        break;
+      case 'fashion':
+        handleFashionBrandList(e);
+        break;
+      default:
+        break;
+    }
+  };
+  const handleFoodBrandList = (e) => {
     console.log(e.target.id);
-    if (brandList.includes(e.target.id)) {
+    if (foodBrandList.includes(e.target.id)) {
       console.log('중복');
-      setBrandList(brandList.filter((element) => element !== e.target.id));
-      console.log(brandList.length);
+      setFoodBrandList(
+        foodBrandList.filter((element) => element !== e.target.id)
+      );
+      console.log(foodBrandList.length);
     } else {
-      setBrandList([...brandList, e.target.id]);
+      setFoodBrandList([...foodBrandList, e.target.id]);
+    }
+  };
+  const handleCafeBrandList = (e) => {
+    console.log(e.target.id);
+    if (cafeBrandList.includes(e.target.id)) {
+      console.log('중복');
+      setCafeBrandList(
+        cafeBrandList.filter((element) => element !== e.target.id)
+      );
+      console.log(cafeBrandList.length);
+    } else {
+      setCafeBrandList([...cafeBrandList, e.target.id]);
+    }
+  };
+  const handleFashionBrandList = (e) => {
+    console.log(e.target.id);
+    if (fashionBrandList.includes(e.target.id)) {
+      console.log('중복');
+      setFashionBrandList(
+        fashionBrandList.filter((element) => element !== e.target.id)
+      );
+      console.log(fashionBrandList.length);
+    } else {
+      setFashionBrandList([...fashionBrandList, e.target.id]);
     }
   };
   const getEventList = async (category) => {
@@ -65,10 +110,13 @@ function EventPage() {
         category_id: category,
         brand_id: [],
       };
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/event_main/',
-        params
-      );
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/event_main/', params);
 
       console.log(res.data);
       //setResponse(res.data.event);
@@ -99,13 +147,19 @@ function EventPage() {
     getEventList(2);
     getEventList(3);
   }, []);
+  useEffect(() => {
+    console.log(foodBrandList);
+  }, [foodBrandList]);
+  useEffect(() => {
+    console.log(cafeBrandList);
+  }, [cafeBrandList]);
+  useEffect(() => {
+    console.log(fashionBrandList);
+  }, [fashionBrandList]);
+
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
-  /*
-  useEffect(() => {
-    console.log(brandList);
-  }, [brandList]);
-*/
+
   const handleFilterApply = () => {
     alert('필터링 적용이 완료되었습니다.');
     setIsVisible(false);
@@ -164,8 +218,23 @@ function EventPage() {
         <S.BottomGreyLine></S.BottomGreyLine>
         <S.ButtonContainer>
           <S.Button
+            visible={category === 'food'}
             onClick={handleFilterApply}
-            disabled={brandList.length === 0}
+            disabled={foodBrandList.length === 0}
+          >
+            적용
+          </S.Button>
+          <S.Button
+            visible={category === 'cafe'}
+            onClick={handleFilterApply}
+            disabled={cafeBrandList.length === 0}
+          >
+            적용
+          </S.Button>
+          <S.Button
+            visible={category === 'fashion'}
+            onClick={handleFilterApply}
+            disabled={fashionBrandList.length === 0}
           >
             적용
           </S.Button>
