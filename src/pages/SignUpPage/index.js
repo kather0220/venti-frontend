@@ -151,6 +151,30 @@ function SignUpPage() {
     }
     setLoading(false);
   };
+  const idDuplicationCheck = async () => {
+    const idInput = id.current.value;
+    try {
+      const url = API_BASE_URL + `/accounts/checkusername/?username=${idInput}`;
+      setError();
+      const res = await axios.get(url);
+      setLoading(true);
+      console.log(res.data);
+      switch (res.data.data) {
+        case 'exist':
+          alert('존재하는 Username 입니다.');
+          break;
+        case 'not exist':
+          alert('사용가능한 Username 입니다.');
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
 
   const emailDupliacationCheck = async () => {
     const emailInput = email.current.value;
@@ -238,7 +262,9 @@ function SignUpPage() {
           ref={id}
           onChange={onChange}
         ></S.InputBoxWithText>
-        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+        <S.DuplicationCheck onClick={idDuplicationCheck}>
+          중복확인
+        </S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>
         비밀번호 <pwExp>(8자리 이상, 영문/숫자 조합)</pwExp>
