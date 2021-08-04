@@ -129,6 +129,36 @@ function SignUpPage() {
     }
   };
 
+  const emailDupliacationCheck = async () => {
+    const emailInput = email.current.value;
+    if (!checkEmail(emailInput)) {
+      alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
+      return;
+    }
+    try {
+      const url = API_BASE_URL + `/accounts/checkemail/?email=${emailInput}`;
+      setError();
+      const res = await axios.get(url);
+      setLoading(true);
+      //setToken(ACCESS_TOKEN, res.data, userId);
+      console.log(res.data);
+      switch (res.data.data) {
+        case 'exist':
+          alert('이미 존재하는 이메일입니다. 다시 입력해주세요.');
+          break;
+        case 'not exist':
+          alert('사용 가능한 이메일입니다.');
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+
   const LogIn = async () => {
     try {
       const url = API_BASE_URL + '/accounts/login/';
@@ -208,7 +238,9 @@ function SignUpPage() {
           placeholder="이메일 주소"
           ref={email}
         ></S.InputBoxWithText>
-        <S.DuplicationCheck>중복확인</S.DuplicationCheck>
+        <S.DuplicationCheck onClick={emailDupliacationCheck}>
+          중복확인
+        </S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>성별(선택)</S.InputExp>
       <S.ButtonContainer>
