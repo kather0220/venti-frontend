@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
+import { useHistory } from 'react-router-dom';
 import Header from '../../common/Header/index';
 import { PageTitle } from '../../common/PageTitle/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
@@ -9,12 +10,22 @@ import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
 import { BrandListContainer } from '../../common/BrandListContainer/styles';
 import BrandListItem from '../../common/BrandListItem/index';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
+import axios from 'axios';
 
 function MyVentiPage() {
   const [category, setCategory] = useState('event');
   const [isVisible, setIsVisible] = useState(false);
   const [margin, setMargin] = useState('1.067');
   const [width, setWidth] = useState('2.783');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mybrands, setMyBrands] = useState([]);
+  const [myOnEvent, setMyOnEvent] = useState([]);
+  const [myOffEvent, setMyOffEvent] = useState([]);
+  const history = useHistory();
+
   const handleClick = (event) => {
     const {
       target: { id },
@@ -35,6 +46,36 @@ function MyVentiPage() {
         break;
     }
   };
+  // 로그인으로 이동시킨 후 다시 바로 MY VENTI로 오는 걸 구현하려면 여기서 history.back() 을 이용한 함수를 추가해야 함.
+  const getMyEvents = async () => {
+    const shiftToLogIn = () => {
+      alert('로그인이 필요한 서비스입니다.');
+      history.push('/log-in');
+    };
+    try {
+      setError(null);
+      setLoading(true);
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.get(API_BASE_URL + '/api/myevents/users/', {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : shiftToLogIn();
+
+      console.log(res.data);
+      setMyOnEvent(res.data.on_event);
+      setMyOffEvent(res.data.off_event);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    getMyEvents();
+    // getMyBrands();
+  }, []);
   return (
     <>
       <Header></Header>
@@ -58,13 +99,42 @@ function MyVentiPage() {
           </CategoryTab>
         </CategoryWrapper>
         <CategoryUnderLine margin={margin} width={width}></CategoryUnderLine>
-        <GridWrapper visible={category === 'event'}>
-          <GridItem></GridItem>
 
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-          <GridItem></GridItem>
-        </GridWrapper>
+        {myOnEvent.length !== 0 || myOffEvent.length !== 0 ? (
+          <GridWrapper visible={category === 'event'}>
+            {myOnEvent.map((event) => {
+              return (
+                <GridItem
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_id}
+                  img={event.image}
+                  view={event.view}
+                  due={event.due}
+                ></GridItem>
+              );
+            })}
+
+            {myOffEvent.map((event) => {
+              return (
+                <GridItem
+                  isEnd={true}
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_id}
+                  img={event.image}
+                  view={event.view}
+                  due={event.due}
+                ></GridItem>
+              );
+            })}
+          </GridWrapper>
+        ) : (
+          <S.NoEventMessage visible={category === 'event'}>
+            선택된 이벤트가 없어요.<br></br> EVENT 탭에서 좋아하는 이벤트를
+            선택해주세요!
+          </S.NoEventMessage>
+        )}
         <BrandListContainer visible={category === 'brand'}>
           <BrandListItem></BrandListItem>
           <BrandListItem></BrandListItem>
