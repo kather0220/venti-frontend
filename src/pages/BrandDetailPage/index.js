@@ -94,7 +94,7 @@ function BrandDetailPage() {
       <Header></Header>
       <S.MainContainer>
         <S.BrandProfileBox>
-          <S.BrandImage src={brandInfo.image}></S.BrandImage>
+          <S.BrandImage src={brandInfo.brand_logo_url}></S.BrandImage>
           <S.BrandNameAndText>
             <span>{brandInfo.name}</span>
             <img
@@ -119,10 +119,10 @@ function BrandDetailPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
-                img={event.image}
+                brandName={event.brand_name}
+                img={event.event_img_url}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -137,10 +137,11 @@ function BrandDetailPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
-                img={event.image}
+                brandName={event.brand_name}
+                img={event.event_img_url}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
+                isEnd={true}
               ></GridItem>
             );
           })}
