@@ -1,13 +1,19 @@
 import * as S from './styles';
 import SearchInput from '../SearchInput/index';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import MenuBar from '../MenuBar/index';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
+import axios from 'axios';
 
 function Header(props) {
   const [searchInput, setSearchInput] = useState('');
   const [isVisible, setIsVisible] = useState(false);
-  const [alarmNumber, setAlarmNumber] = useState(2);
+  const [notiState, setNotiState] = useState(false);
+  const [userNickname, setUserNickname] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const history = useHistory();
   let id;
   const onChange = (e) => {
@@ -23,13 +29,39 @@ function Header(props) {
       window.location = `/search-result/${id}`;
     }
   };
+  const getUserInfo = async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      const res = await axios.get(API_BASE_URL + '/accounts/user/', {
+        headers: {
+          Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+        },
+      });
+
+      console.log(res.data);
+      setUserNickname(res.data.nickname);
+      setNotiState(res.data.noti_state);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    if (getToken(ACCESS_TOKEN)) {
+      getUserInfo();
+    }
+  }, []);
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>
       <S.BlackOverlay
         visible={isVisible}
         onClick={() => setIsVisible(false)}
       ></S.BlackOverlay>
-      <MenuBar visible={isVisible}></MenuBar>
+      <MenuBar visible={isVisible} nickname={userNickname}></MenuBar>
       <S.StyledHeader>
         <S.FirstRow>
           <S.StyledLogo
@@ -48,9 +80,7 @@ function Header(props) {
               history.push('/notice');
             }}
           ></S.AlarmButton>
-          <S.AlarmNumber visible={alarmNumber !== 0}>
-            {alarmNumber}
-          </S.AlarmNumber>
+          <S.AlarmNumber visible={notiState}>N</S.AlarmNumber>
         </S.FirstRow>
         <S.SecondRow>
           <S.SearchInputBox

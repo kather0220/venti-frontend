@@ -18,7 +18,7 @@ function MenuBar(props) {
       <S.MainContainer visible={props.visible}>
         {user_id ? (
           <S.TopBar>
-            <S.TopBarText>{user_id}님 반갑습니다!</S.TopBarText>
+            <S.TopBarText>{props.nickname}님 반갑습니다!</S.TopBarText>
             <S.Arrow
               src={'/img/white-arrow.png'}
               onClick={() => (window.location = '/my')}
