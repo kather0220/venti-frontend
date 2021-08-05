@@ -6,7 +6,8 @@ import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
 import CategoryUnderLine from '../../common/CategoryUnderLine/index';
 import { GridWrapper } from '../../common/GridWrapper/styles';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import GridItem from '../../common/GridItem/index';
 import Footer from '../../common/Footer/index';
 import * as S from './styles';
@@ -51,12 +52,15 @@ function MainPage() {
       setLoading(true);
       const params = {
         category_id: category,
-        brand_id: [],
+        brand_name: [],
       };
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/event_main/',
-        params
-      );
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(API_BASE_URL + '/api/eventforyou/', params, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.post(API_BASE_URL + '/api/guest/event_main/', params);
 
       console.log(res.data);
       //setResponse(res.data.event);
@@ -128,8 +132,9 @@ function MainPage() {
                 brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
+                subs={event.subs ? event.subs : false}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -142,9 +147,10 @@ function MainPage() {
                 eventName={event.name}
                 brandName={event.brand_name}
                 img={event.event_img_url}
+                subs={event.subs ? event.subs : false}
                 // onClick={handleBrandImageClick}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -156,8 +162,9 @@ function MainPage() {
                 brandName={event.brand_name}
                 img={'/img/event-image-example1.jpg'}
                 // onClick={handleBrandImageClick}
+                subs={event.subs ? event.subs : false}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -169,8 +176,9 @@ function MainPage() {
                 brandName={event.brand_name}
                 img={'/img/event-image-example2.jpg'}
                 // onClick={handleBrandImageClick}
+                subs={event.subs ? event.subs : false}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -182,8 +190,9 @@ function MainPage() {
                 brandName={event.brand_name}
                 img={'/img/event-image-example3.jpg'}
                 // onClick={handleBrandImageClick}
+                subs={event.subs ? event.subs : false}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -197,8 +206,9 @@ function MainPage() {
                 brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
+                subs={event.subs ? event.subs : false}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}

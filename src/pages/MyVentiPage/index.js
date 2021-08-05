@@ -138,7 +138,8 @@ function MyVentiPage() {
                   brandName={event.brand_id}
                   img={event.image}
                   view={event.view}
-                  due={event.due}
+                  due={event['d-day']}
+                  subs={true}
                   //clicked={true}
                 ></GridItem>
               );
@@ -154,6 +155,7 @@ function MyVentiPage() {
                   img={event.image}
                   view={event.view}
                   due={event.due}
+                  subs={true}
                 ></GridItem>
               );
             })}

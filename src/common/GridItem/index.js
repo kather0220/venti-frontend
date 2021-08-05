@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function GridItem(props) {
   const history = useHistory();
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(props.subs);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const event_id = props.id; // 임시값. 서버에서 넘겨 받을 예정
@@ -51,7 +51,9 @@ function GridItem(props) {
           Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
         },
       });
-      alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+      setTimeout(function () {
+        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+      }, 100);
 
       console.log(res);
     } catch (e) {
@@ -110,18 +112,15 @@ function GridItem(props) {
               <S.HeartIcon src={'/img/disabled-heart.png'} />
             ) : (
               <S.HeartIcon
-                src={
-                  clicked || props.clicked
-                    ? '/img/clicked-heart.png'
-                    : '/img/heart.png'
-                }
+                src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
                 onClick={handleHeartClick}
               />
             )}
           </S.FirstRow>
           <S.SecondRow end={props.isEnd}>{props.brandName}</S.SecondRow>
           <S.ThirdRow>
-            D-5{'     '}조회 {props.view}회
+            D-{props.due}
+            {'     '}조회 {props.view}회
           </S.ThirdRow>
         </S.GridInnerContainer>
       </S.GridItemContainer>

@@ -105,7 +105,7 @@ function EventPage() {
       console.log(brandList);
       const params = {
         category_id: category,
-        brand_id: brandList,
+        brand_name: brandList,
       };
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
@@ -292,7 +292,7 @@ function EventPage() {
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -307,7 +307,7 @@ function EventPage() {
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
@@ -322,7 +322,7 @@ function EventPage() {
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
-                due={event.due}
+                due={event['d-day']}
               ></GridItem>
             );
           })}
