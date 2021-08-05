@@ -1,10 +1,15 @@
 import * as S from './styles';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
+import axios from 'axios';
 
 function GridItem(props) {
   const history = useHistory();
   const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const event_id = props.id; // 임시값. 서버에서 넘겨 받을 예정
   const handleClick = (e) => {
     e.preventDefault();
@@ -16,12 +21,75 @@ function GridItem(props) {
 
     setClicked(!clicked);
     if (!clicked) {
+      getToken(ACCESS_TOKEN)
+        ? subscribeEvent(event_id)
+        : alert('로그인이 필요한 서비스입니다.');
+      /*
       setTimeout(function () {
         alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
       }, 100);
+      */
+    } else {
+      getToken(ACCESS_TOKEN)
+        ? unsubscribeEvent(event_id)
+        : alert('로그인이 필요한 서비스입니다.');
     }
-    //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
   };
+  //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+
+  const subscribeEvent = async (id) => {
+    try {
+      setError(null);
+      setLoading(true);
+      const params = {
+        event_id: id,
+      };
+      ///api/events/deadline/
+      console.log(id);
+      const res = await axios.post(API_BASE_URL + '/api/myevents/', params, {
+        headers: {
+          Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+        },
+      });
+      alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  const unsubscribeEvent = async (id) => {
+    try {
+      setError(null);
+      setLoading(true);
+      const params = {
+        event_id: id,
+      };
+      ///api/events/deadline/
+
+      const res = await axios.post(
+        API_BASE_URL + '/api/myevents/unlike/',
+        params,
+        {
+          headers: {
+            Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+          },
+        }
+      );
+
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다.</div>;
+
   /*
   useEffect(() => {
     if (clicked)
