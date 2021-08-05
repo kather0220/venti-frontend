@@ -129,7 +129,7 @@ function MainPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -144,7 +144,7 @@ function MainPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -157,7 +157,7 @@ function MainPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -170,7 +170,7 @@ function MainPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -185,7 +185,7 @@ function MainPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}

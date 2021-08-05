@@ -19,7 +19,6 @@ import axios from 'axios';
 function EventPage() {
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
-  const [brandList, setBrandList] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [foodEventList, setFoodEventList] = useState([]);
@@ -117,7 +116,6 @@ function EventPage() {
         : await axios.post(API_BASE_URL + '/api/guest/event_main/', params);
 
       console.log(res.data);
-      //setResponse(res.data.event);
       switch (category) {
         case 1:
           setFoodEventList(res.data.event);
@@ -137,8 +135,6 @@ function EventPage() {
     }
     setLoading(false);
   };
-
-  ///api/brands/{id}/
 
   useEffect(() => {
     getEventList(1, []);
@@ -293,7 +289,7 @@ function EventPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -308,7 +304,7 @@ function EventPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -323,7 +319,7 @@ function EventPage() {
                 id={event.id}
                 eventName={event.name}
                 brandName={event.brand_id}
-                img={event.image}
+                img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}

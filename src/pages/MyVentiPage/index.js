@@ -75,7 +75,7 @@ function MyVentiPage() {
 
   const getMyBrands = async () => {
     const shiftToLogIn = () => {
-      alert('로그인이 필요한 서비스입니다.');
+      //alert('로그인이 필요한 서비스입니다.');
       history.push('/log-in');
     };
     try {

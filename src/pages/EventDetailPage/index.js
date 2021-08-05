@@ -59,7 +59,7 @@ function EventDetailPage() {
       <S.MainContainer>
         <S.EvenInfoWrapper>
           <S.BrandNameAndDate>
-            <brand>{eventInfo.brand_id}</brand>
+            <brand>{eventInfo.brand_name}</brand>
             <br></br>
             {eventInfo.created_date}
           </S.BrandNameAndDate>
@@ -69,7 +69,7 @@ function EventDetailPage() {
             src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
           ></S.HeartIcon>
         </S.EvenInfoWrapper>
-        <S.EventImage src={eventInfo.image}></S.EventImage>
+        <S.EventImage src={eventInfo.event_img_url}></S.EventImage>
         <S.EventText>{eventInfo.text}</S.EventText>
         <Link
           to={{

@@ -117,7 +117,31 @@ function MyPage() {
       setLoading(false);
     }
   };
+  const getUserInfo = async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      //console.log(headers);
+      const res = await axios.get(API_BASE_URL + '/accounts/user/', {
+        headers: {
+          Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+        },
+      });
 
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    if (!getToken(ACCESS_TOKEN)) {
+      alert('로그인이 필요합니다.');
+      history.push('/');
+    }
+    getUserInfo();
+  }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
 
