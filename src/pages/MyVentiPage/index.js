@@ -173,7 +173,8 @@ function MyVentiPage() {
                 <BrandListItem
                   id={brand.id}
                   name={brand.name}
-                  image={brand.image}
+                  image={brand.brand_logo_url}
+                  subs={true}
                   //clicked={true}
                 ></BrandListItem>
               );

@@ -7,9 +7,9 @@ import * as S from './styles';
 import axios from 'axios';
 
 function EventDetailPage() {
-  const [clicked, setClicked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
   const [eventInfo, setEventInfo] = useState('');
   const { event_id } = useParams();
   const handleHeartClick = (e) => {
@@ -38,9 +38,6 @@ function EventDetailPage() {
         : await axios.post(API_BASE_URL + '/api/guest/event_detail/', params);
       console.log(res.data);
       setEventInfo(res.data.event[0]);
-      if (res.data.subscribe) {
-        res.data.subscribe[0] === 'No' ? setClicked(false) : setClicked(true);
-      }
     } catch (e) {
       console.log(e);
       setError(e);
@@ -50,6 +47,9 @@ function EventDetailPage() {
   useEffect(() => {
     getEventDetail(event_id);
   }, []);
+  const [clicked, setClicked] = useState(
+    eventInfo.subs ? eventInfo.subs : false
+  );
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
 

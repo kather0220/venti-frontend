@@ -190,7 +190,7 @@ function EventPage() {
           {FoodBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.id}
+                id={brand.name}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
@@ -203,7 +203,7 @@ function EventPage() {
           {CafeBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.id}
+                id={brand.name}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
@@ -216,7 +216,7 @@ function EventPage() {
           {FashionBrandList.map((brand) => {
             return (
               <FilterItem
-                id={brand.id}
+                id={brand.name}
                 name={brand.name}
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
@@ -293,6 +293,7 @@ function EventPage() {
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event['d-day']}
+                subs={event.subs}
               ></GridItem>
             );
           })}
@@ -308,6 +309,7 @@ function EventPage() {
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event['d-day']}
+                subs={event.subs}
               ></GridItem>
             );
           })}
@@ -323,6 +325,7 @@ function EventPage() {
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event['d-day']}
+                subs={event.subs}
               ></GridItem>
             );
           })}
