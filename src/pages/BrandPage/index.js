@@ -126,7 +126,8 @@ function BrandPage() {
               <BrandListItem
                 id={brand.id}
                 name={brand.name}
-                image={brand.image}
+                image={brand.brand_logo_url}
+                subs={brand.subs}
               ></BrandListItem>
             );
           })}
@@ -137,7 +138,8 @@ function BrandPage() {
               <BrandListItem
                 id={brand.id}
                 name={brand.name}
-                image={brand.image}
+                image={brand.brand_logo_url}
+                subs={brand.subs}
               ></BrandListItem>
             );
           })}
@@ -148,7 +150,8 @@ function BrandPage() {
               <BrandListItem
                 id={brand.id}
                 name={brand.name}
-                image={brand.image}
+                image={brand.brand_logo_url}
+                subs={brand.subs}
               ></BrandListItem>
             );
           })}

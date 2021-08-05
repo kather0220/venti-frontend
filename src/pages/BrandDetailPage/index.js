@@ -46,10 +46,7 @@ function BrandDetailPage() {
         : await axios.post(API_BASE_URL + '/api/guest/brand_detail/', params);
 
       console.log(res.data);
-      setBrandInfo(res.data.brand[0]);
-      if (res.data.subscribe) {
-        res.data.subscribe[0] === 'No' ? setClicked(false) : setClicked(true);
-      }
+      setBrandInfo(res.data.brand);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -100,7 +97,7 @@ function BrandDetailPage() {
             <img
               onClick={handleStarClick}
               src={
-                clicked
+                brandInfo.subs
                   ? '/img/filled-star-edit.png'
                   : '/img/empty-star-edit.png'
               }
@@ -122,6 +119,7 @@ function BrandDetailPage() {
                 brandName={event.brand_name}
                 img={event.event_img_url}
                 view={event.view}
+                subs={event.subs}
                 due={event['d-day']}
               ></GridItem>
             );
@@ -141,6 +139,7 @@ function BrandDetailPage() {
                 img={event.event_img_url}
                 view={event.view}
                 due={event['d-day']}
+                subs={event.subs}
                 isEnd={true}
               ></GridItem>
             );

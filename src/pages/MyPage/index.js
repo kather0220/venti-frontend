@@ -189,7 +189,7 @@ function MyPage() {
       ></S.InputBox>
 
       <S.InputExp>
-        비밀번호 <pwExp>(최소 8자 이상)</pwExp>
+        비밀번호 <pwExp>(8자리 이상, 영문/숫자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox placeholder="비밀번호" type="password" ref={pw}></S.InputBox>
