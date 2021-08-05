@@ -288,7 +288,7 @@ function EventPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
@@ -303,7 +303,7 @@ function EventPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
@@ -318,7 +318,7 @@ function EventPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}

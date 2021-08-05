@@ -102,7 +102,8 @@ function SignUpPage() {
           birth: birthdayInput,
         };
         setError(null);
-        await axios.post(url, form);
+        const res = await axios.post(url, form);
+        console.log(res);
         console.log(form);
         setLoading(true);
         alert(

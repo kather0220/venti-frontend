@@ -12,13 +12,15 @@ function MyPage() {
   const [error, setError] = useState(null);
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
-  const [genderInput, setGenderInput] = useState(null);
+  const [userInfo, setUserInfo] = useState('');
   const nickname = useRef();
   const id = useRef();
   const pw = useRef();
   const pwCheck = useRef();
   const email = useRef();
   const birthday = useRef();
+  const man = useRef();
+  const woman = useRef();
   const gender = () => {
     if (isMale && !isFemale) return 'man';
     else if (!isMale && isFemale) return 'woman';
@@ -32,26 +34,23 @@ function MyPage() {
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '남':
-        setIsMale(!isMale);
+        setIsMale(true);
         if (isFemale) {
           setIsFemale(false);
         }
-        //setGenderInput('man');
+        woman.current.checked = false;
         break;
+
       case '여':
-        setIsFemale(!isFemale);
+        setIsFemale(true);
         if (isMale) {
           setIsMale(false);
         }
-        // setGenderInput('woman');
+        man.current.checked = false;
         break;
       default:
-        // setGenderInput(null);
         break;
     }
-    //if (isMale) setGenderInput('man');
-    //else if (isFemale) setGenderInput('woman');
-    //else setGenderInput(null);
   };
   const handleClick = async (e) => {
     e.preventDefault();
@@ -62,7 +61,6 @@ function MyPage() {
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
     const genderInput = gender();
-    // 닉네임이나 id 중복체크 들어가야 된다. http 상태코드 409인 경우
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
@@ -72,15 +70,6 @@ function MyPage() {
     else {
       try {
         const url = 'http://3.36.127.126:8000/accounts/update/';
-        const info = {
-          username: idInput,
-          password1: pwInput, //비밀번호
-          password2: pwCheckInput, //확인용 다시치는 비밀번호
-          nickname: nicknameInput,
-          email: emailInput,
-          gender: genderInput,
-          birth: birthdayInput,
-        };
         let form = new FormData();
         form.append('username', idInput);
         form.append('password1', pwInput);
@@ -89,7 +78,6 @@ function MyPage() {
         form.append('email', emailInput);
         form.append('gender', genderInput);
         form.append('birth', birthdayInput);
-        console.log(info);
         setError(null);
         console.log(getToken(ACCESS_TOKEN));
         const res = await axios.post(url, form, {
@@ -121,7 +109,6 @@ function MyPage() {
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
       const res = await axios.get(API_BASE_URL + '/accounts/user/', {
         headers: {
           Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
@@ -129,11 +116,46 @@ function MyPage() {
       });
 
       console.log(res.data);
+      setUserInfo(res.data);
+      switch (userInfo.gender) {
+        case 'man':
+          setIsMale(true);
+          setIsFemale(false);
+          break;
+        case 'woman':
+          setIsMale(false);
+          setIsFemale(true);
+          break;
+        case null:
+          setIsMale(false);
+          setIsFemale(false);
+          break;
+        default:
+          break;
+      }
     } catch (e) {
       console.log(e);
       setError(e);
     }
     setLoading(false);
+  };
+  const genderCheck = () => {
+    switch (userInfo.gender) {
+      case 'man':
+        setIsMale(true);
+        setIsFemale(false);
+        break;
+      case 'woman':
+        setIsMale(false);
+        setIsFemale(true);
+        break;
+      case null:
+        setIsMale(false);
+        setIsFemale(false);
+        break;
+      default:
+        break;
+    }
   };
   useEffect(() => {
     if (!getToken(ACCESS_TOKEN)) {
@@ -144,7 +166,6 @@ function MyPage() {
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
-
   return (
     <S.MainContainer>
       <S.TopBar>
@@ -157,13 +178,13 @@ function MyPage() {
       <S.InputExp>닉네임</S.InputExp>
       <S.InputBox
         placeholder="닉네임을 입력하세요"
-        defaultValue="테스트1"
+        defaultValue={userInfo.nickname}
         ref={nickname}
       ></S.InputBox>
       <S.InputExp>아이디</S.InputExp>
       <S.InputBox
         placeholder="아이디를 입력하세요"
-        defaultValue="test1"
+        defaultValue={userInfo.username}
         ref={id}
       ></S.InputBox>
 
@@ -180,7 +201,7 @@ function MyPage() {
       <S.InputExp>이메일</S.InputExp>
       <S.InputBox
         placeholder="이메일 주소"
-        defaultValue="venti@gmail.com"
+        defaultValue={userInfo.email}
         ref={email}
       ></S.InputBox>
       <S.InputExp>성별(선택)</S.InputExp>
@@ -189,8 +210,10 @@ function MyPage() {
           <S.RadioButton
             type="radio"
             value="남"
-            onClick={handleRadioClick}
-            checked={isMale}
+            ref={man}
+            //onClick={handleRadioClick}
+            onChange={handleRadioClick}
+            defaultChecked={userInfo.gender === 'man'}
           ></S.RadioButton>
           남
         </S.ButtonLabel>
@@ -198,18 +221,23 @@ function MyPage() {
           <S.RadioButton
             type="radio"
             value="여"
-            onClick={handleRadioClick}
-            checked={isFemale}
+            //onClick={handleRadioClick}
+            ref={woman}
+            onChange={handleRadioClick}
+            defaultChecked={userInfo.gender === 'woman'}
           ></S.RadioButton>
           여
         </S.ButtonLabel>
       </S.ButtonContainer>
       <S.InputExp>생년월일(선택)</S.InputExp>
 
-      <S.InputBox type="date" ref={birthday}></S.InputBox>
+      <S.InputBox
+        type="date"
+        ref={birthday}
+        defaultValue={userInfo.birth}
+      ></S.InputBox>
       <S.StyledButton onClick={handleClick}>수정완료</S.StyledButton>
     </S.MainContainer>
   );
 }
-
 export default MyPage;

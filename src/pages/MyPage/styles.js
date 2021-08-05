@@ -50,6 +50,7 @@ export const InputExp = styled.div`
 
 export const InputBox = styled.input`
   margin: 0 1rem;
+  width: 23rem;
   height: 3.333rem;
   background: white;
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);

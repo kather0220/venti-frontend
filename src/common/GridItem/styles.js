@@ -17,6 +17,7 @@ export const GridImage = styled.img`
   height: 13.453rem;
   width: 100%;
   border-radius: 5px;
+  object-fit: cover;
 `;
 export const GridOverlay = styled.div`
   display: ${(props) => (props.visible ? '' : 'none')};
@@ -40,6 +41,9 @@ export const EventName = styled.div`
   font-weight: 500;
   font-size: 0.983rem;
   flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 export const SecondRow = styled.div`
   color: ${(props) => (props.end ? '#909090' : 'black')};

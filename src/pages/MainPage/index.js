@@ -49,9 +49,6 @@ function MainPage() {
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
-      const date = new Date();
-      console.log(date);
       const params = {
         category_id: category,
         brand_id: [],
@@ -128,7 +125,7 @@ function MainPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
@@ -143,7 +140,7 @@ function MainPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
@@ -156,8 +153,8 @@ function MainPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
-                img={event.event_img_url}
+                brandName={event.brand_name}
+                img={'/img/event-image-example1.jpg'}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -169,8 +166,21 @@ function MainPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
-                img={event.event_img_url}
+                brandName={event.brand_name}
+                img={'/img/event-image-example2.jpg'}
+                // onClick={handleBrandImageClick}
+                view={event.view}
+                due={event.due}
+              ></GridItem>
+            );
+          })}
+          {cafeEventList.map((event) => {
+            return (
+              <GridItem
+                id={event.id}
+                eventName={event.name}
+                brandName={event.brand_name}
+                img={'/img/event-image-example3.jpg'}
                 // onClick={handleBrandImageClick}
                 view={event.view}
                 due={event.due}
@@ -184,7 +194,7 @@ function MainPage() {
               <GridItem
                 id={event.id}
                 eventName={event.name}
-                brandName={event.brand_id}
+                brandName={event.brand_name}
                 img={event.event_img_url}
                 // onClick={handleBrandImageClick}
                 view={event.view}
