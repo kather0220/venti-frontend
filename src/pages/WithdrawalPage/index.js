@@ -3,9 +3,14 @@ import { useHistory } from 'react-router-dom';
 import * as S from './styles';
 import Header from '../../common/Header/index';
 import Footer from '../../common/Footer/index';
+import axios from 'axios';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 
 function WithdrawalPage() {
   const [clicked, setClicked] = useState('');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const handleRadioClick = (e) => {
     switch (e.target.value) {
@@ -25,13 +30,35 @@ function WithdrawalPage() {
         break;
     }
   };
-  const handleClick = () => {
+  ///accounts/unsubscribe/
+  const handleClick = async () => {
     if (clicked === '') alert('탈퇴 이유를 알려주세요!');
     else {
-      alert('탈퇴 완료되었습니다. 벤티를 이용해주셔서 감사드립니다.');
-      history.push('/');
+      try {
+        setError(null);
+        setLoading(true);
+
+        const res = await axios.get(API_BASE_URL + '/accounts/unsubscribe/', {
+          headers: {
+            Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+          },
+        });
+
+        console.log(res.data);
+        alert('탈퇴 완료되었습니다. 벤티를 이용해주셔서 감사드립니다.');
+        localStorage.removeItem(ACCESS_TOKEN);
+        window.location = '/';
+      } catch (e) {
+        console.log(e);
+        setError(e);
+      }
+      setLoading(false);
     }
+
+    if (loading) return <div>로딩중..</div>;
+    if (error) return <div>에러가 발생했습니다.</div>;
   };
+
   return (
     <>
       <Header></Header>

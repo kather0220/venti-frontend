@@ -77,7 +77,9 @@ function Header(props) {
           <S.AlarmButton
             src={'/img/alarm-icon.png'}
             onClick={() => {
-              history.push('/notice');
+              getToken(ACCESS_TOKEN)
+                ? history.push('/notice')
+                : alert('로그인이 필요한 서비스입니다.');
             }}
           ></S.AlarmButton>
           <S.AlarmNumber visible={notiState}>N</S.AlarmNumber>
