@@ -27,6 +27,7 @@ function LogInPage() {
         break;
     }
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
@@ -60,6 +61,7 @@ function LogInPage() {
       setLoading(false);
     }
   };
+
   if (loading) return <div>로그인 처리중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (

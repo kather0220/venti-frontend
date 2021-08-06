@@ -38,7 +38,7 @@ function GridItem(props) {
   const subscribeEvent = async (id) => {
     try {
       setError(null);
-      setLoading(true);
+      //setLoading(true);
       const params = {
         event_id: id,
       };
@@ -58,13 +58,13 @@ function GridItem(props) {
       console.log(e);
       setError(e);
     }
-    setLoading(false);
+    //setLoading(false);
   };
 
   const unsubscribeEvent = async (id) => {
     try {
       setError(null);
-      setLoading(true);
+      //setLoading(true);
       const params = {
         event_id: id,
       };
@@ -85,7 +85,7 @@ function GridItem(props) {
       console.log(e);
       setError(e);
     }
-    setLoading(false);
+    //setLoading(false);
   };
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;

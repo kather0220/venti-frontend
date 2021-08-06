@@ -185,6 +185,7 @@ function MyPage() {
       <S.InputBox
         placeholder="아이디를 입력하세요"
         defaultValue={userInfo.username}
+        disabled={true}
         ref={id}
       ></S.InputBox>
 

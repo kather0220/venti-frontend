@@ -38,7 +38,7 @@ function BrandListItem(props) {
       setError(null);
       setLoading(true);
       const params = {
-        brand_id: id,
+        brand_id: [id],
       };
       ///api/events/deadline/
       console.log(id);
@@ -68,7 +68,6 @@ function BrandListItem(props) {
       setError(null);
       setLoading(true);
       const params = {
-        user_id: 0, // 수정 필요
         brand_id: id,
       };
       ///api/events/deadline/

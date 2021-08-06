@@ -46,6 +46,11 @@ function SignUpPage() {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
   };
+
+  const checkPassword = (password) => {
+    const re = /^(.*[0-9]+.*[a-zA-Z]+.*)|(.*[a-zA-Z]+.*[0-9]+.*)$/;
+    return re.test(password);
+  };
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '남':
@@ -75,21 +80,27 @@ function SignUpPage() {
       birthday.current.value !== '' ? birthday.current.value : null;
     const genderInput = gender();
     e.preventDefault();
-    let form = new FormData();
-    form.append('username', idInput);
-    form.append('password1', pwInput);
-    form.append('password2', pwCheckInput);
-    form.append('nickname', nicknameInput);
-    form.append('email', emailInput);
-    form.append('gender', genderInput);
-    form.append('birth', birthdayInput);
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
-    } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
-    else if (!checkEmail(emailInput))
+    } else if (pwInput !== pwCheckInput) {
+      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요!');
+      return;
+    } else if (!checkPassword(pwInput)) {
+      alert('비밀번호 형식을 다시 확인해주세요!');
+      return;
+    } else if (!checkEmail(emailInput)) {
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
-    else {
+      return;
+    } else {
+      let form = new FormData();
+      form.append('username', idInput);
+      form.append('password1', pwInput);
+      form.append('password2', pwCheckInput);
+      form.append('nickname', nicknameInput);
+      form.append('email', emailInput);
+      form.append('gender', genderInput);
+      form.append('birth', birthdayInput);
       try {
         const url = 'http://3.36.127.126:8000/accounts/create/';
         const info = {
@@ -127,6 +138,49 @@ function SignUpPage() {
       setLoading(false);
     }
   };
+  /*
+  const handleClick = () => {
+    const nicknameInput = nickname.current.value;
+    const idInput = userId;
+    const pwInput = userPassword;
+    const pwCheckInput = pwCheck.current.value;
+    const emailInput = email.current.value;
+    const birthdayInput =
+      birthday.current.value !== '' ? birthday.current.value : null;
+    const genderInput = gender();
+    let form = new FormData();
+    form.append('username', idInput);
+    form.append('password1', pwInput);
+    form.append('password2', pwCheckInput);
+    form.append('nickname', nicknameInput);
+    form.append('email', emailInput);
+    form.append('gender', genderInput);
+    form.append('birth', birthdayInput);
+    if (pwInput.length < 8) {
+      alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
+      return;
+    } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
+    else if (!checkEmail(emailInput))
+      alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
+    else {
+      axios
+        .post('http://3.36.127.126:8000/accounts/create/', form)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          alert(
+            '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
+          );
+          LogIn();
+          history.push('/brand-preference');
+        });
+    }
+  };
+  */
   const nicknameDuplicationCheck = async () => {
     const nicknameInput = nickname.current.value;
     try {
@@ -134,7 +188,7 @@ function SignUpPage() {
         API_BASE_URL + `/accounts/checknickname/?nickname=${nicknameInput}`;
       setError();
       const res = await axios.get(url);
-      setLoading(true);
+      // setLoading(true);
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
@@ -150,7 +204,7 @@ function SignUpPage() {
       console.log(e);
       setError(e);
     }
-    setLoading(false);
+    //setLoading(false);
   };
   const idDuplicationCheck = async () => {
     const idInput = id.current.value;
@@ -158,7 +212,7 @@ function SignUpPage() {
       const url = API_BASE_URL + `/accounts/checkusername/?username=${idInput}`;
       setError();
       const res = await axios.get(url);
-      setLoading(true);
+      //setLoading(true);
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
@@ -174,7 +228,7 @@ function SignUpPage() {
       console.log(e);
       setError(e);
     }
-    setLoading(false);
+    //setLoading(false);
   };
 
   const emailDupliacationCheck = async () => {
@@ -187,7 +241,7 @@ function SignUpPage() {
       const url = API_BASE_URL + `/accounts/checkemail/?email=${emailInput}`;
       setError();
       const res = await axios.get(url);
-      setLoading(true);
+      //   setLoading(true);
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
@@ -203,7 +257,7 @@ function SignUpPage() {
       console.log(e);
       setError(e);
     }
-    setLoading(false);
+    //  setLoading(false);
   };
 
   const LogIn = async () => {
