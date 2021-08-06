@@ -31,6 +31,10 @@ function MyPage() {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
   };
+  const checkPassword = (password) => {
+    const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    return re.test(password);
+  };
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '남':
@@ -64,8 +68,13 @@ function MyPage() {
     if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
-    } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
-    else if (!checkEmail(emailInput))
+    } else if (pwInput !== pwCheckInput) {
+      alert('비밀번호를 다시 확인해주세요!');
+      return;
+    } else if (!checkPassword(pwInput)) {
+      alert('비밀번호 형식을 다시 확인해주세요!');
+      return;
+    } else if (!checkEmail(emailInput))
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
       try {
@@ -190,7 +199,7 @@ function MyPage() {
       ></S.InputBox>
 
       <S.InputExp>
-        비밀번호 <pwExp>(8자리 이상, 영문/숫자 조합)</pwExp>
+        비밀번호 <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox placeholder="비밀번호" type="password" ref={pw}></S.InputBox>

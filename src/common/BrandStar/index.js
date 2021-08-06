@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function BrandStar(props) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const [clicked, setClicked] = useState(props.subs);
   const handleStarClick = (e) => {
