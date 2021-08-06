@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import * as S from './styles';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
-import * as S from './styles';
 
-function BrandListItem(props) {
-  const history = useHistory();
-  const brand_id = props.id; // 임시값
-  console.log(brand_id);
-  const [clicked, setClicked] = useState(props.subs);
+function BrandStar(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const handleClick = (e) => {
-    e.preventDefault();
-    history.push(`/brand-detail/${brand_id}`);
-  };
+
+  const [clicked, setClicked] = useState(props.subs);
   const handleStarClick = (e) => {
     e.preventDefault();
     //setClicked(!clicked);
 
     setClicked(!clicked);
     if (!clicked) {
-      getToken(ACCESS_TOKEN) ? subscribeBrand(brand_id) : <></>;
+      getToken(ACCESS_TOKEN) ? subscribeBrand(props.id) : <></>;
       //: alert('로그인이 필요한 서비스입니다.');
       /*
       setTimeout(function () {
@@ -30,7 +23,7 @@ function BrandListItem(props) {
       }, 100);
       */
     } else {
-      getToken(ACCESS_TOKEN) ? unsubscribeBrand(brand_id) : <></>;
+      getToken(ACCESS_TOKEN) ? unsubscribeBrand(props.id) : <></>;
     }
   };
   const subscribeBrand = async (id) => {
@@ -90,21 +83,11 @@ function BrandListItem(props) {
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
-    <S.ListItemBox>
-      <S.NameAndImage onClick={handleClick}>
-        <S.BrandImage src={props.image}></S.BrandImage>
-        <S.BrandName>{props.name}</S.BrandName>
-      </S.NameAndImage>
-      <S.Star
-        onClick={handleStarClick}
-        src={
-          clicked || props.clicked
-            ? 'img/filled-star.png'
-            : 'img/empty-star.png'
-        }
-      ></S.Star>
-    </S.ListItemBox>
+    <S.StarIcon
+      onClick={handleStarClick}
+      src={clicked ? '/img/filled-star-edit.png' : '/img/empty-star-edit.png'}
+    ></S.StarIcon>
   );
 }
 
-export default BrandListItem;
+export default BrandStar;

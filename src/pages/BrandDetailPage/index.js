@@ -8,6 +8,7 @@ import * as S from './styles';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
+import BrandStar from '../../common/BrandStar';
 
 function BrandDetailPage() {
   const { brand_id } = useParams();
@@ -94,14 +95,10 @@ function BrandDetailPage() {
           <S.BrandImage src={brandInfo.brand_logo_url}></S.BrandImage>
           <S.BrandNameAndText>
             <span>{brandInfo.name}</span>
-            <img
-              onClick={handleStarClick}
-              src={
-                brandInfo.subs
-                  ? '/img/filled-star-edit.png'
-                  : '/img/empty-star-edit.png'
-              }
-            ></img>
+            <BrandStar
+              id={brandInfo.id}
+              subs={brandInfo.subs ? brandInfo.subs : false}
+            ></BrandStar>
             <br></br>
             <text>{brandInfo.text}</text>
           </S.BrandNameAndText>

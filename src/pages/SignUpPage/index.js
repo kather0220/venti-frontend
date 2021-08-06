@@ -39,7 +39,7 @@ function SignUpPage() {
   const gender = () => {
     if (isMale && !isFemale) return 'man';
     else if (!isMale && isFemale) return 'woman';
-    else return null;
+    else return '';
   };
   const checkEmail = (email) => {
     const re =
@@ -48,7 +48,7 @@ function SignUpPage() {
   };
 
   const checkPassword = (password) => {
-    const re = /^(.*[0-9]+.*[a-zA-Z]+.*)|(.*[a-zA-Z]+.*[0-9]+.*)$/;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     return re.test(password);
   };
   const handleRadioClick = (e) => {
@@ -76,8 +76,7 @@ function SignUpPage() {
     const pwInput = userPassword;
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
-    const birthdayInput =
-      birthday.current.value !== '' ? birthday.current.value : null;
+    const birthdayInput = birthday.current.value;
     const genderInput = gender();
     e.preventDefault();
     if (pwInput.length < 8) {
@@ -101,6 +100,14 @@ function SignUpPage() {
       form.append('email', emailInput);
       form.append('gender', genderInput);
       form.append('birth', birthdayInput);
+      console.log(
+        idInput,
+        pwInput,
+        pwCheckInput,
+        emailInput,
+        genderInput,
+        birthdayInput
+      );
       try {
         const url = 'http://3.36.127.126:8000/accounts/create/';
         const info = {
@@ -322,7 +329,7 @@ function SignUpPage() {
         </S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>
-        비밀번호 <pwExp>(8자리 이상, 영문/숫자 조합)</pwExp>
+        비밀번호 <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox
