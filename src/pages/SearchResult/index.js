@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import Header from '../../common/Header/index';
 import * as S from './styles';
 import { GridWrapper } from '../../common/GridWrapper/styles';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
+import getToken from '../../functions/getToken';
 import GridItem from '../../common/GridItem/index';
 import axios from 'axios';
 
@@ -18,9 +19,13 @@ function SearchResult() {
     try {
       setError(null);
       setLoading(true);
-      const url = API_BASE_URL + `/api/search/?search=${input}`;
-      console.log(url);
-      const res = await axios.get(url);
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.get(API_BASE_URL + `/api/search/?search=${input}`, {
+            headers: {
+              Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+            },
+          })
+        : await axios.get(API_BASE_URL + `/api/guest/search/?search=${input}`);
 
       console.log(res.data);
       setSearchResult(res.data.events);
@@ -52,11 +57,12 @@ function SearchResult() {
                   <GridItem
                     id={event.id}
                     eventName={event.name}
-                    brandName={event.brand_id}
-                    img={event.image}
+                    brandName={event.brand_name}
+                    img={event.event_img_url}
                     // onClick={handleBrandImageClick}
+                    subs={event.subs ? event.subs : false}
                     view={event.view}
-                    due={event.due}
+                    due={event['d-day']}
                   ></GridItem>
                 );
               })}
