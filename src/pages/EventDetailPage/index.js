@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../../common/Header/index';
+import EventHeart from '../../common/EventHeart';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import * as S from './styles';
@@ -42,14 +43,17 @@ function EventDetailPage() {
       console.log(e);
       setError(e);
     }
+
     setLoading(false);
+    //eventInfo.subs ? setClicked(true) : setClicked(false);
   };
-  useEffect(() => {
-    getEventDetail(event_id);
-  }, []);
   const [clicked, setClicked] = useState(
     eventInfo.subs ? eventInfo.subs : false
   );
+  useEffect(() => {
+    getEventDetail(event_id);
+  }, []);
+
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
 
@@ -64,10 +68,10 @@ function EventDetailPage() {
             {eventInfo.created_date}
           </S.BrandNameAndDate>
           <S.EventName>{eventInfo.name}</S.EventName>
-          <S.HeartIcon
-            onClick={handleHeartClick}
-            src={clicked ? '/img/clicked-heart.png' : '/img/heart.png'}
-          ></S.HeartIcon>
+          <EventHeart
+            id={eventInfo.id}
+            subs={eventInfo.subs ? eventInfo.subs : false}
+          ></EventHeart>
         </S.EvenInfoWrapper>
         <S.EventImage src={eventInfo.event_img_url}></S.EventImage>
         <S.EventText>{eventInfo.text}</S.EventText>
