@@ -69,7 +69,7 @@ function SignUpPage() {
         break;
     }
   };
-  /*
+
   const handleClick = async (e) => {
     const nicknameInput = nickname.current.value;
     const idInput = userId;
@@ -122,13 +122,20 @@ function SignUpPage() {
         setError(null);
         const res = await axios.post(url, form);
         console.log(res);
+
         console.log(form);
         setLoading(true);
-        alert(
-          '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
-        );
-        LogIn();
-        history.push('/brand-preference');
+        if (res.status === 201) {
+          alert(
+            '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
+          );
+          LogIn();
+          history.push('/brand-preference');
+        } else if (res.status === 200) {
+          alert(res.data.error);
+          setLoading(false);
+          return;
+        }
       } catch (e) {
         console.log(e);
         const statusCode = parseInt(e.message.split(' ').pop());
@@ -145,8 +152,8 @@ function SignUpPage() {
       setLoading(false);
     }
   };
+
   /*
-  */
   const handleClick = () => {
     const nicknameInput = nickname.current.value;
     const idInput = userId;
@@ -176,7 +183,7 @@ function SignUpPage() {
           console.log(response);
         })
         .catch(function (error) {
-          console.log(error.response.data.message);
+          console.log(error);
         })
         .then(function () {
           alert(
@@ -187,7 +194,7 @@ function SignUpPage() {
         });
     }
   };
-
+*/
   const nicknameDuplicationCheck = async () => {
     const nicknameInput = nickname.current.value;
     try {

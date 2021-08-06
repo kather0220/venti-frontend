@@ -21,6 +21,7 @@ function MainPage() {
   const [foodEventList, setFoodEventList] = useState([]);
   const [cafeEventList, setCafeEventList] = useState([]);
   const [fashionEventList, setFashionEventList] = useState([]);
+  const [weekly, setWeekly] = useState([]);
   const handleClick = (event) => {
     const {
       target: { id },
@@ -83,13 +84,28 @@ function MainPage() {
     }
     setLoading(false);
   };
+  const getWeekly = async () => {
+    try {
+      setError(null);
+      setLoading(true);
 
+      const res = await axios.get(API_BASE_URL + '/api/weekly/');
+
+      console.log(res.data);
+      setWeekly(res.data.result);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
   ///api/brands/{id}/
 
   useEffect(() => {
     getEventsForYou(1);
     getEventsForYou(2);
     getEventsForYou(3);
+    getWeekly();
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
@@ -97,7 +113,7 @@ function MainPage() {
     <>
       <S.MainContainer>
         <Header></Header>
-        <Carousel></Carousel>
+        <Carousel weekly_list={weekly}></Carousel>
         <S.Exp>나를 위한 새로운 이벤트</S.Exp>
         <CategoryWrapper>
           <CategoryTab

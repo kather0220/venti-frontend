@@ -37,11 +37,9 @@ function NoticePage() {
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
-
   return (
     <>
       <Header></Header>
-
       <S.MainContainer>
         <S.PageTitle>알림</S.PageTitle>
         {response.map((result) => {
@@ -56,14 +54,6 @@ function NoticePage() {
             ></NoticeItem>
           );
         })}
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
-        <NoticeItem></NoticeItem>
       </S.MainContainer>
     </>
   );
