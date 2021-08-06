@@ -40,7 +40,11 @@ export const FilterContainer = styled.div`
   //height: 100%;
   //height: 70.2133vw;
   border-radius: 1rem 1rem 0 0;
-  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  //display: ${(props) => (props.visible ? 'flex' : 'none')};
+  display: flex;
+  transform: ${(props) =>
+    props.visible ? 'translateX(0)' : 'translateY(100%)'};
+  transition: transform 0.3s ease-in-out;
   //-ms-overflow-style: none;
   flex-direction: column;
   z-index: 200;
@@ -96,6 +100,7 @@ export const BottomGreyLine = styled.div`
 `;
 export const FilterItemContainer = styled.div`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
+
   flex-direction: row;
   width: 100%;
   padding-top: 1.133rem;

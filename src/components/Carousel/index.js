@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import './styles.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-//import GetWeekly from '../../functions/GetWeekly';
 
 export default class Carousel extends Component {
   render() {
@@ -15,13 +14,19 @@ export default class Carousel extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+
     return (
       <S.CarouselContainer>
         <Slider {...settings}>
           {this.props.weekly_list.map((brand) => {
             return (
               <div>
-                <S.Banner src={brand.brand_banner_url}></S.Banner>
+                <S.Banner
+                  src={brand.brand_banner_url}
+                  onClick={() =>
+                    (window.location = `/brand-detail/${brand.id}`)
+                  }
+                ></S.Banner>
               </div>
             );
           })}
