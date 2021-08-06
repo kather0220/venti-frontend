@@ -86,7 +86,7 @@ function BrandPreferencePage() {
             <PreferenceItem
               id={brand.id}
               name={brand.name}
-              img={'http://3.36.127.126:8000/' + brand.image}
+              img={brand.brand_logo_url}
               onClick={handleBrandImageClick}
             ></PreferenceItem>
           );

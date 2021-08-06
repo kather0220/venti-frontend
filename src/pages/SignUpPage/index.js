@@ -69,7 +69,7 @@ function SignUpPage() {
         break;
     }
   };
-
+  /*
   const handleClick = async (e) => {
     const nicknameInput = nickname.current.value;
     const idInput = userId;
@@ -146,14 +146,14 @@ function SignUpPage() {
     }
   };
   /*
+  */
   const handleClick = () => {
     const nicknameInput = nickname.current.value;
     const idInput = userId;
     const pwInput = userPassword;
     const pwCheckInput = pwCheck.current.value;
     const emailInput = email.current.value;
-    const birthdayInput =
-      birthday.current.value !== '' ? birthday.current.value : null;
+    const birthdayInput = birthday.current.value;
     const genderInput = gender();
     let form = new FormData();
     form.append('username', idInput);
@@ -176,7 +176,7 @@ function SignUpPage() {
           console.log(response);
         })
         .catch(function (error) {
-          console.log(error);
+          console.log(error.response.data.message);
         })
         .then(function () {
           alert(
@@ -187,7 +187,7 @@ function SignUpPage() {
         });
     }
   };
-  */
+
   const nicknameDuplicationCheck = async () => {
     const nicknameInput = nickname.current.value;
     try {
