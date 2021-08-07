@@ -143,3 +143,16 @@ export const Button = styled.button`
   margin-bottom: 1.333rem;
   margin-left: 15rem;
 `;
+
+export const NoEventMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  height: 20rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.933rem;
+`;

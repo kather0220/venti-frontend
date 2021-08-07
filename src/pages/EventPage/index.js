@@ -283,52 +283,64 @@ function EventPage() {
         </CategoryWrapper>
         <S.CategoryUnderLine></S.CategoryUnderLine>
         <GridWrapper visible={category === 'food'}>
-          {foodEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={event.event_img_url}
-                // onClick={handleBrandImageClick}
-                view={event.view}
-                due={event['d-day']}
-                subs={event.subs}
-              ></GridItem>
-            );
-          })}
+          {foodEventList.length !== 0 ? (
+            foodEventList.map((event) => {
+              return (
+                <GridItem
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
+                  // onClick={handleBrandImageClick}
+                  view={event.view}
+                  due={event['d-day']}
+                  subs={event.subs}
+                ></GridItem>
+              );
+            })
+          ) : (
+            <S.NoEventMessage>진행중인 이벤트가 없습니다!</S.NoEventMessage>
+          )}
         </GridWrapper>
         <GridWrapper visible={category === 'cafe'}>
-          {cafeEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={event.event_img_url}
-                // onClick={handleBrandImageClick}
-                view={event.view}
-                due={event['d-day']}
-                subs={event.subs}
-              ></GridItem>
-            );
-          })}
+          {cafeEventList.length !== 0 ? (
+            cafeEventList.map((event) => {
+              return (
+                <GridItem
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
+                  // onClick={handleBrandImageClick}
+                  view={event.view}
+                  due={event['d-day']}
+                  subs={event.subs}
+                ></GridItem>
+              );
+            })
+          ) : (
+            <S.NoEventMessage>진행중인 이벤트가 없습니다!</S.NoEventMessage>
+          )}
         </GridWrapper>
         <GridWrapper visible={category === 'fashion'}>
-          {fashionEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={event.event_img_url}
-                // onClick={handleBrandImageClick}
-                view={event.view}
-                due={event['d-day']}
-                subs={event.subs}
-              ></GridItem>
-            );
-          })}
+          {fashionEventList.length !== 0 ? (
+            fashionEventList.map((event) => {
+              return (
+                <GridItem
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
+                  // onClick={handleBrandImageClick}
+                  view={event.view}
+                  due={event['d-day']}
+                  subs={event.subs}
+                ></GridItem>
+              );
+            })
+          ) : (
+            <S.NoEventMessage>진행중인 이벤트가 없습니다!</S.NoEventMessage>
+          )}
         </GridWrapper>
       </S.MainContainer>
       <Footer top={5}></Footer>
