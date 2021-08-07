@@ -21,6 +21,7 @@ export const NoResultMessage = styled.div`
   font-weight: normal;
   font-size: 0.933rem;
   margin-top: 5.133rem;
+  margin-bottom: 20.333rem;
   display: ${(props) => (props.visible ? 'column' : 'none')};
   flex-direction: column;
   text-align: center;

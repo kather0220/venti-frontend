@@ -89,7 +89,7 @@ function FAQPage() {
           싶으시다면, 하단의 '문의하기' 버튼을 활용해주시길 부탁드립니다 :)
         </S.BottomText>
       </S.MainContainer>
-      <Footer></Footer>
+      <Footer top={2}></Footer>
     </>
   );
 }

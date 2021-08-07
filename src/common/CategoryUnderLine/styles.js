@@ -13,13 +13,15 @@ export const CategoryUnderLine = styled.div`
   height: 0;
   // margin: 0.533rem 0 1.267rem;
   // border: 0.067rem solid #f0f0f0;
+  position: relative;
 `;
 
 export const BlackUnderline = styled.div`
   //z-index: 1;
+  position: absolute;
   width: ${(props) => props.width}rem;
   height: 0;
-  margin-left: ${(props) => props.margin}rem;
+  left: ${(props) => props.margin}rem;
   border: 0.067rem solid black;
   background: black;
 `;

@@ -331,7 +331,7 @@ function EventPage() {
           })}
         </GridWrapper>
       </S.MainContainer>
-      <Footer></Footer>
+      <Footer top={5}></Footer>
     </>
   );
 }

@@ -7,7 +7,7 @@ export const StyledContainer = styled.div`
   align-items: center;
   height: 8.067rem;
   background: #f0f0f0;
-  margin-top: 2.314rem;
+  margin-top: ${(props) => props.top}rem;
 `;
 
 export const Exp = styled.div`

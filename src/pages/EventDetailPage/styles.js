@@ -48,7 +48,7 @@ export const EventImage = styled.img`
   margin: 2.6rem 1rem 1.8rem;
   //margin: 2.6rem 0 1.8rem;
   width: 22.867rem;
-  height: 25.267rem;
+  //height: 25.267rem;
 `;
 
 export const EventText = styled.pre`

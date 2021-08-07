@@ -157,7 +157,7 @@ function BrandPage() {
           })}
         </S.BrandConatiner>
       </S.MainContainer>
-      <Footer></Footer>
+      <Footer top={4.267}></Footer>
     </>
   );
 }

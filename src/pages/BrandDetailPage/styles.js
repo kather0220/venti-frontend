@@ -60,3 +60,16 @@ export const EventExp = styled.div`
     color: #909090;
   }
 `;
+
+export const MarginBox = styled.div`
+  height: 10rem;
+  width: 25rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;

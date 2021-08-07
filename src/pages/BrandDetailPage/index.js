@@ -108,19 +108,23 @@ function BrandDetailPage() {
           <text>내일은 없을지도 몰라요</text>
         </S.EventExp>
         <GridWrapper visible={true}>
-          {onEvent.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={event.event_img_url}
-                view={event.view}
-                subs={event.subs}
-                due={event['d-day']}
-              ></GridItem>
-            );
-          })}
+          {onEvent.length !== 0 ? (
+            onEvent.map((event) => {
+              return (
+                <GridItem
+                  id={event.id}
+                  eventName={event.name}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
+                  view={event.view}
+                  subs={event.subs}
+                  due={event['d-day']}
+                ></GridItem>
+              );
+            })
+          ) : (
+            <S.MarginBox>진행중인 이벤트가 없어요!</S.MarginBox>
+          )}
         </GridWrapper>
         <S.EventExp>
           지난 이벤트<br></br>
@@ -142,7 +146,7 @@ function BrandDetailPage() {
             );
           })}
         </GridWrapper>
-        <Footer></Footer>
+        <Footer top={2}></Footer>
       </S.MainContainer>
     </>
   );

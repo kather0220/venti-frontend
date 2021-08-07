@@ -5,6 +5,7 @@ export const ItemContainer = styled.div`
   flex-direction: row;
   align-items: center;
   margin-top: 1.267rem;
+  position: relative;
 `;
 
 export const BrandLogo = styled.img`
@@ -18,21 +19,29 @@ export const BrandLogo = styled.img`
 export const NoticeText = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: bold;
-  font-size: 0.933rem;
+  font-weight: normal;
+  font-size: 0.8rem;
   color: #000000;
-  margin-left: 1.133rem;
+  margin-left: 1rem;
   margin-right: 2rem;
   width: 13.867rem;
+  & bold {
+    font-weight: bold;
+  }
+  & day {
+    font-weight: bold;
+    color: #f40552;
+  }
 `;
 
 export const TimeText = styled.div`
+  position: absolute;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 0.733rem;
+  font-size: 0.65rem;
   color: #919191;
-  margin-right: 1rem;
+  right: 1.067rem;
 `;
 
 export const Line = styled.hr`

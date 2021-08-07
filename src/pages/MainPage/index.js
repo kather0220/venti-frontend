@@ -229,7 +229,7 @@ function MainPage() {
             );
           })}
         </GridWrapper>
-        <Footer></Footer>
+        <Footer top={8}></Footer>
       </S.MainContainer>
     </>
   );

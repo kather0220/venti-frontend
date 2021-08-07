@@ -40,10 +40,11 @@ export const EventName = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 0.983rem;
+  height: 2rem;
   flex-grow: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  // overflow: hidden;
+  //white-space: nowrap;
+  //text-overflow: ellipsis;
 `;
 export const SecondRow = styled.div`
   color: ${(props) => (props.end ? '#909090' : 'black')};

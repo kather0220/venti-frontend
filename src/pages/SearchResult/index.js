@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../common/Header/index';
 import * as S from './styles';
 import { GridWrapper } from '../../common/GridWrapper/styles';
+import Footer from '../../common/Footer';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import GridItem from '../../common/GridItem/index';
@@ -75,6 +76,7 @@ function SearchResult() {
           </S.ResultMessage>
         )}
       </S.MainContainer>
+      <Footer top={4.4}></Footer>
     </>
   );
 }

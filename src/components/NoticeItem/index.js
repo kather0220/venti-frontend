@@ -8,35 +8,38 @@ function NoticeItem(props) {
     switch (type) {
       case 'new':
         return (
-          props.brand_name +
-          '에서' +
-          props.event_name +
-          '\n새로운 이벤트가 업데이트 되었어요.'
+          <S.NoticeText>
+            <bold>{props.brand_name}</bold>에서
+            <bold> {props.event_name}</bold> 새로운 이벤트가 업데이트 되었어요.
+          </S.NoticeText>
         );
 
         break;
       case 'end12':
         return (
-          props.brand_name +
-          ' ' +
-          props.event_name +
-          '이벤트 마감이 12시간 남았어요.'
+          <S.NoticeText>
+            <day>[12H] </day>
+            <bold>{props.brand_name}</bold>의 <bold>{props.event_name}</bold>{' '}
+            이벤트 마감이 12시간 남았어요.
+          </S.NoticeText>
         );
         break;
       case 'end24':
         return (
-          props.brand_name +
-          ' ' +
-          props.event_name +
-          '이벤트 마감이 하루 남았어요.'
+          <S.NoticeText>
+            <day>[D-1] </day>
+            <bold>{props.brand_name}</bold>의 <bold>{props.event_name}</bold>{' '}
+            이벤트 마감이 24시간 남았어요.
+          </S.NoticeText>
         );
         break;
       case 'end48':
         return (
-          props.brand_name +
-          ' ' +
-          props.event_name +
-          '이벤트 마감이 이틀 남았어요.'
+          <S.NoticeText>
+            <day>[D-2] </day>
+            <bold>{props.brand_name}</bold>의 <bold>{props.event_name}</bold>{' '}
+            이벤트 마감이 이틀 남았어요.
+          </S.NoticeText>
         );
         break;
       default:

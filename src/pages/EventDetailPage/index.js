@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../../common/Header/index';
 import EventHeart from '../../common/EventHeart';
+import Footer from '../../common/Footer';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import * as S from './styles';
@@ -84,6 +85,7 @@ function EventDetailPage() {
           <S.Button>이벤트 바로가기</S.Button>
         </Link>
       </S.MainContainer>
+      <Footer top={2}></Footer>
     </>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './styles';
 
-function Footer() {
+function Footer(props) {
   return (
-    <S.StyledContainer>
+    <S.StyledContainer top={props.top}>
       <S.Exp>
         이벤트와 할인정보를 한곳에서 <br />
         Design Your Own Venti!

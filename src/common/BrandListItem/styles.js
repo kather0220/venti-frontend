@@ -25,7 +25,7 @@ export const BrandImage = styled.img`
 export const BrandName = styled.div`
   position: absolute;
   margin-left: 6.7rem;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
   font-size: 1.133rem;

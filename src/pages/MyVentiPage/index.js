@@ -10,6 +10,7 @@ import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
 import { BrandListContainer } from '../../common/BrandListContainer/styles';
 import BrandListItem from '../../common/BrandListItem/index';
+import Footer from '../../common/Footer';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
@@ -17,8 +18,8 @@ import axios from 'axios';
 function MyVentiPage() {
   const [category, setCategory] = useState('event');
   const [isVisible, setIsVisible] = useState(false);
-  const [margin, setMargin] = useState('1.067');
-  const [width, setWidth] = useState('2.783');
+  const [margin, setMargin] = useState('1.133');
+  const [width, setWidth] = useState('2.933');
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mybrands, setMyBrands] = useState([]);
@@ -33,13 +34,13 @@ function MyVentiPage() {
     switch (id) {
       case 'event':
         setCategory('event');
-        setMargin('1.067');
-        setWidth('2.783');
+        setMargin('1.133');
+        setWidth('2.933');
         break;
       case 'brand':
         setCategory('brand');
-        setMargin('6.833');
-        setWidth('2.983');
+        setMargin('5.733');
+        setWidth('3.133');
         break;
 
       default:
@@ -135,8 +136,8 @@ function MyVentiPage() {
                 <GridItem
                   id={event.id}
                   eventName={event.name}
-                  brandName={event.brand_id}
-                  img={event.image}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
                   view={event.view}
                   due={event['d-day']}
                   subs={true}
@@ -151,8 +152,8 @@ function MyVentiPage() {
                   isEnd={true}
                   id={event.id}
                   eventName={event.name}
-                  brandName={event.brand_id}
-                  img={event.image}
+                  brandName={event.brand_name}
+                  img={event.event_img_url}
                   view={event.view}
                   due={event.due}
                   subs={true}
@@ -187,6 +188,7 @@ function MyVentiPage() {
           </S.NoResultMessage>
         )}
       </S.MainContainer>
+      <Footer top={4}></Footer>
     </>
   );
 }
