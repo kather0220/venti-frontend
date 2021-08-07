@@ -6,15 +6,21 @@ export const MainContainer = styled.div`
   background: white;
   width: 19.933rem;
   height: 100%;
+  //opacity: 0;
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   transform: ${(props) =>
     props.visible ? 'translateX(0)' : 'translateX(-100%)'};
   //display: ${(props) => (props.visible ? 'flex' : 'none')};
+  //-webkit-transition: opacity 0.5s ease-in-out;
+  //-moz-transition: opacity 0.5s ease-in-out;
+  //transition: opacity 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   z-index: 200;
   transition: transform 0.3s ease-in-out;
+  & > * {
+    overflow: hidden;
+  }
 `;
 
 export const TopBar = styled.div`

@@ -115,7 +115,9 @@ function GridItem(props) {
               />
             )}
           </S.FirstRow>
-          <S.SecondRow end={props.isEnd}>{props.brandName}</S.SecondRow>
+          <S.SecondRow end={props.isEnd}>
+            <brand-name>{props.brandName}</brand-name>
+          </S.SecondRow>
           <S.ThirdRow>
             {props.isEnd ? '마감' : 'D - ' + props.due}
             {'     '}조회 {props.view}회

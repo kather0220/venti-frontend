@@ -13,6 +13,7 @@ export const EvenInfoWrapper = styled.div`
   justify-content: center;
   position: relative;
   margin-top: 1rem;
+  margin-bottom: 1.533rem;
 `;
 
 export const BrandNameAndDate = styled.div`
@@ -35,6 +36,10 @@ export const EventName = styled.div`
   font-style: normal;
   font-weight: bold;
   font-size: 1.067rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
 `;
 
 export const HeartIcon = styled.img`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
@@ -7,14 +7,14 @@ import axios from 'axios';
 function BrandStar(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const [clicked, setClicked] = useState(props.subs);
+  // const [isStar, setIsStar] = useState(false);
+  //const [clicked, setClicked] = useState(true);
   const handleStarClick = (e) => {
     e.preventDefault();
     //setClicked(!clicked);
-
-    setClicked(!clicked);
-    if (!clicked) {
+    props.setClicked(!props.clicked);
+    //setClicked(!clicked);
+    if (!props.clicked) {
       getToken(ACCESS_TOKEN) ? subscribeBrand(props.id) : <></>;
       //: alert('로그인이 필요한 서비스입니다.');
       /*
@@ -26,6 +26,7 @@ function BrandStar(props) {
       getToken(ACCESS_TOKEN) ? unsubscribeBrand(props.id) : <></>;
     }
   };
+
   const subscribeBrand = async (id) => {
     try {
       setError(null);
@@ -80,12 +81,21 @@ function BrandStar(props) {
       setError(e);
     }
   };
+  /*
+  useEffect(() => {
+    console.log(props.subs);
+
+    props.setClicked(props.subs);
+  }, []);
+  */
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.StarIcon
       onClick={handleStarClick}
-      src={clicked ? '/img/filled-star-edit.png' : '/img/empty-star-edit.png'}
+      src={
+        props.clicked ? '/img/filled-star-edit.png' : '/img/empty-star-edit.png'
+      }
     ></S.StarIcon>
   );
 }

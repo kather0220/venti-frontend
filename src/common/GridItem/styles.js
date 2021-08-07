@@ -30,8 +30,11 @@ export const GridOverlay = styled.div`
 export const FirstRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  //align-items: center;
   padding-top: 0.533rem;
+  //white-space: no-wrap;
+
+  //overflow: hidden;
 `;
 
 export const EventName = styled.div`
@@ -42,9 +45,10 @@ export const EventName = styled.div`
   font-size: 0.983rem;
   height: 2rem;
   flex-grow: 1;
-  // overflow: hidden;
-  //white-space: nowrap;
-  //text-overflow: ellipsis;
+  min-height: 3rem;
+  overflow: hidden;
+  white-space: no-wrap;
+  text-overflow: ellipsis;
 `;
 export const SecondRow = styled.div`
   color: ${(props) => (props.end ? '#909090' : 'black')};
@@ -76,6 +80,7 @@ export const HeartIcon = styled.img`
   display: flex;
   flex-direction: row;
   align-items: end;
+  margin-top: 0.2rem;
   width: 0.812rem;
   height: 0.758rem;
 `;
@@ -85,7 +90,7 @@ export const GridItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 18.511rem;
+  height: 20.511rem;
   padding: 1.067rem 0.5rem;
   margin-bottom: 2.242rem;
 `;

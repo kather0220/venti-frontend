@@ -170,48 +170,6 @@ function MainPage() {
               ></GridItem>
             );
           })}
-          {cafeEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={'/img/event-image-example1.jpg'}
-                // onClick={handleBrandImageClick}
-                subs={event.subs ? event.subs : false}
-                view={event.view}
-                due={event['d-day']}
-              ></GridItem>
-            );
-          })}
-          {cafeEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={'/img/event-image-example2.jpg'}
-                // onClick={handleBrandImageClick}
-                subs={event.subs ? event.subs : false}
-                view={event.view}
-                due={event['d-day']}
-              ></GridItem>
-            );
-          })}
-          {cafeEventList.map((event) => {
-            return (
-              <GridItem
-                id={event.id}
-                eventName={event.name}
-                brandName={event.brand_name}
-                img={'/img/event-image-example3.jpg'}
-                // onClick={handleBrandImageClick}
-                subs={event.subs ? event.subs : false}
-                view={event.view}
-                due={event['d-day']}
-              ></GridItem>
-            );
-          })}
         </GridWrapper>
         <GridWrapper visible={category === 'fashion'}>
           {fashionEventList.map((event) => {

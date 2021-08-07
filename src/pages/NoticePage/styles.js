@@ -16,3 +16,15 @@ export const PageTitle = styled.div`
   margin-left: 1.067rem;
   margin-bottom: 2.4rem;
 `;
+
+export const NoAlarmText = styled.div`
+  height: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: cener;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+`;

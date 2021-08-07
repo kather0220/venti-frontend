@@ -128,7 +128,6 @@ function MyVentiPage() {
           </CategoryTab>
         </CategoryWrapper>
         <CategoryUnderLine margin={margin} width={width}></CategoryUnderLine>
-
         {myOnEvent.length !== 0 || myOffEvent.length !== 0 ? (
           <GridWrapper visible={category === 'event'}>
             {myOnEvent.map((event) => {

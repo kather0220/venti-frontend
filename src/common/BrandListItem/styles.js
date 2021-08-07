@@ -20,6 +20,7 @@ export const BrandImage = styled.img`
   top: 0.933rem;
   border-radius: 50%;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.07);
+  object-fit: contain;
 `;
 
 export const BrandName = styled.div`

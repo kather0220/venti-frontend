@@ -62,13 +62,14 @@ function EventDetailPage() {
     <>
       <Header></Header>
       <S.MainContainer>
+        <S.EventName>{eventInfo.name}</S.EventName>
         <S.EvenInfoWrapper>
           <S.BrandNameAndDate>
             <brand>{eventInfo.brand_name}</brand>
             <br></br>
-            {eventInfo.created_date}
+            {eventInfo.due} 마감
           </S.BrandNameAndDate>
-          <S.EventName>{eventInfo.name}</S.EventName>
+
           <EventHeart
             id={eventInfo.id}
             subs={eventInfo.subs ? eventInfo.subs : false}

@@ -30,6 +30,7 @@ function BrandDetailPage() {
       }, 100);
     }
   };
+
   const getBrandDetail = async (id) => {
     try {
       setError(null);
@@ -48,6 +49,10 @@ function BrandDetailPage() {
 
       console.log(res.data);
       setBrandInfo(res.data.brand);
+      console.log(brandInfo + '브랜드인포');
+      setClicked(res.data.brand.subs);
+      console.log(brandInfo.subs + 'subs');
+      console.log(clicked + '여기에요');
     } catch (e) {
       console.log(e);
       setError(e);
@@ -81,8 +86,8 @@ function BrandDetailPage() {
   };
 
   useEffect(() => {
-    getBrandDetail(brand_id);
     getBrandEventList(brand_id);
+    getBrandDetail(brand_id);
   }, []);
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
@@ -97,7 +102,9 @@ function BrandDetailPage() {
             <span>{brandInfo.name}</span>
             <BrandStar
               id={brandInfo.id}
-              subs={brandInfo.subs ? brandInfo.subs : false}
+              //subs={brandInfo.subs ? brandInfo.subs : false}
+              setClicked={setClicked}
+              clicked={clicked}
             ></BrandStar>
             <br></br>
             <text>{brandInfo.text}</text>
