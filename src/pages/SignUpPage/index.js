@@ -110,7 +110,7 @@ function SignUpPage() {
         birthdayInput
       );
       try {
-        const url = 'http://3.36.127.126:8000/accounts/create/';
+        const url = API_BASE_URL + '/accounts/create/';
         const info = {
           username: idInput,
           password1: pwInput, //비밀번호
