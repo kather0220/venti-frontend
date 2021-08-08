@@ -5,6 +5,7 @@ import setToken from '../../functions/setToken';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
 import Button from '../../common/Button/index';
+import LoadingScreen from '../../common/LoadingScreen';
 import * as S from './styles';
 
 function SignUpPage() {
@@ -79,8 +80,9 @@ function SignUpPage() {
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
     const genderInput = gender();
-
-    if (pwInput.length < 8) {
+    if (!nicknameInput || !idInput || !pwInput || !emailInput) {
+      alert('필수 항목들은 모두 입력해주세요!');
+    } else if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
     } else if (pwInput !== pwCheckInput) {
@@ -153,48 +155,6 @@ function SignUpPage() {
     }
   };
 
-  /*
-  const handleClick = () => {
-    const nicknameInput = nickname.current.value;
-    const idInput = userId;
-    const pwInput = userPassword;
-    const pwCheckInput = pwCheck.current.value;
-    const emailInput = email.current.value;
-    const birthdayInput = birthday.current.value;
-    const genderInput = gender();
-    let form = new FormData();
-    form.append('username', idInput);
-    form.append('password1', pwInput);
-    form.append('password2', pwCheckInput);
-    form.append('nickname', nicknameInput);
-    form.append('email', emailInput);
-    form.append('gender', genderInput);
-    form.append('birth', birthdayInput);
-    if (pwInput.length < 8) {
-      alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
-      return;
-    } else if (pwInput !== pwCheckInput) alert('비밀번호를 다시 확인해주세요!');
-    else if (!checkEmail(emailInput))
-      alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
-    else {
-      axios
-        .post('http://3.36.127.126:8000/accounts/create/', form)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-        .then(function () {
-          alert(
-            '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
-          );
-          LogIn();
-          history.push('/brand-preference');
-        });
-    }
-  };
-*/
   const nicknameDuplicationCheck = async () => {
     const nicknameInput = nickname.current.value;
     try {
@@ -301,7 +261,7 @@ function SignUpPage() {
     }
     setLoading(false);
   };
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.MainContainer>
@@ -312,7 +272,7 @@ function SignUpPage() {
           onClick={(e) => history.push('/log-in')}
         ></S.CloseButton>
       </S.TopBar>
-      <S.InputExp>닉네임</S.InputExp>
+      <S.InputExp>닉네임 * </S.InputExp>
 
       <S.InputContainer>
         <S.InputBoxWithText
@@ -323,7 +283,7 @@ function SignUpPage() {
           중복확인
         </S.DuplicationCheck>
       </S.InputContainer>
-      <S.InputExp>아이디</S.InputExp>
+      <S.InputExp>아이디 * </S.InputExp>
       <S.InputContainer>
         <S.InputBoxWithText
           placeholder="아이디를 입력하세요"
@@ -336,7 +296,7 @@ function SignUpPage() {
         </S.DuplicationCheck>
       </S.InputContainer>
       <S.InputExp>
-        비밀번호 <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
+        비밀번호 * <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox
@@ -351,7 +311,7 @@ function SignUpPage() {
         type="password"
         ref={pwCheck}
       ></S.InputBox>
-      <S.InputExp>이메일</S.InputExp>
+      <S.InputExp>이메일 * </S.InputExp>
       <S.InputContainer>
         <S.InputBoxWithText
           placeholder="이메일 주소"

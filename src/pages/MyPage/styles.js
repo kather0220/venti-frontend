@@ -60,6 +60,7 @@ export const InputBox = styled.input`
   font-style: normal;
   font-weight: 400;
   font-size: 0.933rem;
+  color: ${(props) => (props.disabled ? '#919191' : 'black')};
   &::placeholder {
     color: #919191;
   }

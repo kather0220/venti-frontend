@@ -22,6 +22,8 @@ export const BrandImage = styled.img`
 export const BrandNameAndText = styled.div`
   display: inline;
   padding-left: 1.2rem;
+  margin-right: 1.067rem;
+  word-break: keep-all;
 
   & span {
     font-family: Roboto;
@@ -41,6 +43,7 @@ export const BrandNameAndText = styled.div`
     font-weight: normal;
     font-size: 10px;
     color: #676767;
+    // width: 15.333rem;
   }
 `;
 

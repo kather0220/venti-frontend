@@ -12,6 +12,7 @@ import CafeBrandList from '../../data/CafeBrandList';
 import FashionBrandList from '../../data/FashionBrandList';
 import FilterItem from '../../components/FilterItem/index';
 import Footer from '../../common/Footer';
+import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
@@ -151,7 +152,7 @@ function EventPage() {
     console.log(fashionBrandList);
   }, [fashionBrandList]);
 
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
 
   const handleFilterApply = () => {

@@ -26,7 +26,7 @@ export default class Carousel extends Component {
                 <S.Banner
                   src={brand.brand_banner_url}
                   onClick={() =>
-                    (window.location = `/brand-detail/${brand.id}`)
+                    (window.location = `/brand-detail/${brand.brand_id}`)
                   }
                 ></S.Banner>
               </div>

@@ -18,6 +18,20 @@ export const ResultMessage = styled.div`
   }
 `;
 
+export const NoResultMessage = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1.667rem 0;
+  color: black;
+  text-align: center;
+  margin-bottom: 20rem;
+  & keyword {
+    color: #f40552;
+  }
+`;
+
 export const ResultTitle = styled.div`
   font-family: Roboto;
   font-style: normal;

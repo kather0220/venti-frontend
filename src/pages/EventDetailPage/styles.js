@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //align-items: center;
-  //text-align: flex-start;
 `;
 
 export const EvenInfoWrapper = styled.div`
@@ -40,6 +38,7 @@ export const EventName = styled.div`
   margin-top: 1rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  word-break: keep-all;
 `;
 
 export const HeartIcon = styled.img`
@@ -51,9 +50,7 @@ export const HeartIcon = styled.img`
 
 export const EventImage = styled.img`
   margin: 2.6rem 1rem 1.8rem;
-  //margin: 2.6rem 0 1.8rem;
   width: 22.867rem;
-  //height: 25.267rem;
 `;
 
 export const EventText = styled.pre`

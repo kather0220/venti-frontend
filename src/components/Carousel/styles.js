@@ -7,7 +7,3 @@ export const Banner = styled.img`
   width: 25rem;
   height: 14.4rem;
 `;
-
-export const ButtonBar = styled.li`
-  color: red;
-`;

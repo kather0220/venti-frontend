@@ -50,12 +50,9 @@ export const Answer = styled.div`
   color: #000000;
 `;
 
-export const Line = styled.hr`
+export const Line = styled.div`
   width: 100%;
-  //size: 0.5rem;
-  //border: 0.01rem solid #d6d6d6;
-  //background: #d6d6d6;
-  color: #d6d6d6;
+  border-bottom: 1px solid #dddddd;
 `;
 
 export const BottomText = styled.div`

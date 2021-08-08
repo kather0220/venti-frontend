@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../common/Button/index';
+import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import * as S from './styles';
@@ -65,7 +66,9 @@ function MyPage() {
     const emailInput = email.current.value;
     const birthdayInput = birthday.current.value;
     const genderInput = gender();
-    if (pwInput.length < 8) {
+    if (!nicknameInput || !idInput || !pwInput || !emailInput) {
+      alert('필수 항목들은 모두 입력해주세요!');
+    } else if (pwInput.length < 8) {
       alert('비밀번호는 최소 8자 이상입니다. 다시 입력해주세요!');
       return;
     } else if (pwInput !== pwCheckInput) {
@@ -173,7 +176,7 @@ function MyPage() {
     }
     getUserInfo();
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.MainContainer>
@@ -184,13 +187,13 @@ function MyPage() {
           onClick={(e) => history.push('/')}
         ></S.CloseButton>
       </S.TopBar>
-      <S.InputExp>닉네임</S.InputExp>
+      <S.InputExp>닉네임 * </S.InputExp>
       <S.InputBox
         placeholder="닉네임을 입력하세요"
         defaultValue={userInfo.nickname}
         ref={nickname}
       ></S.InputBox>
-      <S.InputExp>아이디</S.InputExp>
+      <S.InputExp>아이디 * </S.InputExp>
       <S.InputBox
         placeholder="아이디를 입력하세요"
         defaultValue={userInfo.username}
@@ -199,7 +202,7 @@ function MyPage() {
       ></S.InputBox>
 
       <S.InputExp>
-        비밀번호 <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
+        비밀번호 * <pwExp>(8자리 이상, 영문/숫자/특수문자 조합)</pwExp>
       </S.InputExp>
 
       <S.InputBox placeholder="비밀번호" type="password" ref={pw}></S.InputBox>
@@ -208,7 +211,7 @@ function MyPage() {
         type="password"
         ref={pwCheck}
       ></S.InputBox>
-      <S.InputExp>이메일</S.InputExp>
+      <S.InputExp>이메일 * </S.InputExp>
       <S.InputBox
         placeholder="이메일 주소"
         defaultValue={userInfo.email}

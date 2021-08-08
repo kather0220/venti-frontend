@@ -30,11 +30,7 @@ export const GridOverlay = styled.div`
 export const FirstRow = styled.div`
   display: flex;
   flex-direction: row;
-  //align-items: center;
   padding-top: 0.533rem;
-  //white-space: no-wrap;
-
-  //overflow: hidden;
 `;
 
 export const EventName = styled.div`
@@ -46,9 +42,13 @@ export const EventName = styled.div`
   height: 2rem;
   flex-grow: 1;
   min-height: 3rem;
+  padding-right: 0.45rem;
+  word-break: keep-all;
   overflow: hidden;
-  white-space: no-wrap;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 export const SecondRow = styled.div`
   color: ${(props) => (props.end ? '#909090' : 'black')};

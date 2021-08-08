@@ -4,6 +4,7 @@ import Header from '../../common/Header/index';
 import * as S from './styles';
 import { GridWrapper } from '../../common/GridWrapper/styles';
 import Footer from '../../common/Footer';
+import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import GridItem from '../../common/GridItem/index';
@@ -39,7 +40,7 @@ function SearchResult() {
   useEffect(() => {
     getSearchResult(id);
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
 
   return (
@@ -70,10 +71,10 @@ function SearchResult() {
             </GridWrapper>
           </>
         ) : (
-          <S.ResultMessage>
+          <S.NoResultMessage>
             <keyword>{id}</keyword>에 대한 검색 결과가 없어요.<br></br>
             검색어를 다시 확인해주세요!
-          </S.ResultMessage>
+          </S.NoResultMessage>
         )}
       </S.MainContainer>
       <Footer top={4.4}></Footer>

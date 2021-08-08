@@ -9,6 +9,7 @@ import BrandListItem from '../../common/BrandListItem/index';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import Footer from '../../common/Footer';
+import LoadingScreen from '../../common/LoadingScreen';
 import axios from 'axios';
 
 function BrandPage() {
@@ -89,7 +90,7 @@ function BrandPage() {
     getBrands(2);
     getBrands(3);
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>

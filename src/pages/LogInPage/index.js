@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../common/Button/index';
+import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import setToken from '../../functions/setToken';
 import * as S from './styles';
@@ -62,7 +63,7 @@ function LogInPage() {
     }
   };
 
-  if (loading) return <div>로그인 처리중..</div>;
+  if (loading) return <LoadingScreen></LoadingScreen>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <S.MainContainer>

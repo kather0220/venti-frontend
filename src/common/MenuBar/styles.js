@@ -59,14 +59,12 @@ export const MenuName = styled.div`
   margin: 1.067rem 1.667rem;
 `;
 
-export const Line = styled.hr`
+export const Line = styled.div`
   width: 100%;
   height: 0;
   left: 0px;
   margin-top: 3.867rem;
-  border: 0.05rem solid #dddddd;
-  background: #dddddd;
-  transform: rotate(-0.17deg);
+  border-bottom: 1px solid #dddddd;
 `;
 
 export const TransferLink = styled(Link)`

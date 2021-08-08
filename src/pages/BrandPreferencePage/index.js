@@ -3,8 +3,10 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './styles';
 import PreferenceItem from '../../components/PreferenceItem/index';
+import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
+import getUserId from '../../functions/getUserId';
 
 function BrandPreferencePage() {
   const [brandList, setBrandList] = useState([]);
@@ -70,13 +72,14 @@ function BrandPreferencePage() {
   useEffect(() => {
     getBrands();
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   console.log(response);
   return (
     <S.MainContainer>
       <S.Exp>
-        <name>이벤티</name>님이<br></br>선호하시는 브랜드를 알려주세요
+        <name>{getUserId(ACCESS_TOKEN)}</name>님이<br></br>선호하시는 브랜드를
+        알려주세요
         <br></br>
         <text>선택한 브랜드의 이벤트를 알림으로 받을 수 있어요</text>
       </S.Exp>

@@ -6,6 +6,7 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
 import Footer from '../../common/Footer';
+import LoadingScreen from '../../common/LoadingScreen';
 //import { PageTitle } from '../../common/PageTitle/styles';
 
 function NoticePage() {
@@ -36,7 +37,7 @@ function NoticePage() {
   useEffect(() => {
     getNotice();
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>

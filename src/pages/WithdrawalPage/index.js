@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import * as S from './styles';
 import Header from '../../common/Header/index';
 import Footer from '../../common/Footer/index';
+import LoadingScreen from '../../common/LoadingScreen';
 import axios from 'axios';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
@@ -55,7 +56,7 @@ function WithdrawalPage() {
       setLoading(false);
     }
 
-    if (loading) return <div>로딩중..</div>;
+    if (loading) return <LoadingScreen />;
     if (error) return <div>에러가 발생했습니다.</div>;
   };
 
