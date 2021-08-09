@@ -13,11 +13,12 @@ export const Logo = styled.img`
   height: 2.033rem;
 `;
 
-export const IdPwContainer = styled.div`
+export const IdPwContainer = styled.form`
   margin-top: 8.8rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 9.133rem;
+  //margin-bottom: 9.133rem;
+  align-items: center;
 `;
 
 export const InputContainer = styled.div`
@@ -74,4 +75,18 @@ export const SignUpLink = styled(Link)`
   font-weight: 500;
   font-size: 0.933rem;
   color: #aaaaaa;
+`;
+
+export const StyledButton = styled.button`
+  width: 9.067rem;
+  height: 2.333rem;
+  margin-top: 9.133rem;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.933rem;
+  color: white;
+  background: #f40552;
+  border-radius: 10px;
+  border: none;
 `;

@@ -35,7 +35,7 @@ export const TopBar = styled.div`
 `;
 
 export const TopBarText = styled.div`
-  font-family: Montserrat;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 600;
   font-size: 1.2rem;

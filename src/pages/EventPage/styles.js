@@ -87,16 +87,16 @@ export const CloseButton = styled.img`
 export const TopGreyLine = styled.div`
   width: 25rem;
   height: 0;
-  background: #d3d3d3;
-  border: 0.01px solid #d3d3d3;
+  //background: #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
   margin-top: 1.267rem;
   margin-bottom: 1.1rem;
 `;
 export const BottomGreyLine = styled.div`
   width: 25rem;
   height: 0;
-  background: #d3d3d3;
-  border: 0.01px solid #d3d3d3;
+  //background: #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
 `;
 export const FilterItemContainer = styled.div`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
@@ -107,6 +107,7 @@ export const FilterItemContainer = styled.div`
   padding-right: 0.633rem;
   padding-left: 0.633rem;
   padding-bottom: 5rem;
+  //height: 30.333rem;
   flex-flow: wrap;
 `;
 export const FilterItem = styled.div`

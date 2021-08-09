@@ -14,6 +14,7 @@ function NoticePage() {
   const [error, setError] = useState(false);
   const [response, setResponse] = useState([]);
   const getNotice = async () => {
+    if (!getToken(ACCESS_TOKEN)) return;
     try {
       setError(null);
       setLoading(true);
@@ -44,21 +45,25 @@ function NoticePage() {
       <Header></Header>
       <S.MainContainer>
         <S.PageTitle>알림</S.PageTitle>
-        {response.length !== 0 ? (
-          response.map((result) => {
-            return (
-              <NoticeItem
-                event_id={result.event_id}
-                brand_name={result.brand_name}
-                event_name={result.event_name}
-                brand_img={result.brand_img}
-                type={result.notice_type}
-                time={result.noti_time}
-              ></NoticeItem>
-            );
-          })
+        {getToken(ACCESS_TOKEN) ? (
+          response.length !== 0 ? (
+            response.map((result) => {
+              return (
+                <NoticeItem
+                  event_id={result.event_id}
+                  brand_name={result.brand_name}
+                  event_name={result.event_name}
+                  brand_img={result.brand_img}
+                  type={result.notice_type}
+                  time={result.noti_time}
+                ></NoticeItem>
+              );
+            })
+          ) : (
+            <S.NoAlarmText>알림이 없습니다!</S.NoAlarmText>
+          )
         ) : (
-          <S.NoAlarmText>알림이 없습니다!</S.NoAlarmText>
+          <S.NoAlarmText>로그인이 필요한 서비스입니다!</S.NoAlarmText>
         )}
       </S.MainContainer>
       <Footer top={10}></Footer>

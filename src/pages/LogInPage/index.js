@@ -29,7 +29,7 @@ function LogInPage() {
     }
   };
 
-  const handleClick = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!userId || !userPassword) alert('정보를 모두 입력해주세요!');
     else {
@@ -68,7 +68,7 @@ function LogInPage() {
   return (
     <S.MainContainer>
       <S.Logo src={'img/Venti.png'}></S.Logo>
-      <S.IdPwContainer>
+      <S.IdPwContainer onSubmit={onSubmit}>
         <S.InputContainer>
           <S.ContainerText>아이디</S.ContainerText>
           <S.IdInput id="id" type="text" onChange={onChange}></S.IdInput>
@@ -81,8 +81,15 @@ function LogInPage() {
             onChange={onChange}
           ></S.PwInput>
         </S.InputContainer>
+        <S.StyledButton
+          type="submit"
+          //onClick={handleClick}
+          // handleKeyPress={(e) => (e.key === 'Enter' ? this.handleClick() : <></>)}
+        >
+          로그인
+        </S.StyledButton>
       </S.IdPwContainer>
-      <Button onClick={handleClick} text="로그인"></Button>
+
       <S.SignUpLink to="/sign-up">Venti 회원가입</S.SignUpLink>
     </S.MainContainer>
   );

@@ -36,6 +36,80 @@ function MyPage() {
     const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     return re.test(password);
   };
+  const nicknameDuplicationCheck = async () => {
+    const nicknameInput = nickname.current.value;
+    if (!nicknameInput) {
+      alert('닉네임을 입력해주세요!');
+      return;
+    }
+    /*
+    if (input === nicknameInput) {
+      alert('기존의 닉네임과 동일합니다.');
+      return;
+    }
+    */
+    try {
+      const url =
+        API_BASE_URL + `/accounts/checknickname/?nickname=${nicknameInput}`;
+      setError();
+      const res = await axios.get(url);
+      // setLoading(true);
+      console.log(res.data);
+      switch (res.data.data) {
+        case 'exist':
+          alert('존재하는 닉네임 입니다.');
+          break;
+        case 'not exist':
+          alert('사용가능한 닉네임 입니다.');
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    //setLoading(false);
+  };
+  const emailDupliacationCheck = async () => {
+    const emailInput = email.current.value;
+    if (!emailInput) {
+      alert('이메일을 입력해주세요!');
+      return;
+    }
+    /*
+    if (input === emailInput) {
+      alert('기존의 이메일과 동일합니다.');
+      return;
+    }
+    */
+    if (!checkEmail(emailInput)) {
+      alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
+      return;
+    }
+    try {
+      const url = API_BASE_URL + `/accounts/checkemail/?email=${emailInput}`;
+      setError();
+      const res = await axios.get(url);
+      //   setLoading(true);
+      console.log(res.data);
+      switch (res.data.data) {
+        case 'exist':
+          alert('존재하는 email 입니다.');
+          break;
+        case 'not exist':
+          alert('사용가능한 email 입니다.');
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    //  setLoading(false);
+  };
+
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '남':
@@ -188,11 +262,16 @@ function MyPage() {
         ></S.CloseButton>
       </S.TopBar>
       <S.InputExp>닉네임 * </S.InputExp>
-      <S.InputBox
-        placeholder="닉네임을 입력하세요"
-        defaultValue={userInfo.nickname}
-        ref={nickname}
-      ></S.InputBox>
+      <S.InputContainer>
+        <S.InputBoxWithText
+          placeholder="닉네임을 입력하세요"
+          defaultValue={userInfo.nickname}
+          ref={nickname}
+        ></S.InputBoxWithText>
+        <S.DuplicationCheck onClick={nicknameDuplicationCheck}>
+          중복확인
+        </S.DuplicationCheck>
+      </S.InputContainer>
       <S.InputExp>아이디 * </S.InputExp>
       <S.InputBox
         placeholder="아이디를 입력하세요"
@@ -211,12 +290,18 @@ function MyPage() {
         type="password"
         ref={pwCheck}
       ></S.InputBox>
+
       <S.InputExp>이메일 * </S.InputExp>
-      <S.InputBox
-        placeholder="이메일 주소"
-        defaultValue={userInfo.email}
-        ref={email}
-      ></S.InputBox>
+      <S.InputContainer>
+        <S.InputBoxWithText
+          placeholder="이메일 주소"
+          defaultValue={userInfo.email}
+          ref={email}
+        ></S.InputBoxWithText>
+        <S.DuplicationCheck onClick={emailDupliacationCheck}>
+          중복확인
+        </S.DuplicationCheck>
+      </S.InputContainer>
       <S.InputExp>성별(선택)</S.InputExp>
       <S.ButtonContainer>
         <S.ButtonLabel>

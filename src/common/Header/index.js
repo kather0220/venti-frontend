@@ -6,6 +6,7 @@ import MenuBar from '../MenuBar/index';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
+import LoadingScreen from '../LoadingScreen';
 
 function Header(props) {
   const [searchInput, setSearchInput] = useState('');
@@ -53,7 +54,7 @@ function Header(props) {
       getUserInfo();
     }
   }, []);
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <LoadingScreen></LoadingScreen>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
     <>
@@ -77,9 +78,7 @@ function Header(props) {
           <S.AlarmButton
             src={'/img/alarm-icon.png'}
             onClick={() => {
-              getToken(ACCESS_TOKEN)
-                ? history.push('/notice')
-                : alert('로그인이 필요한 서비스입니다.');
+              history.push('/notice');
             }}
           ></S.AlarmButton>
           <S.AlarmNumber visible={notiState}>N</S.AlarmNumber>

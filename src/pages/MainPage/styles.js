@@ -14,7 +14,7 @@ export const Exp = styled.div`
   justify-content: start;
   align-items: center;
   padding: 1.667rem 1.067rem 0.2rem;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 700;
   font-size: 1.2rem;

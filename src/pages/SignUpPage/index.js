@@ -157,6 +157,10 @@ function SignUpPage() {
 
   const nicknameDuplicationCheck = async () => {
     const nicknameInput = nickname.current.value;
+    if (!nicknameInput) {
+      alert('닉네임을 입력해주세요!');
+      return;
+    }
     try {
       const url =
         API_BASE_URL + `/accounts/checknickname/?nickname=${nicknameInput}`;
@@ -166,10 +170,10 @@ function SignUpPage() {
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
-          alert('존재하는 Nickname 입니다.');
+          alert('존재하는 닉네임 입니다.');
           break;
         case 'not exist':
-          alert('사용가능한 Nickname 입니다.');
+          alert('사용가능한 닉네임 입니다.');
           break;
         default:
           break;
@@ -182,6 +186,10 @@ function SignUpPage() {
   };
   const idDuplicationCheck = async () => {
     const idInput = id.current.value;
+    if (!idInput) {
+      alert('아이디를 입력해주세요!');
+      return;
+    }
     try {
       const url = API_BASE_URL + `/accounts/checkusername/?username=${idInput}`;
       setError();
@@ -190,10 +198,10 @@ function SignUpPage() {
       console.log(res.data);
       switch (res.data.data) {
         case 'exist':
-          alert('존재하는 Username 입니다.');
+          alert('존재하는 아이디 입니다.');
           break;
         case 'not exist':
-          alert('사용가능한 Username 입니다.');
+          alert('사용가능한 아이디 입니다.');
           break;
         default:
           break;
@@ -207,6 +215,10 @@ function SignUpPage() {
 
   const emailDupliacationCheck = async () => {
     const emailInput = email.current.value;
+    if (!emailInput) {
+      alert('이메일을 입력해주세요!');
+      return;
+    }
     if (!checkEmail(emailInput)) {
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
       return;

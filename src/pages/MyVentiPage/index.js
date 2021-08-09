@@ -51,8 +51,7 @@ function MyVentiPage() {
   // 로그인으로 이동시킨 후 다시 바로 MY VENTI로 오는 걸 구현하려면 여기서 history.back() 을 이용한 함수를 추가해야 함.
   const getMyEvents = async () => {
     const shiftToLogIn = () => {
-      alert('로그인이 필요한 서비스입니다.');
-      history.push('/log-in');
+      <S.NoResultMessage>로그인이 필요한 서비스입니다!</S.NoResultMessage>;
     };
     try {
       setError(null);
@@ -77,8 +76,7 @@ function MyVentiPage() {
 
   const getMyBrands = async () => {
     const shiftToLogIn = () => {
-      //alert('로그인이 필요한 서비스입니다.');
-      history.push('/log-in');
+      <S.NoResultMessage>로그인이 필요한 서비스입니다!</S.NoResultMessage>;
     };
     try {
       setError(null);
@@ -101,9 +99,12 @@ function MyVentiPage() {
   };
 
   useEffect(() => {
-    getMyEvents();
-    getMyBrands();
+    getToken(ACCESS_TOKEN) ? getMyEvents() : <></>;
   }, []);
+  useEffect(() => {
+    getToken(ACCESS_TOKEN) ? getMyBrands() : <></>;
+  }, []);
+
   if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
@@ -161,10 +162,14 @@ function MyVentiPage() {
               );
             })}
           </GridWrapper>
-        ) : (
+        ) : getToken(ACCESS_TOKEN) ? (
           <S.NoResultMessage visible={category === 'event'}>
             선택된 이벤트가 없어요.<br></br> EVENT 탭에서 좋아하는 이벤트를
             선택해주세요!
+          </S.NoResultMessage>
+        ) : (
+          <S.NoResultMessage visible={category === 'event'}>
+            로그인이 필요한 서비스입니다.
           </S.NoResultMessage>
         )}
         {mybrands.length !== 0 ? (
@@ -181,10 +186,14 @@ function MyVentiPage() {
               );
             })}
           </BrandListContainer>
-        ) : (
+        ) : getToken(ACCESS_TOKEN) ? (
           <S.NoResultMessage visible={category === 'brand'}>
             선택된 브랜드가 없어요.<br></br> BRAND 탭에서 좋아하는 브랜드를
             선택해주세요!
+          </S.NoResultMessage>
+        ) : (
+          <S.NoResultMessage visible={category === 'brand'}>
+            로그인이 필요한 서비스입니다.
           </S.NoResultMessage>
         )}
       </S.MainContainer>
