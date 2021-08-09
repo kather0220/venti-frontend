@@ -50,7 +50,7 @@ export const FilterContainer = styled.div`
   z-index: 200;
   overflow-y: scroll;
   //-ms-overflow-style: none;
-
+  flex-shrink: 0;
   ::-webkit-scrollbar {
     display: none;
   }
