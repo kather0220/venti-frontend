@@ -72,7 +72,7 @@ function SearchResult() {
           </>
         ) : (
           <S.NoResultMessage>
-            <keyword>{id}</keyword>에 대한 검색 결과가 없어요.<br></br>
+            <keyword>{id}</keyword>에 관련된 이벤트가 없어요.<br></br>
             검색어를 다시 확인해주세요!
           </S.NoResultMessage>
         )}

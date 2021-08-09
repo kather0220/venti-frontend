@@ -51,9 +51,11 @@ export const InputExp = styled.div`
 export const InputBox = styled.input`
   margin: 0 1rem;
   height: 3.333rem;
-  width: 23re;
+  width: 23rem;
   background: white;
+  -webkit-appearance: ${(props) => (props.type === 'date' ? '' : 'none')};
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+
   border: none;
   padding-left: 0.6rem;
   font-family: Noto Sans KR;
@@ -73,6 +75,7 @@ export const InputBoxWithText = styled.input`
   margin: 0 1rem;
   height: 3.333rem;
   background: white;
+  -webkit-appearance: none;
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
   border: none;
   padding-left: 0.6rem;

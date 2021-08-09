@@ -11,6 +11,6 @@ export const CategoryTab = styled.div`
   border-bottom: 2px solid
     ${(props) => (props.selected ? 'black' : 'transparent')};
   position: relative;
-  top: 9px;
+  top: 0.867rem;
   color: ${(props) => (props.selected ? 'black' : '#b3b3b3')};
 `;

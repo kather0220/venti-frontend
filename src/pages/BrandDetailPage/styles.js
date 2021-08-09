@@ -17,6 +17,8 @@ export const BrandImage = styled.img`
   width: 4.533rem;
   height: 4.2rem;
   margin-left: 1.867rem;
+  object-fit: contain;
+  background: white;
 `;
 
 export const BrandNameAndText = styled.div`

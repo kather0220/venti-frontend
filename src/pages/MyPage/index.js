@@ -272,7 +272,9 @@ function MyPage() {
           중복확인
         </S.DuplicationCheck>
       </S.InputContainer>
-      <S.InputExp>아이디 * </S.InputExp>
+      <S.InputExp>
+        아이디 *<pwExp>(7자리 이하)</pwExp>
+      </S.InputExp>
       <S.InputBox
         placeholder="아이디를 입력하세요"
         defaultValue={userInfo.username}

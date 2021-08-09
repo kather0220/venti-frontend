@@ -80,7 +80,7 @@ export const HeartIcon = styled.img`
   display: flex;
   flex-direction: row;
   align-items: end;
-  margin-top: 0.2rem;
+  margin-top: 0.4rem;
   width: 0.812rem;
   height: 0.758rem;
 `;

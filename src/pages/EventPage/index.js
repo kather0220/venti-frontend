@@ -282,7 +282,7 @@ function EventPage() {
             onClick={() => setIsVisible(true)}
           ></S.FilterButton>
         </CategoryWrapper>
-        <S.CategoryUnderLine></S.CategoryUnderLine>
+        <CategoryUnderLine></CategoryUnderLine>
         <GridWrapper visible={category === 'food'}>
           {foodEventList.length !== 0 ? (
             foodEventList.map((event) => {

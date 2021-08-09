@@ -284,7 +284,9 @@ function SignUpPage() {
           onClick={(e) => history.push('/log-in')}
         ></S.CloseButton>
       </S.TopBar>
-      <S.InputExp>닉네임 * </S.InputExp>
+      <S.InputExp>
+        닉네임 * <pwExp>(7자리 이하)</pwExp>
+      </S.InputExp>
 
       <S.InputContainer>
         <S.InputBoxWithText
