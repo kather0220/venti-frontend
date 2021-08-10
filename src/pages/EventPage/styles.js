@@ -35,7 +35,7 @@ export const FilterContainer = styled.div`
   //top: 13.733rem;
   bottom: 0;
   width: 25rem;
-  max-height: 74.87%;
+  max-height: 86.87%;
   //height: 40.533rem;
   //height: 100%;
   //height: 70.2133vw;
@@ -103,7 +103,7 @@ export const FilterItemContainer = styled.div`
 
   flex-direction: row;
   width: 100%;
-  padding-top: 1.133rem;
+  padding-top: 0rem;
   padding-right: 0.633rem;
   padding-left: 0.633rem;
   padding-bottom: 5rem;
