@@ -124,6 +124,10 @@ export const ButtonContainer = styled.div`
   display: flex;
   //flex-direction: row;
   //position: relative;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
   position: sticky;
 
   background: linear-gradient(
@@ -159,6 +163,21 @@ export const Button = styled.button`
   margin-bottom: 1.333rem;
   margin-left: 15rem;
   z-index: 250;
+`;
+
+export const FilterResetButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-left: 0.8rem;
+  & img {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 0.333rem;
+  }
 `;
 
 export const NoEventMessage = styled.div`
