@@ -4,7 +4,7 @@ import Header from '../../common/Header/index';
 import { PageTitle } from '../../common/PageTitle/styles';
 import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
-import { CategoryUnderLine } from '../../common/CategoryUnderLine/styles';
+import CategoryUnderLine from '../../common/CategoryUnderLine';
 import { GridWrapper } from '../../common/GridWrapper/styles';
 import GridItem from '../../common/GridItem/index';
 import FoodBrandList from '../../data/FoodBrandList';
@@ -16,8 +16,12 @@ import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import getToken from '../../functions/getToken';
 import axios from 'axios';
+import queryString from 'query-string';
+// import { Redirect } from 'react-router';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 
-function EventPage() {
+const EventPage = ({ match, location }) => {
+  const query = queryString.parse(location.search);
   const [category, setCategory] = useState('food');
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState(false);
@@ -28,6 +32,7 @@ function EventPage() {
   const [foodBrandList, setFoodBrandList] = useState([]);
   const [cafeBrandList, setCafeBrandList] = useState([]);
   const [fashionBrandList, setFashionBrandList] = useState([]);
+
   const handleClick = (event) => {
     const {
       target: { id },
@@ -99,15 +104,37 @@ function EventPage() {
       setFashionBrandList([...fashionBrandList, e.target.id]);
     }
   };
-  const getEventList = async (category, brandList) => {
+  const getEventList = async (query) => {
     try {
       setError(null);
       setLoading(true);
+      var category = parseInt(query.category);
+      var brandList = query.brands;
+      console.log(query);
       console.log(brandList);
-      const params = {
-        category_id: category,
-        brand_name: brandList,
-      };
+      console.log(category);
+      var params;
+      if (category != 1 && category != 2 && category != 3) {
+        category = 1;
+        params = {
+          category_id: category,
+          brand_name: [],
+        };
+      }
+
+      if (brandList == undefined || brandList.length == 0) {
+        params = {
+          category_id: category,
+          brand_name: [],
+        };
+      } else {
+        params = {
+          category_id: category,
+          brand_name: brandList,
+        };
+      }
+
+      console.log(params);
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
             headers: {
@@ -119,12 +146,15 @@ function EventPage() {
       console.log(res.data);
       switch (category) {
         case 1:
+          setCategory('food');
           setFoodEventList(res.data.event);
           break;
         case 2:
+          setCategory('cafe');
           setCafeEventList(res.data.event);
           break;
         case 3:
+          setCategory('fashion');
           setFashionEventList(res.data.event);
           break;
         default:
@@ -138,9 +168,10 @@ function EventPage() {
   };
 
   useEffect(() => {
-    getEventList(1, []);
-    getEventList(2, []);
-    getEventList(3, []);
+    // getEventList(1, []);
+    // getEventList(2, []);
+    // getEventList(3, []);
+    getEventList(query);
   }, []);
   useEffect(() => {
     console.log(foodBrandList);
@@ -151,30 +182,50 @@ function EventPage() {
   useEffect(() => {
     console.log(fashionBrandList);
   }, [fashionBrandList]);
-
-  if (loading) return <LoadingScreen />;
+  useEffect(() => {
+    console.log(query);
+  });
+  if (loading) return <LoadingScreen></LoadingScreen>;
   if (error) return <div>에러가 발생했습니다.</div>;
 
-  const handleFilterApply = () => {
-    switch (category) {
-      case 'food':
-        getEventList(1, foodBrandList);
-        setFoodBrandList([]);
-        break;
-      case 'cafe':
-        getEventList(2, cafeBrandList);
-        setCafeBrandList([]);
-        break;
-      case 'fashion':
-        getEventList(3, fashionBrandList);
-        setFashionBrandList([]);
-        break;
-      default:
-        break;
-    }
-    alert('필터링 적용이 완료되었습니다.');
-    setIsVisible(false);
-  };
+  // const handleFilterApply = () => {
+  //   let newRoute;
+  //   switch (category) {
+  //     case 'food':
+  //       // getEventList(1, foodBrandList);
+  //       setFoodBrandList([]);
+  //       newRoute = 'event?category=1&'+'brands='+foodBrandList;
+  //       console.log(newRoute);
+  //       <Link
+  //       to={{
+  //         pathname:newRoute,
+  //       }}
+  //       target="_blank"
+  //     ></Link>
+  //       // <BrowserRouter>
+  //       //   <Switch>
+  //       //     <Redirect exact from="/event" to='/event?category=1&brands=["아웃백"]'/>
+  //       //     <Route path ='/event?category=1&brands=["아웃백"]' component = {EventPage}/>
+  //       //   </Switch>
+  //       // </BrowserRouter>
+  //     case 'cafe':
+  //       // getEventList(2, cafeBrandList);
+  //       setCafeBrandList([]);
+  //       newRoute = 'event?category=2&'+'brands='+cafeBrandList;
+  //       console.log(newRoute);
+  //       return <Redirect to={{ ...location, pathname: newRoute}} push/>
+  //     case 'fashion':
+  //       // getEventList(3, fashionBrandList);
+  //       setFashionBrandList([]);
+  //       newRoute = 'event?category=3&'+'brands='+fashionBrandList;
+  //       console.log(newRoute);
+  //       return <Redirect to={{ ...location, pathname: newRoute}} push />
+  //     default:
+  //       break;
+  //   }
+  //   alert('필터링 적용이 완료되었습니다.');
+  //   setIsVisible(false);
+  // };
   return (
     <>
       <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
@@ -226,25 +277,44 @@ function EventPage() {
             );
           })}
         </S.FilterItemContainer>
-        <S.BottomGreyLine></S.BottomGreyLine>
+
         <S.ButtonContainer>
           <S.Button
             visible={category === 'food'}
-            onClick={handleFilterApply}
+            onClick={(e) => {
+              var newRoute = '/event?category=1';
+              for (var i = 0; i < foodBrandList.length; i++) {
+                newRoute = newRoute + '&brands=' + foodBrandList[i];
+              }
+              window.location = newRoute;
+            }}
             disabled={foodBrandList.length === 0}
           >
             적용
           </S.Button>
+
           <S.Button
             visible={category === 'cafe'}
-            onClick={handleFilterApply}
+            onClick={(e) => {
+              var newRoute = '/event?category=2';
+              for (var i = 0; i < cafeBrandList.length; i++) {
+                newRoute = newRoute + '&brands=' + cafeBrandList[i];
+              }
+              window.location = newRoute;
+            }}
             disabled={cafeBrandList.length === 0}
           >
             적용
           </S.Button>
           <S.Button
             visible={category === 'fashion'}
-            onClick={handleFilterApply}
+            onClick={(e) => {
+              var newRoute = '/event?category=3';
+              for (var i = 0; i < fashionBrandList.length; i++) {
+                newRoute = newRoute + '&brands=' + fashionBrandList[i];
+              }
+              window.location = newRoute;
+            }}
             disabled={fashionBrandList.length === 0}
           >
             적용
@@ -259,21 +329,32 @@ function EventPage() {
           <CategoryTab
             id="food"
             selected={category === 'food'}
-            onClick={handleClick}
+            onClick={(e) => {
+              var newRoute = '/event?category=1';
+              window.location = newRoute;
+            }}
           >
             FOOD
           </CategoryTab>
           <CategoryTab
             id="cafe"
             selected={category === 'cafe'}
-            onClick={handleClick}
+            onClick={(e) => {
+              setCategory('cafe');
+              var newRoute = '/event?category=2';
+              window.location = newRoute;
+            }}
           >
             CAFE
           </CategoryTab>
           <CategoryTab
             id="fashion"
             selected={category === 'fashion'}
-            onClick={handleClick}
+            onClick={(e) => {
+              setCategory('fashion');
+              var newRoute = '/event?category=3';
+              window.location = newRoute;
+            }}
           >
             FASHION
           </CategoryTab>
@@ -347,6 +428,6 @@ function EventPage() {
       <Footer top={5}></Footer>
     </>
   );
-}
+};
 
 export default EventPage;

@@ -35,7 +35,7 @@ export const FilterContainer = styled.div`
   //top: 13.733rem;
   bottom: 0;
   width: 25rem;
-  height: 74.87%;
+  max-height: 74.87%;
   //height: 40.533rem;
   //height: 100%;
   //height: 70.2133vw;
@@ -122,13 +122,28 @@ export const FilterItem = styled.div`
 `;
 export const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  position: relative;
-  //align-items: center;
-  //align-items: flex-end;
+  //flex-direction: row;
+  //position: relative;
+  position: sticky;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.88) 60.42%,
+    #ffffff 100%
+  );
+  width: 100%;
+  height: 5.533rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  //background: #d3d3d3;
+  border-top: 1px solid #d3d3d3;
 `;
 
 export const Button = styled.button`
+  //position: fixed;
+  bottom: 1.4rem;
   width: 9.067rem;
   height: 2.8rem;
   font-family: Noto Sans KR;
@@ -143,6 +158,7 @@ export const Button = styled.button`
   margin-top: 1.333rem;
   margin-bottom: 1.333rem;
   margin-left: 15rem;
+  z-index: 250;
 `;
 
 export const NoEventMessage = styled.div`

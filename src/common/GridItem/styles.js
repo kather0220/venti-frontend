@@ -59,7 +59,7 @@ export const SecondRow = styled.div`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 600;
-  font-size: 0.667rem;
+  font-size: 0.733rem;
   padding-top: 0.867rem;
 `;
 

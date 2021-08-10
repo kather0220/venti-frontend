@@ -74,8 +74,12 @@ export const OpacityBox = styled.div`
   width: 100%;
   height: 9.333rem;
   z-index: 100;
-  background: white;
-  opacity: 0.85;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.88) 60.42%,
+    #ffffff 100%
+  );
 `;
 
 export const SelectButton = styled.button`
