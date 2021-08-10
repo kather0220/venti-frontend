@@ -105,7 +105,7 @@ const EventPage = ({ match, location }) => {
       setError(null);
       setLoading(true);
       var category = parseInt(query.category);
-      var brandList = query.brands;
+      let brandList = query.brands;
 
       var params;
       if (category != 1 && category != 2 && category != 3) {
@@ -121,13 +121,20 @@ const EventPage = ({ match, location }) => {
           category_id: category,
           brand_name: [],
         };
+      } else if (typeof brandList === 'string') {
+        var list = new Array();
+        list.push(brandList);
+        params = {
+          category_id: category,
+          brand_name: list,
+        };
       } else {
         params = {
           category_id: category,
           brand_name: brandList,
         };
       }
-
+      console.log(params);
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
             headers: {
@@ -180,6 +187,12 @@ const EventPage = ({ match, location }) => {
     // getEventList(2, []);
     // getEventList(3, []);
     getEventList(query);
+  }, []);
+  useEffect(() => {
+    // getEventList(1, []);
+    // getEventList(2, []);
+    // getEventList(3, []);
+    console.log(query);
   }, []);
 
   if (loading) return <LoadingScreen></LoadingScreen>;
