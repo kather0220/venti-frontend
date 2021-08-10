@@ -122,8 +122,7 @@ export const FilterItem = styled.div`
 `;
 export const ButtonContainer = styled.div`
   display: flex;
-  //flex-direction: row;
-  //position: relative;
+
   position: -webkit-sticky;
   position: -moz-sticky;
   position: -o-sticky;
