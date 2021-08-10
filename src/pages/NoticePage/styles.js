@@ -22,7 +22,7 @@ export const NoAlarmText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: cener;
+  //justify-content: center;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;

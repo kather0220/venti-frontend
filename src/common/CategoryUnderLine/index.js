@@ -1,7 +1,7 @@
 import * as S from './styles';
 import React from 'react';
 
-function CategoryUnderLine(props) {
+function CategoryUnderLine() {
   return <S.CategoryUnderLine></S.CategoryUnderLine>;
 }
 

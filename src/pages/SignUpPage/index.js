@@ -113,26 +113,13 @@ function SignUpPage() {
       );
       try {
         const url = API_BASE_URL + '/accounts/create/';
-        const info = {
-          username: idInput,
-          password1: pwInput, //비밀번호
-          password2: pwCheckInput, //확인용 다시치는 비밀번호
-          nickname: nicknameInput,
-          email: emailInput,
-          gender: genderInput,
-          birth: birthdayInput,
-        };
+
         setError(null);
         const res = await axios.post(url, form);
-        console.log(res);
 
-        console.log(form);
-        //setLoading(true);
         if (res.status === 201) {
-          alert(
-            '회원가입이 완료되었습니다!\nVenti는 회원님의 익명성을 보장하기 위해 비밀번호를 암호화 코드로 저장하오니 안심하셔도 좋습니다.'
-          );
           LogIn();
+          alert('회원가입이 완료되었습니다!');
           history.push('/brand-preference');
         } else if (res.status === 200) {
           alert(res.data.error);
@@ -167,7 +154,7 @@ function SignUpPage() {
       setError();
       const res = await axios.get(url);
       // setLoading(true);
-      console.log(res.data);
+
       switch (res.data.data) {
         case 'exist':
           alert('존재하는 닉네임 입니다.');
@@ -195,7 +182,7 @@ function SignUpPage() {
       setError();
       const res = await axios.get(url);
       //setLoading(true);
-      console.log(res.data);
+
       switch (res.data.data) {
         case 'exist':
           alert('존재하는 아이디 입니다.');
@@ -253,7 +240,7 @@ function SignUpPage() {
         username: userId, // id
         password: userPassword, // pwd
       };
-      console.log(info);
+
       setError();
       const res = await axios.post(url, info);
       setLoading(true);
@@ -320,6 +307,7 @@ function SignUpPage() {
         name="password"
         onChange={onChange}
       ></S.InputBox>
+      <S.Line></S.Line>
       <S.InputBox
         placeholder="비밀번호 확인"
         type="password"

@@ -26,7 +26,6 @@ function MyVentiPage() {
   const [mybrands, setMyBrands] = useState([]);
   const [myOnEvent, setMyOnEvent] = useState([]);
   const [myOffEvent, setMyOffEvent] = useState([]);
-  const history = useHistory();
 
   const handleClick = (event) => {
     const {
@@ -64,7 +63,6 @@ function MyVentiPage() {
           })
         : shiftToLogIn();
 
-      console.log(res.data);
       setMyOnEvent(res.data.on_event);
       setMyOffEvent(res.data.off_event);
     } catch (e) {
@@ -89,7 +87,6 @@ function MyVentiPage() {
           })
         : shiftToLogIn();
 
-      console.log(res.data);
       setMyBrands(res.data.mybrand);
     } catch (e) {
       console.log(e);

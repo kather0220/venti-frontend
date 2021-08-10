@@ -36,20 +36,18 @@ export const FilterContainer = styled.div`
   bottom: 0;
   width: 25rem;
   max-height: 86.87%;
-  //height: 40.533rem;
-  //height: 100%;
-  //height: 70.2133vw;
+
   border-radius: 1rem 1rem 0 0;
-  //display: ${(props) => (props.visible ? 'flex' : 'none')};
+
   display: flex;
   transform: ${(props) =>
     props.visible ? 'translateX(0)' : 'translateY(100%)'};
   transition: transform 0.3s ease-in-out;
-  //-ms-overflow-style: none;
+
   flex-direction: column;
   z-index: 200;
   overflow-y: scroll;
-  //-ms-overflow-style: none;
+
   flex-shrink: 0;
   ::-webkit-scrollbar {
     display: none;
@@ -122,7 +120,8 @@ export const FilterItem = styled.div`
 `;
 export const ButtonContainer = styled.div`
   display: flex;
-
+  flex-direction: row;
+  align-items: center;
   position: -webkit-sticky;
   position: -moz-sticky;
   position: -o-sticky;
@@ -160,12 +159,12 @@ export const Button = styled.button`
   border: none;
   margin-top: 1.333rem;
   margin-bottom: 1.333rem;
-  margin-left: 15rem;
+  margin-left: 7.2rem;
   z-index: 250;
 `;
 
 export const FilterResetButton = styled.div`
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: row;
   font-family: Noto Sans KR;
   font-style: normal;

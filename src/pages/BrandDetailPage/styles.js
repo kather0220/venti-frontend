@@ -26,13 +26,15 @@ export const BrandNameAndText = styled.div`
   padding-left: 1.2rem;
   margin-right: 1.067rem;
   word-break: keep-all;
+  line-height: 1.2rem;
 
   & span {
-    font-family: Roboto;
+    font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
     font-size: 1.067rem;
     color: black;
+    //margin-bottom: 0.1rem;
   }
   & img {
     width: 1.067rem;
@@ -40,10 +42,11 @@ export const BrandNameAndText = styled.div`
     margin-left: 1.067rem;
   }
   & text {
-    font-family: Roboto;
+    font-family: Noto Sans KR;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 0.667rem;
+    line-height: 80%;
     color: #676767;
     // width: 15.333rem;
   }

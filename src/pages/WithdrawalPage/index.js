@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
 import * as S from './styles';
 import Header from '../../common/Header/index';
 import Footer from '../../common/Footer/index';
@@ -12,7 +12,7 @@ function WithdrawalPage() {
   const [clicked, setClicked] = useState('');
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+
   const handleRadioClick = (e) => {
     switch (e.target.value) {
       case '0':
@@ -31,7 +31,7 @@ function WithdrawalPage() {
         break;
     }
   };
-  ///accounts/unsubscribe/
+
   const handleClick = async () => {
     if (clicked === '') alert('탈퇴 이유를 알려주세요!');
     else {
@@ -45,7 +45,6 @@ function WithdrawalPage() {
           },
         });
 
-        console.log(res.data);
         alert('탈퇴 완료되었습니다. 벤티를 이용해주셔서 감사드립니다.');
         localStorage.removeItem(ACCESS_TOKEN);
         window.location = '/';

@@ -25,9 +25,7 @@ function NoticePage() {
         },
       });
 
-      console.log(res.data);
       setResponse(res.data.result);
-      //console.log(response);
     } catch (e) {
       console.log(e);
       setError(e);

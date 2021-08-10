@@ -14,15 +14,14 @@ function BrandPreferencePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState([]);
+  const [userNickname, setUserNickname] = useState('');
+
   const handleBrandImageClick = (e) => {
     if (brandList.includes(e.target.id)) {
-      console.log('중복');
       setBrandList(brandList.filter((element) => element !== e.target.id));
-      console.log(brandList.length);
     } else {
       setBrandList([...brandList, e.target.id]);
     }
-    console.log(brandList);
   };
   const subscribeBrands = async () => {
     try {
@@ -40,8 +39,6 @@ function BrandPreferencePage() {
           },
         }
       );
-
-      console.log(res.data);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -54,13 +51,33 @@ function BrandPreferencePage() {
     localStorage.removeItem(ACCESS_TOKEN);
     history.push('/log-in');
   };
+  /*
+  const getUserInfo = async () => {
+    if (!getToken(ACCESS_TOKEN)) return;
+    try {
+      setError(null);
+      setLoading(true);
+      const res = await axios.get(API_BASE_URL + '/accounts/user/', {
+        headers: {
+          Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+        },
+      });
+
+      console.log(res.data + '여기');
+      setUserNickname(res.data.nickname);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    setLoading(false);
+  };
+  */
   const getBrands = async () => {
     try {
       setError(null);
       setLoading(true);
       const res = await axios.get(API_BASE_URL + '/api/guest/brand_list/');
 
-      console.log(res.data);
       setResponse(res.data.brand);
     } catch (e) {
       console.log(e);
@@ -70,16 +87,18 @@ function BrandPreferencePage() {
   };
 
   useEffect(() => {
+    //setTimeout(function () {
+    // getUserInfo();
+    //}, 100);
     getBrands();
   }, []);
   if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
-  console.log(response);
+
   return (
     <S.MainContainer>
       <S.Exp>
-        <name>{getUserId(ACCESS_TOKEN)}</name>님이<br></br>선호하시는 브랜드를
-        알려주세요
+        선호하시는 브랜드를 알려주세요
         <br></br>
         <text>선택한 브랜드의 이벤트를 알림으로 받을 수 있어요</text>
       </S.Exp>

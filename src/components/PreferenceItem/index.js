@@ -34,7 +34,6 @@ function PreferenceItem(props) {
       </S.BrandContainer>
       <S.BrandContainer>
         <S.BrandImage
-          //isClicked={clicked}
           onClick={(e) => {
             handleClick(e);
             props.onClick(e);

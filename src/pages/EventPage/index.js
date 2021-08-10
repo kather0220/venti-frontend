@@ -18,7 +18,6 @@ import getToken from '../../functions/getToken';
 import axios from 'axios';
 import queryString from 'query-string';
 // import { Redirect } from 'react-router';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 const EventPage = ({ match, location }) => {
   const query = queryString.parse(location.search);
@@ -32,6 +31,9 @@ const EventPage = ({ match, location }) => {
   const [foodBrandList, setFoodBrandList] = useState([]);
   const [cafeBrandList, setCafeBrandList] = useState([]);
   const [fashionBrandList, setFashionBrandList] = useState([]);
+  const [clickFoodFilterReset, setClickFoodFilterReset] = useState(false);
+  const [clickCafeFilterReset, setClickCafeFilterReset] = useState(false);
+  const [clickFashionFilterReset, setClickFashionFilterReset] = useState(false);
 
   const handleClick = (event) => {
     const {
@@ -56,12 +58,15 @@ const EventPage = ({ match, location }) => {
     e.preventDefault();
     switch (category) {
       case 'food':
+        setClickFoodFilterReset(false);
         handleFoodBrandList(e);
         break;
       case 'cafe':
+        setClickCafeFilterReset(false);
         handleCafeBrandList(e);
         break;
       case 'fashion':
+        setClickFashionFilterReset(false);
         handleFashionBrandList(e);
         break;
       default:
@@ -69,37 +74,28 @@ const EventPage = ({ match, location }) => {
     }
   };
   const handleFoodBrandList = (e) => {
-    console.log(e.target.id);
     if (foodBrandList.includes(e.target.id)) {
-      console.log('중복');
       setFoodBrandList(
         foodBrandList.filter((element) => element !== e.target.id)
       );
-      console.log(foodBrandList.length);
     } else {
       setFoodBrandList([...foodBrandList, e.target.id]);
     }
   };
   const handleCafeBrandList = (e) => {
-    console.log(e.target.id);
     if (cafeBrandList.includes(e.target.id)) {
-      console.log('중복');
       setCafeBrandList(
         cafeBrandList.filter((element) => element !== e.target.id)
       );
-      console.log(cafeBrandList.length);
     } else {
       setCafeBrandList([...cafeBrandList, e.target.id]);
     }
   };
   const handleFashionBrandList = (e) => {
-    console.log(e.target.id);
     if (fashionBrandList.includes(e.target.id)) {
-      console.log('중복');
       setFashionBrandList(
         fashionBrandList.filter((element) => element !== e.target.id)
       );
-      console.log(fashionBrandList.length);
     } else {
       setFashionBrandList([...fashionBrandList, e.target.id]);
     }
@@ -110,9 +106,7 @@ const EventPage = ({ match, location }) => {
       setLoading(true);
       var category = parseInt(query.category);
       var brandList = query.brands;
-      console.log(query);
-      console.log(brandList);
-      console.log(category);
+
       var params;
       if (category != 1 && category != 2 && category != 3) {
         category = 1;
@@ -134,7 +128,6 @@ const EventPage = ({ match, location }) => {
         };
       }
 
-      console.log(params);
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
             headers: {
@@ -143,7 +136,6 @@ const EventPage = ({ match, location }) => {
           })
         : await axios.post(API_BASE_URL + '/api/guest/event_main/', params);
 
-      console.log(res.data);
       switch (category) {
         case 1:
           setCategory('food');
@@ -167,65 +159,31 @@ const EventPage = ({ match, location }) => {
     setLoading(false);
   };
 
+  const filterReset = (category) => {
+    switch (category) {
+      case 'food':
+        setFoodBrandList([]);
+        break;
+      case 'cafe':
+        setCafeBrandList([]);
+        break;
+      case 'fashion':
+        setFashionBrandList([]);
+        break;
+      default:
+        break;
+    }
+  };
+
   useEffect(() => {
     // getEventList(1, []);
     // getEventList(2, []);
     // getEventList(3, []);
     getEventList(query);
   }, []);
-  useEffect(() => {
-    console.log(foodBrandList);
-  }, [foodBrandList]);
-  useEffect(() => {
-    console.log(cafeBrandList);
-  }, [cafeBrandList]);
-  useEffect(() => {
-    console.log(fashionBrandList);
-  }, [fashionBrandList]);
-  useEffect(() => {
-    console.log(query);
-  });
+
   if (loading) return <LoadingScreen></LoadingScreen>;
   if (error) return <div>에러가 발생했습니다.</div>;
-
-  // const handleFilterApply = () => {
-  //   let newRoute;
-  //   switch (category) {
-  //     case 'food':
-  //       // getEventList(1, foodBrandList);
-  //       setFoodBrandList([]);
-  //       newRoute = 'event?category=1&'+'brands='+foodBrandList;
-  //       console.log(newRoute);
-  //       <Link
-  //       to={{
-  //         pathname:newRoute,
-  //       }}
-  //       target="_blank"
-  //     ></Link>
-  //       // <BrowserRouter>
-  //       //   <Switch>
-  //       //     <Redirect exact from="/event" to='/event?category=1&brands=["아웃백"]'/>
-  //       //     <Route path ='/event?category=1&brands=["아웃백"]' component = {EventPage}/>
-  //       //   </Switch>
-  //       // </BrowserRouter>
-  //     case 'cafe':
-  //       // getEventList(2, cafeBrandList);
-  //       setCafeBrandList([]);
-  //       newRoute = 'event?category=2&'+'brands='+cafeBrandList;
-  //       console.log(newRoute);
-  //       return <Redirect to={{ ...location, pathname: newRoute}} push/>
-  //     case 'fashion':
-  //       // getEventList(3, fashionBrandList);
-  //       setFashionBrandList([]);
-  //       newRoute = 'event?category=3&'+'brands='+fashionBrandList;
-  //       console.log(newRoute);
-  //       return <Redirect to={{ ...location, pathname: newRoute}} push />
-  //     default:
-  //       break;
-  //   }
-  //   alert('필터링 적용이 완료되었습니다.');
-  //   setIsVisible(false);
-  // };
   return (
     <>
       <S.BlackOverlay visible={isVisible}></S.BlackOverlay>
@@ -247,6 +205,7 @@ const EventPage = ({ match, location }) => {
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
                 //isClied={clicked}
+                filter={clickFoodFilterReset}
               ></FilterItem>
             );
           })}
@@ -260,6 +219,7 @@ const EventPage = ({ match, location }) => {
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
                 //isClied={clicked}
+                filter={clickCafeFilterReset}
               ></FilterItem>
             );
           })}
@@ -273,12 +233,43 @@ const EventPage = ({ match, location }) => {
                 //brandList={brandList}
                 onClick={handleFilterItemClick}
                 //isClied={clicked}
+                filter={clickFashionFilterReset}
               ></FilterItem>
             );
           })}
         </S.FilterItemContainer>
 
         <S.ButtonContainer>
+          <S.FilterResetButton
+            visible={category === 'food'}
+            onClick={(e) => {
+              filterReset('food');
+              setClickFoodFilterReset(true);
+            }}
+          >
+            <img src={'/img/filter-reset-button.png'} />
+            선택 초기화
+          </S.FilterResetButton>
+          <S.FilterResetButton
+            visible={category === 'cafe'}
+            onClick={(e) => {
+              filterReset('cafe');
+              setClickCafeFilterReset(true);
+            }}
+          >
+            <img src={'/img/filter-reset-button.png'} />
+            선택 초기화
+          </S.FilterResetButton>
+          <S.FilterResetButton
+            visible={category === 'fashion'}
+            onClick={(e) => {
+              filterReset('fashion');
+              setClickFashionFilterReset(true);
+            }}
+          >
+            <img src={'/img/filter-reset-button.png'} />
+            선택 초기화
+          </S.FilterResetButton>
           <S.Button
             visible={category === 'food'}
             onClick={(e) => {

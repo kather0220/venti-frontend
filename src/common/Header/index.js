@@ -26,7 +26,6 @@ function Header(props) {
       return;
     } else {
       id = searchInput;
-      console.log(id);
       window.location = `/search-result/${id}`;
     }
   };
@@ -40,7 +39,6 @@ function Header(props) {
         },
       });
 
-      console.log(res.data);
       setUserNickname(res.data.nickname);
       setNotiState(res.data.noti_state);
     } catch (e) {

@@ -58,7 +58,6 @@ function NoticeItem(props) {
         </S.NoticeText>
         <S.TimeText>{props.time}</S.TimeText>
       </S.ItemContainer>
-      <S.Line></S.Line>
     </>
   );
 }

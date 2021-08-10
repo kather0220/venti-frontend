@@ -17,7 +17,6 @@ function SearchResult() {
   const [searchResult, setSearchResult] = useState('');
   //api/search/
   const getSearchResult = async (input) => {
-    console.log(input);
     try {
       setError(null);
       setLoading(true);
@@ -29,7 +28,6 @@ function SearchResult() {
           })
         : await axios.get(API_BASE_URL + `/api/guest/search/?search=${input}`);
 
-      console.log(res.data);
       setSearchResult(res.data.events);
     } catch (e) {
       console.log(e);

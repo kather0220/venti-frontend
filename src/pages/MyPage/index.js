@@ -92,7 +92,7 @@ function MyPage() {
       setError();
       const res = await axios.get(url);
       //   setLoading(true);
-      console.log(res.data);
+
       switch (res.data.data) {
         case 'exist':
           alert('존재하는 email 입니다.');
@@ -165,13 +165,13 @@ function MyPage() {
         form.append('gender', genderInput);
         form.append('birth', birthdayInput);
         setError(null);
-        console.log(getToken(ACCESS_TOKEN));
+
         const res = await axios.post(url, form, {
           headers: {
             Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
           },
         });
-        console.log(res);
+
         setLoading(true);
         alert('수정이 완료되었습니다!');
         history.push('/');
@@ -201,7 +201,6 @@ function MyPage() {
         },
       });
 
-      console.log(res.data);
       setUserInfo(res.data);
       switch (userInfo.gender) {
         case 'man':
@@ -225,24 +224,7 @@ function MyPage() {
     }
     setLoading(false);
   };
-  const genderCheck = () => {
-    switch (userInfo.gender) {
-      case 'man':
-        setIsMale(true);
-        setIsFemale(false);
-        break;
-      case 'woman':
-        setIsMale(false);
-        setIsFemale(true);
-        break;
-      case null:
-        setIsMale(false);
-        setIsFemale(false);
-        break;
-      default:
-        break;
-    }
-  };
+
   useEffect(() => {
     if (!getToken(ACCESS_TOKEN)) {
       alert('로그인이 필요합니다.');
@@ -287,6 +269,7 @@ function MyPage() {
       </S.InputExp>
 
       <S.InputBox placeholder="비밀번호" type="password" ref={pw}></S.InputBox>
+      <S.Line></S.Line>
       <S.InputBox
         placeholder="비밀번호 확인"
         type="password"

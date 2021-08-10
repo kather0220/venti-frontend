@@ -21,17 +21,6 @@ function BrandDetailPage() {
   const [onEvent, setOnEvent] = useState([]);
   const [offEvent, setOffEvent] = useState([]);
 
-  const handleStarClick = (e) => {
-    e.preventDefault();
-
-    setClicked(!clicked);
-    if (!clicked) {
-      setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-      }, 100);
-    }
-  };
-
   const getBrandDetail = async (id) => {
     try {
       setError(null);
@@ -48,12 +37,9 @@ function BrandDetailPage() {
           })
         : await axios.post(API_BASE_URL + '/api/guest/brand_detail/', params);
 
-      console.log(res.data);
       setBrandInfo(res.data.brand);
-      console.log(brandInfo + '브랜드인포');
+
       setClicked(res.data.brand.subs);
-      console.log(brandInfo.subs + 'subs');
-      console.log(clicked + '여기에요');
     } catch (e) {
       console.log(e);
       setError(e);
@@ -67,7 +53,7 @@ function BrandDetailPage() {
       const params = {
         brand_id: id,
       };
-      ///api/events/deadline/
+
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/deadline/', params, {
             headers: {
@@ -76,7 +62,6 @@ function BrandDetailPage() {
           })
         : await axios.post(API_BASE_URL + '/api/guest/event_deadline/', params);
 
-      console.log(res.data);
       setOnEvent(res.data.on_event);
       setOffEvent(res.data.off_event);
     } catch (e) {
@@ -103,7 +88,6 @@ function BrandDetailPage() {
             <span>{brandInfo.name}</span>
             <BrandStar
               id={brandInfo.id}
-              //subs={brandInfo.subs ? brandInfo.subs : false}
               setClicked={setClicked}
               clicked={clicked}
             ></BrandStar>

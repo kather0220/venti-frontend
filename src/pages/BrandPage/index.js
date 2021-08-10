@@ -41,18 +41,11 @@ function BrandPage() {
     try {
       setError(null);
       setLoading(true);
-      //console.log(headers);
-      //const date = new Date();
-      //console.log(date);
+
       const params = {
         category_id: category,
       };
-      /*
-      const res = await axios.post(
-        API_BASE_URL + '/api/guest/brand_main/',
-        params
-      );
-      */
+
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/brands/main/', params, {
             headers: {
@@ -61,8 +54,6 @@ function BrandPage() {
           })
         : await axios.post(API_BASE_URL + '/api/guest/brand_main/', params);
 
-      console.log(res.data);
-      //setResponse(res.data.event);
       switch (category) {
         case 1:
           setFoodBrandList(res.data.brand);
@@ -82,8 +73,6 @@ function BrandPage() {
     }
     setLoading(false);
   };
-
-  ///api/brands/{id}/
 
   useEffect(() => {
     getBrands(1);

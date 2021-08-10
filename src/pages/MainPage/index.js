@@ -64,8 +64,6 @@ function MainPage() {
           })
         : await axios.post(API_BASE_URL + '/api/guest/event_main/', params);
 
-      console.log(res.data);
-      //setResponse(res.data.event);
       switch (category) {
         case 1:
           setFoodEventList(res.data.event);
@@ -92,7 +90,6 @@ function MainPage() {
 
       const res = await axios.get(API_BASE_URL + '/api/weekly/');
 
-      console.log(res.data);
       setWeekly(res.data.result);
     } catch (e) {
       console.log(e);

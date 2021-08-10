@@ -54,14 +54,13 @@ export const InputBox = styled.input`
   height: 3.333rem;
   background: white;
   -webkit-appearance: ${(props) => (props.type === 'date' ? '' : 'none')};
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0.733rem rgba(0, 0, 0, 0.06);
   border: none;
   padding-left: 0.6rem;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 400;
   font-size: 0.933rem;
-  //color: ${(props) => (props.disabled ? '' : 'black')};
   color: '#3A3B3C';
   &::placeholder {
     color: #919191;
@@ -77,7 +76,7 @@ export const InputBoxWithText = styled.input`
   height: 3.333rem;
   background: white;
   -webkit-appearance: none;
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0.733rem rgba(0, 0, 0, 0.06);
   border: none;
   padding-left: 0.6rem;
   font-family: Noto Sans KR;
@@ -95,7 +94,11 @@ export const InputContainer = styled.div`
   position: relative;
   display: inline-flex;
 `;
-
+export const Line = styled.div`
+  width: 23rem;
+  height: 0;
+  border-bottom: 1px solid #f1f1f1;
+`;
 export const DuplicationCheck = styled.span`
   position: absolute;
   font-family: Noto Sans KR;

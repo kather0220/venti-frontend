@@ -18,19 +18,20 @@ function BrandListItem(props) {
   };
   const handleStarClick = (e) => {
     e.preventDefault();
-    //setClicked(!clicked);
 
-    setClicked(!clicked);
     if (!clicked) {
-      getToken(ACCESS_TOKEN) ? subscribeBrand(brand_id) : <></>;
-      //: alert('로그인이 필요한 서비스입니다.');
-      /*
-      setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-      }, 100);
-      */
+      if (getToken(ACCESS_TOKEN)) {
+        setClicked(!clicked);
+        subscribeBrand(brand_id);
+      } else {
+        alert('로그인이 필요한 서비스입니다.');
+        return;
+      }
     } else {
-      getToken(ACCESS_TOKEN) ? unsubscribeBrand(brand_id) : <></>;
+      if (getToken(ACCESS_TOKEN)) {
+        setClicked(!clicked);
+        unsubscribeBrand(brand_id);
+      }
     }
   };
   const subscribeBrand = async (id) => {
@@ -40,8 +41,7 @@ function BrandListItem(props) {
       const params = {
         brand_id: [id],
       };
-      ///api/events/deadline/
-      console.log(id);
+
       const res = await axios.post(
         API_BASE_URL + '/api/guest/mybrands/',
         params,
@@ -52,10 +52,8 @@ function BrandListItem(props) {
         }
       );
       setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+        alert('좋아요가 등록되었습니다. MY VENTI 페이지에서 확인해주세요.');
       }, 100);
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -69,7 +67,6 @@ function BrandListItem(props) {
       const params = {
         brand_id: id,
       };
-      ///api/events/deadline/
 
       const res = await axios.post(
         API_BASE_URL + '/api/mybrands/unlike/',
@@ -80,8 +77,6 @@ function BrandListItem(props) {
           },
         }
       );
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);

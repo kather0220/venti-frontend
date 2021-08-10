@@ -6,10 +6,14 @@ export const ItemContainer = styled.div`
   align-items: center;
   margin-top: 1.267rem;
   position: relative;
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 1.067rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
 `;
 
 export const BrandLogo = styled.img`
-  margin-left: 1rem;
+  //margin-left: 1rem;
   width: 3.333rem;
   height: 3.333rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.07);
@@ -22,9 +26,10 @@ export const NoticeText = styled.div`
   font-weight: normal;
   font-size: 0.8rem;
   color: #000000;
-  margin-left: 1rem;
+  margin-left: 0.7rem;
   margin-right: 2rem;
   width: 13.867rem;
+  word-break: keep-all;
   & bold {
     font-weight: bold;
   }

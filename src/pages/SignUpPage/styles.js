@@ -54,9 +54,10 @@ export const InputBox = styled.input`
   width: 23rem;
   background: white;
   -webkit-appearance: ${(props) => (props.type === 'date' ? '' : 'none')};
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0.733rem rgba(0, 0, 0, 0.06);
 
   border: none;
+
   padding-left: 0.6rem;
   font-family: Noto Sans KR;
   font-style: normal;
@@ -69,14 +70,18 @@ export const InputBox = styled.input`
     outline: none;
   }
 `;
-
+export const Line = styled.div`
+  width: 23rem;
+  height: 0;
+  border-bottom: 1px solid #f1f1f1;
+`;
 export const InputBoxWithText = styled.input`
   width: 100%;
   margin: 0 1rem;
   height: 3.333rem;
   background: white;
   -webkit-appearance: none;
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0.733rem rgba(0, 0, 0, 0.06);
   border: none;
   padding-left: 0.6rem;
   font-family: Noto Sans KR;

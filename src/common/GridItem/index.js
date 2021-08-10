@@ -19,18 +19,19 @@ function GridItem(props) {
     e.preventDefault();
     //setClicked(!clicked);
 
-    setClicked(!clicked);
     if (!clicked) {
-      getToken(ACCESS_TOKEN) ? subscribeEvent(event_id) : <></>;
-      //: alert('로그인이 필요한 서비스입니다.');
-      /*
-      setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-      }, 100);
-      */
+      if (getToken(ACCESS_TOKEN)) {
+        setClicked(!clicked);
+        subscribeEvent(props.id);
+      } else {
+        alert('로그인이 필요한 서비스입니다.');
+        return;
+      }
     } else {
-      getToken(ACCESS_TOKEN) ? unsubscribeEvent(event_id) : <></>;
-      //: alert('로그인이 필요한 서비스입니다.');
+      if (getToken(ACCESS_TOKEN)) {
+        setClicked(!clicked);
+        unsubscribeEvent(props.id);
+      }
     }
   };
   //alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
@@ -42,18 +43,15 @@ function GridItem(props) {
       const params = {
         event_id: id,
       };
-      ///api/events/deadline/
-      console.log(id);
+
       const res = await axios.post(API_BASE_URL + '/api/myevents/', params, {
         headers: {
           Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
         },
       });
       setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+        alert('좋아요가 등록되었습니다. MY VENTI 페이지에서 확인해주세요.');
       }, 100);
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -79,8 +77,6 @@ function GridItem(props) {
           },
         }
       );
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -90,12 +86,6 @@ function GridItem(props) {
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
 
-  /*
-  useEffect(() => {
-    if (clicked)
-      alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-  }, [clicked]);
-  */
   return (
     <>
       <S.GridItemContainer>

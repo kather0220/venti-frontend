@@ -11,19 +11,20 @@ function BrandStar(props) {
   //const [clicked, setClicked] = useState(true);
   const handleStarClick = (e) => {
     e.preventDefault();
-    //setClicked(!clicked);
-    props.setClicked(!props.clicked);
-    //setClicked(!clicked);
+
     if (!props.clicked) {
-      getToken(ACCESS_TOKEN) ? subscribeBrand(props.id) : <></>;
-      //: alert('로그인이 필요한 서비스입니다.');
-      /*
-      setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-      }, 100);
-      */
+      if (getToken(ACCESS_TOKEN)) {
+        props.setClicked(!props.clicked);
+        subscribeBrand(props.id);
+      } else {
+        alert('로그인이 필요한 서비스입니다.');
+        return;
+      }
     } else {
-      getToken(ACCESS_TOKEN) ? unsubscribeBrand(props.id) : <></>;
+      if (getToken(ACCESS_TOKEN)) {
+        props.setClicked(!props.clicked);
+        unsubscribeBrand(props.id);
+      }
     }
   };
 
@@ -34,8 +35,7 @@ function BrandStar(props) {
       const params = {
         brand_id: [id],
       };
-      ///api/events/deadline/
-      console.log(id);
+
       const res = await axios.post(
         API_BASE_URL + '/api/guest/mybrands/',
         params,
@@ -46,10 +46,8 @@ function BrandStar(props) {
         }
       );
       setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
+        alert('좋아요가 등록되었습니다. MY VENTI 페이지에서 확인해주세요.');
       }, 100);
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);
@@ -63,7 +61,6 @@ function BrandStar(props) {
       const params = {
         brand_id: id,
       };
-      ///api/events/deadline/
 
       const res = await axios.post(
         API_BASE_URL + '/api/mybrands/unlike/',
@@ -74,20 +71,12 @@ function BrandStar(props) {
           },
         }
       );
-
-      console.log(res);
     } catch (e) {
       console.log(e);
       setError(e);
     }
   };
-  /*
-  useEffect(() => {
-    console.log(props.subs);
 
-    props.setClicked(props.subs);
-  }, []);
-  */
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (

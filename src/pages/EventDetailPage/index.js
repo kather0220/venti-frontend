@@ -15,16 +15,7 @@ function EventDetailPage() {
 
   const [eventInfo, setEventInfo] = useState('');
   const { event_id } = useParams();
-  const handleHeartClick = (e) => {
-    e.preventDefault();
 
-    setClicked(!clicked);
-    if (!clicked) {
-      setTimeout(function () {
-        alert('좋아요가 등록되었습니다. 마이벤티 페이지에서 확인해주세요.');
-      }, 100);
-    }
-  };
   const getEventDetail = async (id) => {
     try {
       setError(null);
@@ -39,7 +30,7 @@ function EventDetailPage() {
             },
           })
         : await axios.post(API_BASE_URL + '/api/guest/event_detail/', params);
-      console.log(res.data);
+
       setEventInfo(res.data.event[0]);
     } catch (e) {
       console.log(e);
@@ -47,11 +38,8 @@ function EventDetailPage() {
     }
 
     setLoading(false);
-    //eventInfo.subs ? setClicked(true) : setClicked(false);
   };
-  const [clicked, setClicked] = useState(
-    eventInfo.subs ? eventInfo.subs : false
-  );
+
   useEffect(() => {
     getEventDetail(event_id);
   }, []);

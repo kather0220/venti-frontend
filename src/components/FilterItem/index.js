@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 
 function FilterItem(props) {
@@ -18,6 +18,13 @@ function FilterItem(props) {
     setClicked(!clicked);
     return true;
   };
+  useEffect(() => {
+    if (props.filter === true) {
+      setBackground('#EEEEEE');
+      setColors('#000000');
+      setClicked(false);
+    }
+  }, [props.filter]);
 
   return (
     <S.StyledItem

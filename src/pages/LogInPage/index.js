@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Button from '../../common/Button/index';
 import LoadingScreen from '../../common/LoadingScreen';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants';
 import setToken from '../../functions/setToken';
@@ -39,16 +38,15 @@ function LogInPage() {
           username: userId, // id
           password: userPassword, // pwd
         };
-        console.log(info);
+
         setError();
         const res = await axios.post(url, info);
         setLoading(true);
         setToken(ACCESS_TOKEN, res.data, userId);
-        console.log(res.data);
+
         alert(`${userId}님 반갑습니다!`);
         history.push('/');
       } catch (e) {
-        console.log(e);
         const statusCode = parseInt(e.message.split(' ').pop());
         switch (statusCode) {
           case 401:
@@ -81,13 +79,7 @@ function LogInPage() {
             onChange={onChange}
           ></S.PwInput>
         </S.InputContainer>
-        <S.StyledButton
-          type="submit"
-          //onClick={handleClick}
-          // handleKeyPress={(e) => (e.key === 'Enter' ? this.handleClick() : <></>)}
-        >
-          로그인
-        </S.StyledButton>
+        <S.StyledButton type="submit">로그인</S.StyledButton>
       </S.IdPwContainer>
 
       <S.SignUpLink to="/sign-up">Venti 회원가입</S.SignUpLink>
