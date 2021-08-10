@@ -100,11 +100,15 @@ function MainPage() {
   ///api/brands/{id}/
 
   useEffect(() => {
-    getEventsForYou(1);
-    getEventsForYou(2);
-    getEventsForYou(3);
     getWeekly();
   }, []);
+  useEffect(() => {
+    if (category === 'food' && foodEventList.length === 0) getEventsForYou(1);
+    if (category === 'cafe' && cafeEventList.length === 0) getEventsForYou(2);
+    if (category === 'fashion' && fashionEventList.length === 0)
+      getEventsForYou(3);
+  }, [category]);
+
   if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
   return (
