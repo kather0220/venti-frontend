@@ -72,6 +72,7 @@ export const InputBox = styled.input`
 `;
 export const Line = styled.div`
   width: 23rem;
+  margin-left: 1rem;
   height: 0;
   border-bottom: 1px solid #f1f1f1;
 `;
