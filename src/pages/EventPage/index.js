@@ -66,6 +66,7 @@ const EventPage = ({ match, location }) => {
     } else {
       setFoodBrandList([...foodBrandList, e.target.id]);
     }
+    console.log(foodBrandList);
   };
   const handleCafeBrandList = (e) => {
     if (cafeBrandList.includes(e.target.id)) {
@@ -153,15 +154,44 @@ const EventPage = ({ match, location }) => {
     }
     setLoading(false);
   };
-  const handleClickMore = async (category, nextPage) => {
+  const handleClickMore = async (nextPage, query) => {
     if (nextPage === -1) return;
     try {
       setError(null);
       //setLoading(true);
-      const params = {
-        category_id: category,
-        brand_name: [],
-      };
+      //console.log(brandList);
+      var params;
+      var category = parseInt(query.category);
+      let brandList = query.brands;
+
+      var params;
+      if (category != 1 && category != 2 && category != 3) {
+        category = 1;
+        params = {
+          category_id: category,
+          brand_name: [],
+        };
+      }
+
+      if (brandList == undefined || brandList.length == 0) {
+        params = {
+          category_id: category,
+          brand_name: [],
+        };
+      } else if (typeof brandList === 'string') {
+        var list = new Array();
+        list.push(brandList);
+        params = {
+          category_id: category,
+          brand_name: list,
+        };
+      } else {
+        params = {
+          category_id: category,
+          brand_name: brandList,
+        };
+      }
+
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(
             API_BASE_URL + `/api/events/main/?page=${nextPage}`,
@@ -226,12 +256,6 @@ const EventPage = ({ match, location }) => {
     // getEventList(2, []);
     // getEventList(3, []);
     getEventList(query);
-  }, []);
-  useEffect(() => {
-    // getEventList(1, []);
-    // getEventList(2, []);
-    // getEventList(3, []);
-    console.log(query);
   }, []);
 
   if (loading) return <LoadingScreen></LoadingScreen>;
@@ -469,20 +493,20 @@ const EventPage = ({ match, location }) => {
         </GridWrapper>
         <S.MoreButton
           visible={category === 'food' && foodNextPage !== -1}
-          onClick={handleClickMore.bind(this, 1, foodNextPage)}
+          onClick={handleClickMore.bind(this, foodNextPage, query)}
         >
           <img src="/img/more-button-arrow.png"></img> MORE
         </S.MoreButton>
         <S.MoreButton
           visible={category === 'cafe' && cafeNextPage !== -1}
-          onClick={handleClickMore.bind(this, 2, cafeNextPage)}
+          onClick={handleClickMore.bind(this, cafeNextPage, query)}
         >
           <img src="/img/more-button-arrow.png"></img>
           MORE
         </S.MoreButton>
         <S.MoreButton
           visible={category === 'fashion' && fashionNextPage !== -1}
-          onClick={handleClickMore.bind(this, 3, fashionNextPage)}
+          onClick={handleClickMore.bind(this, fashionNextPage, query)}
         >
           <img src="/img/more-button-arrow.png"></img>
           MORE
