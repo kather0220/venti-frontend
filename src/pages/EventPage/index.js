@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import Header from '../../common/Header/index';
+
 import { PageTitle } from '../../common/PageTitle/styles';
 import { CategoryWrapper } from '../../common/CategoryWrapper/styles';
 import { CategoryTab } from '../../common/CategoryTab/styles';
@@ -31,28 +32,12 @@ const EventPage = ({ match, location }) => {
   const [foodBrandList, setFoodBrandList] = useState([]);
   const [cafeBrandList, setCafeBrandList] = useState([]);
   const [fashionBrandList, setFashionBrandList] = useState([]);
+  const [foodNextPage, setFoodNextPage] = useState(1);
+  const [cafeNextPage, setCafeNextPage] = useState(1);
+  const [fashionNextPage, setFashionNextPage] = useState(1);
   const [clickFoodFilterReset, setClickFoodFilterReset] = useState(false);
   const [clickCafeFilterReset, setClickCafeFilterReset] = useState(false);
   const [clickFashionFilterReset, setClickFashionFilterReset] = useState(false);
-
-  const handleClick = (event) => {
-    const {
-      target: { id },
-    } = event;
-    switch (id) {
-      case 'food':
-        setCategory('food');
-        break;
-      case 'cafe':
-        setCategory('cafe');
-        break;
-      case 'fashion':
-        setCategory('fashion');
-        break;
-      default:
-        break;
-    }
-  };
 
   const handleFilterItemClick = (e) => {
     e.preventDefault();
@@ -134,7 +119,7 @@ const EventPage = ({ match, location }) => {
           brand_name: brandList,
         };
       }
-      console.log(params);
+
       const res = getToken(ACCESS_TOKEN)
         ? await axios.post(API_BASE_URL + '/api/events/main/', params, {
             headers: {
@@ -146,14 +131,17 @@ const EventPage = ({ match, location }) => {
       switch (category) {
         case 1:
           setCategory('food');
+          setFoodNextPage(res.data.next_page);
           setFoodEventList(res.data.event);
           break;
         case 2:
           setCategory('cafe');
+          setCafeNextPage(res.data.next_page);
           setCafeEventList(res.data.event);
           break;
         case 3:
           setCategory('fashion');
+          setFashionNextPage(res.data.next_page);
           setFashionEventList(res.data.event);
           break;
         default:
@@ -164,6 +152,57 @@ const EventPage = ({ match, location }) => {
       setError(e);
     }
     setLoading(false);
+  };
+  const handleClickMore = async (category, nextPage) => {
+    if (nextPage === -1) return;
+    try {
+      setError(null);
+      //setLoading(true);
+      const params = {
+        category_id: category,
+        brand_name: [],
+      };
+      const res = getToken(ACCESS_TOKEN)
+        ? await axios.post(
+            API_BASE_URL + `/api/events/main/?page=${nextPage}`,
+            params,
+            {
+              headers: {
+                Authorization: 'JWT ' + getToken(ACCESS_TOKEN).token,
+              },
+            }
+          )
+        : await axios.post(
+            API_BASE_URL + `/api/guest/event_main/?page=${nextPage}`,
+            params
+          );
+
+      const eventList = res.data.event;
+
+      switch (category) {
+        case 1:
+          setFoodNextPage(res.data.next_page);
+          setFoodEventList([...foodEventList, ...eventList]);
+
+          break;
+        case 2:
+          setCafeNextPage(res.data.next_page);
+          setCafeEventList([...cafeEventList, ...eventList]);
+          cafeEventList.concat(res.data.event);
+          break;
+        case 3:
+          setFashionNextPage(res.data.next_page);
+          setFashionEventList([...fashionEventList, ...eventList]);
+          fashionEventList.concat(res.data.event);
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    //setLoading(false);
   };
 
   const filterReset = (category) => {
@@ -428,6 +467,26 @@ const EventPage = ({ match, location }) => {
             <S.NoEventMessage>진행중인 이벤트가 없습니다!</S.NoEventMessage>
           )}
         </GridWrapper>
+        <S.MoreButton
+          visible={category === 'food' && foodNextPage !== -1}
+          onClick={handleClickMore.bind(this, 1, foodNextPage)}
+        >
+          <img src="/img/more-button-arrow.png"></img> MORE
+        </S.MoreButton>
+        <S.MoreButton
+          visible={category === 'cafe' && cafeNextPage !== -1}
+          onClick={handleClickMore.bind(this, 2, cafeNextPage)}
+        >
+          <img src="/img/more-button-arrow.png"></img>
+          MORE
+        </S.MoreButton>
+        <S.MoreButton
+          visible={category === 'fashion' && fashionNextPage !== -1}
+          onClick={handleClickMore.bind(this, 3, fashionNextPage)}
+        >
+          <img src="/img/more-button-arrow.png"></img>
+          MORE
+        </S.MoreButton>
       </S.MainContainer>
       <Footer top={5}></Footer>
     </>

@@ -8,7 +8,7 @@ import * as S from './styles';
 function BrandListItem(props) {
   const history = useHistory();
   const brand_id = props.id; // 임시값
-  console.log(brand_id);
+
   const [clicked, setClicked] = useState(props.subs);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

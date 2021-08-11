@@ -190,3 +190,20 @@ export const NoEventMessage = styled.div`
   font-weight: normal;
   font-size: 0.933rem;
 `;
+
+export const MoreButton = styled.button`
+  display: ${(props) => (props.visible ? '' : 'none')};
+  border: 1px solid #919191;
+  border-radius: 1.8rem;
+  color: #909090;
+  width: 4.733rem;
+  height: 1.667rem;
+  background: white;
+  margin-top: 3rem;
+  margin-left: 10rem;
+  & img {
+    width: 0.467rem;
+    height: 0.267rem;
+    margin-right: 0.451rem;
+  }
+`;

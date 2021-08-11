@@ -23,6 +23,10 @@ function MainPage() {
   const [cafeEventList, setCafeEventList] = useState([]);
   const [fashionEventList, setFashionEventList] = useState([]);
   const [weekly, setWeekly] = useState([]);
+  const [foodNextPage, setFoodNextPage] = useState(1);
+  const [cafeNextPage, setCafeNextPage] = useState(1);
+  const [fashionNextPage, setFashionNextPage] = useState(1);
+
   const handleClick = (event) => {
     const {
       target: { id },
@@ -66,13 +70,19 @@ function MainPage() {
 
       switch (category) {
         case 1:
+          if (res.data.next_page) setFoodNextPage(res.data.next_page);
           setFoodEventList(res.data.event);
+
           break;
         case 2:
+          if (res.data.next_page) setCafeNextPage(res.data.next_page);
           setCafeEventList(res.data.event);
+
           break;
         case 3:
+          if (res.data.next_page) setFashionNextPage(res.data.next_page);
           setFashionEventList(res.data.event);
+
           break;
         default:
           break;
@@ -98,16 +108,76 @@ function MainPage() {
     setLoading(false);
   };
   ///api/brands/{id}/
+  const handleClickMore = async (category, nextPage) => {
+    if (nextPage === -1) return;
+    try {
+      setError(null);
+      //setLoading(true);
+      const params = {
+        category_id: category,
+        brand_name: [],
+      };
+      const res = await axios.post(
+        API_BASE_URL + `/api/guest/event_main/?page=${nextPage}`,
+        params
+      );
+
+      const eventList = res.data.event;
+
+      switch (category) {
+        case 1:
+          setFoodNextPage(res.data.next_page);
+          setFoodEventList([...foodEventList, ...eventList]);
+
+          break;
+        case 2:
+          setCafeNextPage(res.data.next_page);
+          setCafeEventList([...cafeEventList, ...eventList]);
+          cafeEventList.concat(res.data.event);
+          break;
+        case 3:
+          setFashionNextPage(res.data.next_page);
+          setFashionEventList([...fashionEventList, ...eventList]);
+          fashionEventList.concat(res.data.event);
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+    //setLoading(false);
+  };
+
+  const FoodListItem = () => {
+    return foodEventList.map((event) => {
+      <GridItem
+        id={event.id}
+        eventName={event.name}
+        brandName={event.brand_name}
+        img={event.event_img_url}
+        // onClick={handleBrandImageClick}
+        subs={event.subs ? event.subs : false}
+        view={event.view}
+        due={event['d-day']}
+      ></GridItem>;
+    });
+  };
 
   useEffect(() => {
-    getWeekly();
-  }, []);
+    if (category === 'food') return FoodListItem;
+  }, [foodEventList]);
+  useEffect(() => getWeekly(), []);
   useEffect(() => {
-    if (category === 'food' && foodEventList.length === 0) getEventsForYou(1);
-    if (category === 'cafe' && cafeEventList.length === 0) getEventsForYou(2);
-    if (category === 'fashion' && fashionEventList.length === 0)
-      getEventsForYou(3);
-  }, [category]);
+    //if (category === 'food' && foodEventList.length === 0) getEventsForYou(1);
+    //if (category === 'cafe' && cafeEventList.length === 0) getEventsForYou(2);
+    //if (category === 'fashion' && fashionEventList.length === 0)
+    // getEventsForYou(3);
+    getEventsForYou(1);
+    getEventsForYou(2);
+    getEventsForYou(3);
+  }, []);
 
   if (loading) return <LoadingScreen />;
   if (error) return <div>에러가 발생했습니다.</div>;
@@ -189,7 +259,45 @@ function MainPage() {
             );
           })}
         </GridWrapper>
-        <Footer top={8}></Footer>
+        {getToken(ACCESS_TOKEN) ? (
+          <></>
+        ) : (
+          <>
+            <S.MoreButton
+              visible={
+                !getToken(ACCESS_TOKEN) &&
+                category === 'food' &&
+                foodNextPage !== -1
+              }
+              onClick={handleClickMore.bind(this, 1, foodNextPage)}
+            >
+              <img src="/img/more-button-arrow.png"></img> MORE
+            </S.MoreButton>
+            <S.MoreButton
+              visible={
+                !getToken(ACCESS_TOKEN) &&
+                category === 'cafe' &&
+                cafeNextPage !== -1
+              }
+              onClick={handleClickMore.bind(this, 2, cafeNextPage)}
+            >
+              <img src="/img/more-button-arrow.png"></img>
+              MORE
+            </S.MoreButton>
+            <S.MoreButton
+              visible={
+                !getToken(ACCESS_TOKEN) &&
+                category === 'fashion' &&
+                fashionNextPage !== -1
+              }
+              onClick={handleClickMore.bind(this, 3, fashionNextPage)}
+            >
+              <img src="/img/more-button-arrow.png"></img>
+              MORE
+            </S.MoreButton>
+          </>
+        )}
+        <Footer top={5}></Footer>
       </S.MainContainer>
     </>
   );

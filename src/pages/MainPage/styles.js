@@ -62,3 +62,20 @@ export const BlackOverlay = styled.div`
   background: rgba(64, 64, 64, 0.49);
   z-index: 100;
 `;
+
+export const MoreButton = styled.button`
+  display: ${(props) => (props.visible ? '' : 'none')};
+  border: 1px solid #919191;
+  border-radius: 1.8rem;
+  color: #909090;
+  width: 4.733rem;
+  height: 1.667rem;
+  background: white;
+  margin-top: 3rem;
+  margin-left: 10rem;
+  & img {
+    width: 0.467rem;
+    height: 0.267rem;
+    margin-right: 0.451rem;
+  }
+`;

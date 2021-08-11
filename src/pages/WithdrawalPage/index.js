@@ -33,7 +33,10 @@ function WithdrawalPage() {
   };
 
   const handleClick = async () => {
-    if (clicked === '') alert('탈퇴 이유를 알려주세요!');
+    if (!getToken(ACCESS_TOKEN)) {
+      alert('로그인이 필요한 서비스입니다.');
+      return;
+    } else if (clicked === '') alert('탈퇴 이유를 알려주세요!');
     else {
       try {
         setError(null);
