@@ -18,6 +18,7 @@ export const BrandLogo = styled.img`
   height: 3.333rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.07);
   border-radius: 50%;
+  object-fit: contain;
 `;
 
 export const NoticeText = styled.div`
@@ -29,6 +30,7 @@ export const NoticeText = styled.div`
   margin-left: 0.7rem;
   margin-right: 2rem;
   width: 13.867rem;
+  letter-spacing: 0.07rem;
   word-break: keep-all;
   & bold {
     font-weight: bold;
