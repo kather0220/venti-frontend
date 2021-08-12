@@ -68,11 +68,19 @@ function LogInPage() {
       <S.Logo src={'img/Venti.png'}></S.Logo>
       <S.IdPwContainer onSubmit={onSubmit}>
         <S.InputContainer>
-          <S.ContainerText>아이디</S.ContainerText>
+          <S.ContainerText
+            onClick={(e) => document.getElementById('id').focus()}
+          >
+            아이디
+          </S.ContainerText>
           <S.IdInput id="id" type="text" onChange={onChange}></S.IdInput>
         </S.InputContainer>
         <S.InputContainer>
-          <S.ContainerText>비밀번호</S.ContainerText>
+          <S.ContainerText
+            onClick={(e) => document.getElementById('password').focus()}
+          >
+            비밀번호
+          </S.ContainerText>
           <S.PwInput
             id="password"
             type="password"

@@ -42,10 +42,12 @@ export const IdInput = styled.input`
   border: 1px solid #f1f1f1;
   color: black;
   font-family: Roboto;
+
   font-style: normal;
   font-weight: normal;
   font-size: 1.067rem;
   line-height: 1.267rem;
+
   border: none;
   &:focus {
     outline: none;
@@ -60,6 +62,7 @@ export const PwInput = styled.input`
   font-weight: normal;
   font-size: 1.067rem;
   line-height: 1.267rem;
+
   letter-spacing: 0.4rem;
   border: none;
   &:focus {
