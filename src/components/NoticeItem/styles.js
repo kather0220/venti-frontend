@@ -34,10 +34,12 @@ export const NoticeText = styled.div`
   word-break: keep-all;
   & bold {
     font-weight: bold;
+    letter-spacing: 0.07rem;
   }
   & day {
     font-weight: bold;
     color: #f40552;
+    letter-spacing: 0.07rem;
   }
 `;
 
