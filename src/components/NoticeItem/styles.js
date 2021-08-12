@@ -30,16 +30,13 @@ export const NoticeText = styled.div`
   margin-left: 0.7rem;
   margin-right: 2rem;
   width: 13.867rem;
-  letter-spacing: 0.07rem;
   word-break: keep-all;
   & bold {
     font-weight: bold;
-    letter-spacing: 0.07rem;
   }
   & day {
     font-weight: bold;
     color: #f40552;
-    letter-spacing: 0.07rem;
   }
 `;
 
