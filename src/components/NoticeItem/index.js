@@ -9,7 +9,7 @@ function NoticeItem(props) {
       case 'new':
         return (
           <S.NoticeText>
-            <bold>{props.brand_name}</bold>에서
+            <bold>{props.brand_name}</bold> 에서
             <bold> {props.event_name}</bold> 새로운 이벤트가 업데이트 되었어요.
           </S.NoticeText>
         );
@@ -19,7 +19,7 @@ function NoticeItem(props) {
         return (
           <S.NoticeText>
             <day>[12H] </day>
-            <bold>{props.brand_name}</bold>의 <bold>{props.event_name}</bold>{' '}
+            <bold>{props.brand_name}</bold> 의 <bold>{props.event_name}</bold>{' '}
             이벤트 마감이 12시간 남았어요.
           </S.NoticeText>
         );
@@ -28,7 +28,7 @@ function NoticeItem(props) {
         return (
           <S.NoticeText>
             <day>[D-1] </day>
-            <bold>{props.brand_name}</bold>의 <bold>{props.event_name}</bold>{' '}
+            <bold>{props.brand_name}</bold> 의 <bold>{props.event_name}</bold>{' '}
             이벤트 마감이 24시간 남았어요.
           </S.NoticeText>
         );
