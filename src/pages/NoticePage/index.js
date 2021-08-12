@@ -64,7 +64,7 @@ function NoticePage() {
           <S.NoAlarmText>로그인이 필요한 서비스입니다!</S.NoAlarmText>
         )}
       </S.MainContainer>
-      <Footer top={10}></Footer>
+      <Footer top={20}></Footer>
     </>
   );
 }
