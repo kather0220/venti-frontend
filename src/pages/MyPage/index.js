@@ -155,7 +155,7 @@ function MyPage() {
       alert('유효하지 않은 이메일입니다. 다시 입력해주세요!');
     else {
       try {
-        const url = 'http://3.36.127.126:8000/accounts/update/';
+        const url = API_BASE_URL + '/accounts/update/';
         let form = new FormData();
         form.append('username', idInput);
         form.append('password1', pwInput);
