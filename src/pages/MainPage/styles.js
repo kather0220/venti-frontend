@@ -68,7 +68,7 @@ export const MoreButton = styled.button`
   border: 1px solid #919191;
   border-radius: 1.8rem;
   color: #909090;
-  width: 4.733rem;
+  width: 5.733rem;
   height: 1.667rem;
   background: white;
   margin-top: 3rem;
