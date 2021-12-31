@@ -23,24 +23,24 @@
 
 ## Notice Page
 - 이벤트 업데이트 및 마감 알림  
-<img src = "https://user-images.githubusercontent.com/78165538/147825266-65e0ac85-f775-4c62-b69f-0e0d193aeb77.png" width="400" height="800"><img src = "https://user-images.githubusercontent.com/78165538/147825474-76a585a2-bc51-4098-a153-12bbc14b9f08.png" width="400" height="800">
+<img src = "https://user-images.githubusercontent.com/78165538/147825266-65e0ac85-f775-4c62-b69f-0e0d193aeb77.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/147825474-76a585a2-bc51-4098-a153-12bbc14b9f08.png" width="30%" height="20%">
 
 
 ## Search Page
 - 이벤트 검색 결과 표시    
-<img src = "https://user-images.githubusercontent.com/78165538/147825719-c7e1ad60-d119-4452-88ca-3bad6fa786e9.png" width="400" height="800">
+<img src = "https://user-images.githubusercontent.com/78165538/147825719-c7e1ad60-d119-4452-88ca-3bad6fa786e9.png" width="30%" height="20%">
 
 ## Event Page
 - 카테고리별 이벤트 표시  
-<img src = "https://user-images.githubusercontent.com/78165538/147825789-17afbdd8-d501-4b97-9b15-d1d2c87cac79.png" width="400" height="800"><img src = "https://user-images.githubusercontent.com/78165538/147825798-ebdf87ed-1197-4088-b5da-cfce20871eb5.png" width="400" height="800">
+<img src = "https://user-images.githubusercontent.com/78165538/147825789-17afbdd8-d501-4b97-9b15-d1d2c87cac79.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/147825798-ebdf87ed-1197-4088-b5da-cfce20871eb5.png" width="30%" height="20%">
 
 ## Brand Page
 - 카테고리별 브랜드 표시  
-<img src = "https://user-images.githubusercontent.com/78165538/147825898-d1fb375b-a618-49eb-9577-f590ac558d06.png" width="400" height="800">
+<img src = "https://user-images.githubusercontent.com/78165538/147825898-d1fb375b-a618-49eb-9577-f590ac558d06.png" width="30%" height="20%">
 
 ## My Page
 - 좋아요를 누른 이벤트 및 브랜드 표시    
-<img src = "https://user-images.githubusercontent.com/78165538/147825916-a6d9358e-0342-4c44-95e6-54e1561057f1.png" width="400" height="800"><img src = "https://user-images.githubusercontent.com/78165538/147825921-72eb5830-f220-47f6-b897-0b87edc555ae.png" width="400" height="800">
+<img src = "https://user-images.githubusercontent.com/78165538/147825916-a6d9358e-0342-4c44-95e6-54e1561057f1.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/147825921-72eb5830-f220-47f6-b897-0b87edc555ae.png" width="30%" height="20%">
 
 ## Login & Sign Up
 - 로그인 페이지, 회원가입 페이지, 선호 브랜드 선택 페이지  
@@ -55,7 +55,7 @@
 - React-Router
 - Axios
 - Styled-Components
-- react-slick ( 메인페이지 이벤트 베너 )
+- react-slick ( 메인페이지  베너 )
 
 ### Contributors
 
