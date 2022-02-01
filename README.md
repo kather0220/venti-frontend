@@ -38,6 +38,15 @@
 - 카테고리별 브랜드 표시  
 <img src = "https://user-images.githubusercontent.com/78165538/147825898-d1fb375b-a618-49eb-9577-f590ac558d06.png" width="30%" height="20%">
 
+### Event Detail Page
+- 이벤트 상세 페이지
+<img src = "https://user-images.githubusercontent.com/78165538/151992306-60f0b99f-9e40-437e-879b-6718ebca825b.png" width="30%" height="20%">
+
+### Brand Detail Page
+- 브렌드 상세 페이지
+<img src = "https://user-images.githubusercontent.com/78165538/151992431-24d8ac4e-f4bc-4c50-963f-5fbeaa90d094.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/151992467-82d0550d-89b1-41a6-a66b-5295e3e7676a.png" width="30%" height="20%">
+
+
 ### My Venti Page
 - 좋아요를 누른 이벤트 및 브랜드 표시    
 <img src = "https://user-images.githubusercontent.com/78165538/147825916-a6d9358e-0342-4c44-95e6-54e1561057f1.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/147825921-72eb5830-f220-47f6-b897-0b87edc555ae.png" width="30%" height="20%">
