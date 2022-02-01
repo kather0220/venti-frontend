@@ -43,7 +43,7 @@
 <img src = "https://user-images.githubusercontent.com/78165538/151992306-60f0b99f-9e40-437e-879b-6718ebca825b.png" width="30%" height="20%">
 
 ### Brand Detail Page
-- 브렌드 상세 페이지
+- 브랜드 상세 페이지  
 <img src = "https://user-images.githubusercontent.com/78165538/151992431-24d8ac4e-f4bc-4c50-963f-5fbeaa90d094.png" width="30%" height="20%"><img src = "https://user-images.githubusercontent.com/78165538/151992467-82d0550d-89b1-41a6-a66b-5295e3e7676a.png" width="30%" height="20%">
 
 
